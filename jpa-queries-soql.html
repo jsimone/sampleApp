@@ -1,0 +1,311 @@
+<!--
+
+    Copyright (c) 2011, salesforce.com, inc.
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without modification, are permitted provided
+    that the following conditions are met:
+
+       Redistributions of source code must retain the above copyright notice, this list of conditions and the
+       following disclaimer.
+
+       Redistributions in binary form must reproduce the above copyright notice, this list of conditions and
+       the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+       Neither the name of salesforce.com, inc. nor the names of its contributors may be used to endorse or
+       promote products derived from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+    PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+    ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+    TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Database.com Java SDK - Querying with SOQL</title>
+	<link type="text/css" rel="stylesheet" href="stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="force-header"> 
+    <h1><a href="force-sdk-overview.html">Database.com Java SDK</a></h1>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <!--
+
+    Copyright (c) 2011, salesforce.com, inc.
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without modification, are permitted provided
+    that the following conditions are met:
+
+       Redistributions of source code must retain the above copyright notice, this list of conditions and the
+       following disclaimer.
+
+       Redistributions in binary form must reproduce the above copyright notice, this list of conditions and
+       the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+       Neither the name of salesforce.com, inc. nor the names of its contributors may be used to endorse or
+       promote products derived from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+    PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+    ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+    TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+
+-->
+
+<ul> <li> <h3>Getting started</h3> <ul> 
+
+<li><a href="force-sdk-overview">Introduction</a></li>
+
+ <li><a href="quick-start">Quick Start</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="java-database-terminology">Database.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> 
+ 
+ <li><a href="jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="jpa-annotations-custom">Custom Database.com Annotations</a></li>
+
+ <li><a href="jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="jpa-transactions">Transactions</a></li>
+  
+ <li><a href="jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="database-com-datatypes">Database.com Data Types</a></li>
+
+ <li><a href="java-db-com-datatypes-map">Java to Database.com Data Types</a></li>
+
+ <li><a href="jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> 
+ 
+ <li><a href="oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Reference</h3> <ul>
+
+ <li><a href="apidocs">Javadoc</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="connection-url">Connection Configuration</a></li>
+
+ <li><a href="native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1>Querying with SOQL</h1>
+
+<p>JPQL is the preferred approach for writing queries with the Database.com JPA provider. However, you can also use native queries with <a href="http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_soql.htm">SOQL</a>, a query language optimized for querying Database.com entities.</p>
+
+<p>There are three different approaches for executing SOQL queries.</p>
+
+<ul>
+<li><a href="#sobject">Returning SObject Records</a></li>
+<li><a href="#typedObject">Returning Typed-Object Records</a></li>
+<li><a href="#mixedObject">Returning Mixed-Object Records</a></li>
+</ul>
+
+
+<p><a name="sobject"> </a></p>
+
+<h2>Returning SObject Records</h2>
+
+<p>This first approach returns a list of SObject records.</p>
+
+<pre><code>private void sampleSObjectSOQLQuery()
+{
+    EntityManagerFactory factory =
+        Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = factory.createEntityManager();
+
+    try {
+        String soqlQuery = "SELECT Email, LastName " +
+                "FROM User WHERE FirstName = :firstName";
+        Query q = em.createNativeQuery(soqlQuery);
+        // Bind the named parameter into the query
+        q.setParameter("firstName", "Bob");
+
+        List&lt;SObject&gt; results = q.getResultList();
+        int size = results.size();
+        User user;
+        for (int i = 0; i &lt; size; i++) {
+            user = (User)results.get(i);
+            System.out.println("Email: " + user.getEmail());
+            System.out.println("LastName: " + user.getLastName() + "\n");
+        }
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+        throw e;
+    }
+    finally {
+        em.close();
+    }
+}
+</code></pre>
+
+<p><a name="typedObject"> </a></p>
+
+<h2>Returning Typed-Object Records</h2>
+
+<p>This second approach returns a list of records of an explicit SObject sub-type. The type of records in the list corresponds to
+the type, in this case <code>User.class</code>, passed in as the second argument to the <code>createNativeQuery()</code> method.</p>
+
+<pre><code>private void sampleObjectTypedSOQLQuery()
+    throws Exception
+{
+    EntityManagerFactory factory =
+        Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = factory.createEntityManager();
+
+    try {
+        String soqlQuery = "SELECT Email, LastName " +
+                "FROM User WHERE FirstName = :firstName";
+        Query q = em.createNativeQuery(soqlQuery, User.class);
+        // Bind the named parameter into the query
+        q.setParameter("firstName", "Bob");
+
+        List&lt;User&gt; results = q.getResultList();
+        int size = results.size();
+        User user;
+        for (int i = 0; i &lt; size; i++) {
+            user = results.get(i);
+            System.out.println("Email: " + user.getEmail());
+            System.out.println("LastName: " + user.getLastName() + "\n");
+        }
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+        throw e;
+    }
+    finally {
+        em.close();
+    }
+}
+</code></pre>
+
+<p><a name="mixedObject"> </a></p>
+
+<h2>Returning Mixed-Object Records</h2>
+
+<p>The third approach returns a list of records that can have different object types. This is used for cases where the query result
+is used to create objects of multiple types. The <code>resultSetMapping</code> parameter passed in as the second argument to the
+<code>createNativeQuery()</code> method points to a named mapping that defines the various types of objects returned.</p>
+
+<h2>Relationship Queries</h2>
+
+<p>Relationship queries traverse parent-to-child and child-to-parent relationships between entities so that you can return data
+or filter based on fields in multiple objects. Relationships are represented by a lookup or master-detail field in a child object.
+You can't create relationships with other field types. For more information, see <a href="database-com-datatypes#relFields">Relationship Fields</a>.</p>
+
+<p>In a SOQL query, you can navigate child-to-parent and parent-to-child relationships. For each relationship between entities,
+there is a relationshipName property that enables you to traverse the relationship in a query. For more information about
+relationships, see <a href="http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_soql_relationships.htm">Understanding Relationship Names</a>.</p>
+
+<p>The following sample uses a child entity, ChildEntity, that has a lookup relationship to a parent entity, ParentEntity. The
+parent entity includes a childEntities field that is a Collection of ChildEntity records. The query in the sample
+uses the <code>ParentEntity_ChildEntitys_<em>r</code> relationship name, which represents the parent-to-child relationship in
+ParentEntity. ChildEntity includes a boolType_</em>c custom field.</p>
+
+<pre><code>private void sampleSOQLRelationshipQuery(EntityManager em)
+    throws Exception
+{
+    String soqlQuery = "SELECT id, name, " +
+        "(SELECT id, boolType__c FROM ParentEntity_ChildEntitys__r) " +
+        "FROM ParentEntity__c";
+    Query q = em.createNativeQuery(soqlQuery, ParentEntity.class);
+    List&lt;SObject&gt; results = q.getResultList();
+    // Assume at least one result so can use get(0)
+    ArrayList&lt;ChildEntity&gt; childEntities =
+        (ArrayList&lt;ChildEntity&gt;) results.get(0).getChildEntities();
+    boolean boolType1 = childEntities.get(0).getBoolType();
+}
+</code></pre>
+
+<p>Note that Collection objects are lazily loaded by default. A separate query is executed to populate the childEntities
+field when <code>getBoolType()</code> is called. To fetch the Collection eagerly, you can manually mark the childEntities field
+as <code>FetchType.EAGER</code> in an <code>@OneToMany</code> annotation in ParentEntity.java. This avoids execution of the second query.</p>
+
+<p>For more information about the number of levels of relationships that you can traverse in a query, see <a href="jpa-queries#fetchDepth">Fetch Depth</a>.</p>
+
+		</div>
+	</div>
+</div>
+</body>
+</html>
