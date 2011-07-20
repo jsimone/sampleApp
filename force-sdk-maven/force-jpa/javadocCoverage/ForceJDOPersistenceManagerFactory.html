@@ -1,0 +1,30 @@
+<html>
+<h1>com.force.sdk.jdo.ForceJDOPersistenceManagerFactory</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Factory for the JDOPersistenceManager.  Overriding so we can provide our own PersistenceManager</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceJDOPersistenceManagerFactory()</h3>
+Comment Text: <br/>Default factory constructor.
+Issues: <br/>
+No Errors
+<h3>public ForceJDOPersistenceManagerFactory(Map)</h3>
+Comment Text: <br/>Factory constructor that takes in a set of overriding properties.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public static synchronized getPersistenceManagerFactory(java.util.Map)</h3>
+Comment Text: <br/>Return a new PersistenceManagerFactory with options set according to the given Properties.
+Issues: <br/>
+No Errors
+<h3>protected static synchronized createPersistenceManagerFactory(java.util.Map)</h3>
+Comment Text: <br/>Convenience method to create the PMF, check whether we should hand out a singleton, and if all
+ ok then freeze it for use.
+Issues: <br/>
+No Errors
+<h3>protected newPM(org.datanucleus.jdo.JDOPersistenceManagerFactory, java.lang.String, java.lang.String)</h3>
+Comment Text: <br/>Construct a {@link JDOPersistenceManager}.  Override if you want to construct a subclass instead.
+Issues: <br/>
+No Errors
+</html>

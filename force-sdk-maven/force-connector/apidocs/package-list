@@ -1,0 +1,3 @@
+com.force.sdk.connector
+com.force.sdk.connector.logger
+com.force.sdk.connector.threadlocal

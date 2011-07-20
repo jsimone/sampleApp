@@ -1,0 +1,32 @@
+<html>
+<h1>com.force.sdk.oauth.context.SecurityContextUtil</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: This utility class is in place to handle all interaction with the browser cookies
+ that will be used to track a user's authentication status. This will include the logic
+ required to refresh the security context if it isn't available in the server side session.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h2>Methods:</h2>
+<h3>public static getCookieValues(javax.servlet.http.HttpServletRequest)</h3>
+Comment Text: <br/>Get the session id and endpoint out of cookies.
+Issues: <br/>
+No Errors
+<h3>public static setCookieValues(com.force.sdk.oauth.context.SecurityContext, javax.servlet.http.HttpServletResponse, boolean)</h3>
+Comment Text: <br/>Set the session id and endpoint from the security context into cookies.
+Issues: <br/>
+No Errors
+<h3>public static setCookieValues(java.util.Map<java.lang.String, java.lang.String>, javax.servlet.http.HttpServletResponse, boolean)</h3>
+Comment Text: <br/>Set the map of cookie names and values into cookies on the response.
+Issues: <br/>
+No Errors
+<h3>public static clearCookieValues(javax.servlet.http.HttpServletResponse)</h3>
+Comment Text: <br/>Clear the endpoint and session cookies.
+Issues: <br/>
+No Errors
+<h3>public static initializeSecurityContextFromApi(com.force.sdk.oauth.context.SecurityContext)</h3>
+Comment Text: <br/>Initializes the user information into the security context via a call to
+ the partner API.
+Issues: <br/>
+No Errors
+</html>

@@ -1,0 +1,72 @@
+<html>
+<h1>com.force.sdk.connector.ForceConnectionProperty</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Property that can be used for in a Force.com connection URL.
+ <p>
+ These enum values represent available Force.com connection URL
+ properties.  Each value contains two parts: 
+ <p>
+ <ol>
+   <li>The property key name</li>
+   <li>A validation regular expression</li>
+ </ol>
+ <p>
+ A Force.com connection URL is written using the property key name
+ in key=value pairs which are separated by a semi-colon (';') delimiter.
+ The exception is the Force.com endpoint property which is interpreted
+ as the string which immediately follows the force:// protocol.
+ For example, a Force.com connection URL with a username and password
+ would look like this:
+ <pre>
+ {@code force://<endpoint value>;user=<username value>;password=<password value>}
+ </pre>  
+ The validation regular expression allows for the validation of
+ property values within a Force.com connection URL.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h2>Methods:</h2>
+<h3>public static values()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public static valueOf(java.lang.String)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getPropertyName()</h3>
+Comment Text: <br/>Returns the connection property name.
+ <p>
+ The property name (with the exception of the endpoint
+ property) is used as the key in a key=value pair within
+ a Force.com connection URL.
+Issues: <br/>
+No Errors
+<h3>public getValidationRegex()</h3>
+Comment Text: <br/>Returns the connection property validation regular expression
+ <p>
+ The validation regular expression is used to valid
+ a property value that is set in a key=value pair within
+ a Force.com connection URL.
+Issues: <br/>
+No Errors
+<h3>public validateValue(java.lang.String)</h3>
+Comment Text: <br/>Validations a connection property value.
+ <p>
+ Ensures that the connection property value is not null, has a length
+ greater than zero and matches the validation regular expression.
+Issues: <br/>
+No Errors
+<h3>public validateValue(java.lang.String, java.lang.String)</h3>
+Comment Text: <br/>Validations a connection property value.
+ <p>
+ Ensures that the connection property value is not null, has a length
+ greater than zero and matches the validation regular expression.
+Issues: <br/>
+No Errors
+<h3>public static fromPropertyName(java.lang.String)</h3>
+Comment Text: <br/>Load the ForceConnectionProperty enum value from a connection 
+ property name.
+Issues: <br/>
+No Errors
+</html>

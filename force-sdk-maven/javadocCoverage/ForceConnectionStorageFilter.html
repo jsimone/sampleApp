@@ -1,0 +1,38 @@
+<html>
+<h1>com.force.sdk.springsecurity.ForceConnectionStorageFilter</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: This filter should run after all other Force.com filters in the spring security chain. It ensures
+ that the connection information of the authenticated user is set into the Force.com Connector
+ framework so that it is available to other Force.com SDK frameworks.
+ 
+ It's important that this filter run as the last Force.com Spring Security filter because it is important that
+ the connection storage takes place regardless of which authentication method and data storage method
+ was used. It's also important that the final result of the entire authentication chain is what gets stored in 
+ the connector.
+ 
+ The logic to renew a session is also in this filter. This hook will be called as needed by the Spring Security
+ Framework.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceConnectionStorageFilter()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public setOauthConnector(com.force.sdk.oauth.connector.ForceOAuthConnector)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public renewSession(com.sforce.ws.ConnectorConfig)</h3>
+Comment Text: <br/>We will renew a session by sending the user into the OAuth flow. A renewal attempt
+ results in a runtime exception so that it can either be handled by an application or
+ be allowed to bubble up to the servlet filter where the authentication redirect takes place.
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+</html>

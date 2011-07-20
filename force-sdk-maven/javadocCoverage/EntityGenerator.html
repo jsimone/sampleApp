@@ -1,0 +1,25 @@
+<html>
+<h1>com.force.sdk.test.util.EntityGenerator</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: This class generates some basic entities for subquery tests. It can be repurposed if it's useful
+ for other tests.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h2>Methods:</h2>
+<h3>public static main(java.lang.String[])</h3>
+Comment Text: <br/>current arguments are:
+ args[0] - the path to the folder where the entities should be created
+ args[1] - the number of entities to create
+ 
+ This test creates:
+ Entity0 - name and id fields, OneToMany collections for every subsequent entity
+ EntityN where N > 1 - name and id fields, lookup field to Entity0,
+                       lookup field to Entity(N-1), and OneToMany collection for Entity(N+1)
+ All OneToMany's use the lazy fetch type with the exception of the very last entity created.
+ 
+ If you want to add more than 26 entities this file will need to be adjusted slightly,
+ as you cannot have more than 25 child relationships
+Issues: <br/>
+No Errors
+</html>

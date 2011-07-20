@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2011-06-04T10:33:28.952">
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/codegen/src/main/java/com/force/sdk/codegen/renderer/ForceJPAFieldRenderer.java">
+<violation beginline="183" endline="188" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.codegen.renderer" class="ForceJPAFieldRenderer" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'field'.
+</violation>
+</file>
+</pmd>

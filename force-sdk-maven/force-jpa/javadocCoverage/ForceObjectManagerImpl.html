@@ -1,0 +1,59 @@
+<html>
+<h1>com.force.sdk.jpa.ForceObjectManagerImpl</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Object manager that manages the objects being created, updated, or deleted.
+ Special handling for all or nothing operations.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceObjectManagerImpl(ObjectManagerFactoryImpl, Object, String, String)</h3>
+Comment Text: <br/>create an object manager with datastore credentials.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public isInAllOrNothingMode()</h3>
+Comment Text: <br/>check for whether an active transaction is currently flushing data to the datastore in all or nothing mode.
+Issues: <br/>
+No Errors
+<h3>public synchronized flushInternal(boolean)</h3>
+Comment Text: <br/>This method flushes all dirty, new, and deleted instances to the
+ datastore. It has no effect if a transaction is not active. If a
+ datastore transaction is active, this method synchronizes the cache with
+ the datastore and reports any exceptions. If an optimistic transaction is
+ active, this method obtains a datastore connection and synchronizes the
+ cache with the datastore using this connection. The connection obtained
+ by this method is held until the end of the transaction.
+Issues: <br/>
+No Errors
+<h3>public synchronized getParentSObject(java.lang.Object)</h3>
+Comment Text: <br/>Retrieve the Force.com object (SObject) for the given parent.
+Issues: <br/>
+No Errors
+<h3>public synchronized addToCreateList(com.sforce.soap.partner.sobject.SObject, org.datanucleus.store.ObjectProvider)</h3>
+Comment Text: <br/>add to the current list of entities to be created.
+Issues: <br/>
+No Errors
+<h3>public synchronized addToUpdateList(com.sforce.soap.partner.sobject.SObject, java.util.Calendar)</h3>
+Comment Text: <br/>add to the current list of entities to be updated.
+Issues: <br/>
+No Errors
+<h3>public synchronized addToDeleteList(java.lang.String)</h3>
+Comment Text: <br/>add to the current list of entities to be deleted.
+Issues: <br/>
+No Errors
+<h3>public synchronized markDirty(org.datanucleus.StateManager, boolean)</h3>
+Comment Text: <br/>Method to mark an object (StateManager) as dirty.
+Issues: <br/>
+No Errors
+<h3>public synchronized postRollback()</h3>
+Comment Text: <br/>There are some cases when a postrollback tries to detach an object that has not been persisted.
+ In the case of detachment the object is attempted to be reloaded which throws an NucleusObjectNotFoundException
+ since the object was never stored in the db. We can ignore that exception.
+Issues: <br/>
+No Errors
+<h3>public synchronized detachObject(java.lang.Object, org.datanucleus.state.FetchPlanState)</h3>
+Comment Text: <br/>We add this method so that we can support detach of a newly created persistent object that has never been saved to the db.
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Creating, Updating, and Deleting Data</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000000d85870>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='creating_updating_and_deleting_data'>Creating, Updating, and Deleting Data</h1>
+
+<p>After you have modeled your standard or custom object in a Java class, you can use it to create, update, or delete records. First, you must get an EntityManager instance.</p>
+
+<h2 id='using_an_entitymanager'>Using an EntityManager</h2>
+
+<p>An EntityManager instance is used to manage the state and life cycle of objects within a persistence unit. The entity manager is responsible for creating and removing persistent entity instances and finding entities by their primary key or other query criteria.</p>
+
+<p>You access an entity manager by first creating an instance of an EntityManagerFactory object for a persistence unit defined in persistence.xml. Using the factory class, you can then create an EntityManager object.</p>
+
+<p>You access an entity manager by first creating an instance of an EntityManagerFactory object for a persistence unit defined in persistence.xml. Using the factory class, you can then create an EntityManager object.</p>
+
+<p>The following sample creates an entity manager. The details of interacting with your data after creating the entity manager is omitted.</p>
+
+<pre><code>private void setupEntityManager(String persistenceUnitName)
+{
+    EntityManagerFactory factory =
+        Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = factory.createEntityManager();
+
+    try {
+        // Use the entity manager to interact with your data
+
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+    finally {
+        em.close();
+    }
+}</code></pre>
+
+<h2 id='persisting_records'>Persisting Records</h2>
+
+<p>After you have instantiated an EntityManager, you can create, update, or delete records for entities with an associated Java class.</p>
+
+<p>Here is a trivial sample that creates, updates, and then deletes a record for a Student entity. For more information on transactions, see <a href='transactions'>Using Transactions</a>.</p>
+
+<pre><code>private void sampleCreateUpdateDelete(String persistenceUnitName)
+{
+    EntityManagerFactory factory =
+        Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = factory.createEntityManager();
+
+    EntityTransaction tx;
+    try {
+        // Create a student object
+        Student student = new Student();
+        student.setFirstName(&quot;Fabio&quot;);
+        student.setLastName(&quot;Socrates&quot;);
+        student.setEmail(&quot;socrates@salesforcetest123.com&quot;);
+        Calendar cal = Calendar.getInstance();
+        cal.set(1990, 5, 1, 0, 0, 0);
+        cal.set(Calendar.MILLISECOND, 0);// We do not preserve ms resolution
+        Date dob = cal.getTime();
+        student.setDateOfBirth(dob);
+
+        // Instantiate a transaction
+        tx = em.getTransaction();
+        // Start the transaction for creating a new record
+        tx.begin();
+        em.persist(student);
+        tx.commit();
+
+        // Read back the object
+        Student foundStudent = em.find(Student.class, student.getId());
+        
+        // Now update the email field for the record
+        tx = em.getTransaction();
+        tx.begin();
+        foundStudent.setEmail(fabio.socrates@salesforcetest.com);
+        em.merge(foundStudent);
+        tx.commit();
+
+        // Finally, delete the record
+        tx = em.getTransaction();
+        tx.begin();
+        em.remove(foundStudent);
+        tx.commit();
+
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+        tx.rollback();
+    }
+    finally {
+        em.close();
+    }
+}</code></pre>
+
+<p>Note: Each custom Java entity has a name field. If you create a record that doesn&#8217;t have a name value, the ID of the record is inserted as its name.</p>
+
+<h2 id='using_transactions'>Using Transactions</h2>
+
+<p>A transaction is a set of operations that either succeeds or fails completely. This allows recovery from error conditions to a known state and avoids cleanup necessary from a partially successful operation where some records are persisted, while others are not persisted due to errors.</p>
+
+<p>The force.com JPA provider supports transactions with a read-committed isolation level. This means that data modified in a transaction is not visible to a query until commit() is called on the transaction.</p>
+
+<p>Before using transactions in your code, you must configure transaction properties in your application&#8217;s persistence.xml file. See <a href='jpa-config-persistence#transProps'>Transaction Properties</a>.</p>
+
+<p>In JPA, a transaction is started by calling the begin() method and committed by calling commit(). The following snippet of code assumes that you&#8217;ve already established an EntityManager object, em, and populated a new student record.</p>
+
+<pre><code>// Instantiate a transaction
+EntityTransaction tx = em.getTransaction();
+tx.begin();
+em.persist(student);
+tx.commit();</code></pre>
+
+<p>This code snippet is intended to show the basic transaction syntax.</p>
+
+<p>Note: The flush() method in EntityManager behaves the same as the commit() method in EntityTransaction. Do not call flush() on an EntityManager object when using transactions. If you call flush(), a subsequent call to rollback() on a transaction object throws an error, and a commit() call doesn&#8217;t do anything.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

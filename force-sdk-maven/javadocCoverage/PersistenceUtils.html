@@ -1,0 +1,98 @@
+<html>
+<h1>com.force.sdk.jpa.PersistenceUtils</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Class for general utility methods needed while persisting and retrieving objects.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h2>Methods:</h2>
+<h3>public static getEntityName(org.datanucleus.metadata.AbstractClassMetaData)</h3>
+Comment Text: <br/>Return the name of the entity, first checking the name attribute of the annotations and then
+ defaulting to the entity name on the metadata object.
+Issues: <br/>
+No Errors
+<h3>public static hasNoSchema(org.datanucleus.metadata.AbstractClassMetaData)</h3>
+Comment Text: <br/>An entity does not have schema if it would not directly represent an object in Force.com,
+ e.g. if the entity is embedded or if it's a subclass of another entity
+Issues: <br/>
+No Errors
+<h3>public static isReadOnlySchema(org.datanucleus.metadata.AbstractClassMetaData, boolean)</h3>
+Comment Text: <br/>Performs various checks to see if the schema is read only (i.e. schema should not be
+ created, updated, or deleted when the application starts up, regardless of whether schema
+ creation is enabled).
+Issues: <br/>
+No Errors
+<h3>public static isVirtualSchema(org.datanucleus.metadata.AbstractClassMetaData)</h3>
+Comment Text: <br/>A JPA entity is virtual schema if it is not backed by an
+ object on Force.com (e.g. Owner is not backed by an
+ Owner object on Force.com)
+Issues: <br/>
+No Errors
+<h3>public static isNonPersistedColumn(org.datanucleus.metadata.AbstractMemberMetaData)</h3>
+Comment Text: <br/>Check for whether a column has a Persistence Modifier that is anything other than
+ PERSISTENT.
+Issues: <br/>
+No Errors
+<h3>public static getForceExtensions(org.datanucleus.metadata.MetaData)</h3>
+Comment Text: <br/>Utility method that returns only the Force.com specific extensions for a piece of
+ metadata (either an entity or a field).
+Issues: <br/>
+No Errors
+<h3>public static getFieldTypeFromForceAnnotation(java.util.Map<java.lang.String, java.lang.String>)</h3>
+Comment Text: <br/>Utility method to get the field type from a map of extensions.
+Issues: <br/>
+No Errors
+<h3>public static isOrdinalEnum(org.datanucleus.metadata.AbstractMemberMetaData)</h3>
+Comment Text: <br/>A check to see if a field has an ordinal enum type, i.e. it's annotated with
+Issues: <br/>
+No Errors
+<h3>public static isMultiPicklist(org.datanucleus.metadata.AbstractMemberMetaData)</h3>
+Comment Text: <br/>A check for whether a field is a multiselect picklist or a single select picklist.
+ Callers of this method ahould have already verified ammd to be a picklist field
+Issues: <br/>
+No Errors
+<h3>public static isRelationship(org.datanucleus.metadata.AbstractMemberMetaData)</h3>
+Comment Text: <br/>Check for whether the field is a ManyToOne or OneToMany relationship (the only relationships currently
+ supported).
+Issues: <br/>
+No Errors
+<h3>public static getMemberValue(org.datanucleus.metadata.AbstractClassMetaData, int, java.lang.Object)</h3>
+Comment Text: <br/>Retrieve the value stored at a particular position in an entity.
+Issues: <br/>
+No Errors
+<h3>public static getMemberValue(java.lang.reflect.Member, java.lang.Object)</h3>
+Comment Text: <br/>Retrive the value of a field on an entity via reflection.
+Issues: <br/>
+No Errors
+<h3>public static getMemberAnnotation(java.lang.reflect.Member, java.lang.Class<T>)</h3>
+Comment Text: <br/>Returns the annotation of type T on a field or method, e.g. you could use this method to get
+ the @Column or @JoinFilter annotation on a getter method for a column
+Issues: <br/>
+No Errors
+<h3>public static setFieldValue(java.lang.Class, org.datanucleus.metadata.AbstractClassMetaData, int, java.lang.Object, java.lang.Object)</h3>
+Comment Text: <br/>Sets the value of a field on an entity.
+Issues: <br/>
+No Errors
+<h3>public static getForceApiName(org.datanucleus.metadata.AbstractMemberMetaData, org.datanucleus.OMFContext)</h3>
+Comment Text: <br/>Utility method to determine the name of a field based on the member metadata. Field names can be set
+ via JPA or Force.com annotations, and relationship fields call for special handling
+Issues: <br/>
+No Errors
+<h3>public static prependNamespace(java.lang.String, java.lang.String)</h3>
+Comment Text: <br/>Util method to prepend a namespace to a name, namespace can be null.
+Issues: <br/>
+No Errors
+<h3>public static getMemberElementClassMetaData(org.datanucleus.metadata.AbstractMemberMetaData, org.datanucleus.ClassLoaderResolver, org.datanucleus.metadata.MetaDataManager)</h3>
+Comment Text: <br/>Get the class metadata for a member's type. For collections, get the metadata for the type parameter
+Issues: <br/>
+No Errors
+<h3>public static getFieldName(org.datanucleus.metadata.AbstractMemberMetaData, java.util.Map<java.lang.String, java.lang.String>)</h3>
+Comment Text: <br/>Get the name of a field for use with JPA. First try to get the name from the Force.com annotations, the
+ try to get the name from standard JPA annotations, otherwise use the name of the field in Java
+Issues: <br/>
+No Errors
+<h3>public static getFieldNameFromJPAAnnotation(org.datanucleus.metadata.AbstractMemberMetaData)</h3>
+Comment Text: <br/>Returns the name of a column as specified in a JPA annotation (can possibly be null).
+Issues: <br/>
+No Errors
+</html>

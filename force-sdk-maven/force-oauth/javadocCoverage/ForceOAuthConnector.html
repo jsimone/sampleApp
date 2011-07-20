@@ -1,0 +1,91 @@
+<html>
+<h1>com.force.sdk.oauth.connector.ForceOAuthConnector</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: This is the main actor in the OAuth handshake. The other pieces of the OAuth integration will
+ ultimately rely on the ForceOAuthConnector to handle the details of the OAuth flow.
+ <p>
+ In addition to the usual OAuth 2.0 protocol a UserDataRetrievalService is passed in and used to retrieve
+ data about the authenticated user after the handshake completes. This service can either be the standard 
+ service or an application specific one. This allows user data to be made available to the application.
+ <p>
+ This object is used from a per application singleton. DO NOT store per request values with this class.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceOAuthConnector()</h3>
+Comment Text: <br/>Default constructor. Sets OAuth version to 2.0. Uses standard
+ data retrieval service.
+Issues: <br/>
+No Errors
+<h3>public ForceOAuthConnector(UserDataRetrievalService)</h3>
+Comment Text: <br/>Sets OAuth version to 2.0. Takes in a UserDataRetrievalService so that
+ an extension can be used.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public getAccessToken(java.lang.String, java.lang.String)</h3>
+Comment Text: <br/>Get the access token for user. This gets called after an access code has been obtained.
+ That access code will now be exchanged for an access token or "auth token". Once an 
+ access token is obtained it will immediately be used to retrieve data about the user to
+ populate a SecurityContext.
+Issues: <br/>
+No Errors
+<h3>public refreshAccessToken(java.lang.String)</h3>
+Comment Text: <br/>Use the refresh token to obtain a new auth token for the user.
+Issues: <br/>
+No Errors
+<h3>public close()</h3>
+Comment Text: <br/>Close the connection.
+Issues: <br/>
+No Errors
+<h3>public getAccessCode(javax.servlet.http.HttpServletRequest)</h3>
+Comment Text: <br/>Parse the access code out of the servlet request.
+Issues: <br/>
+No Errors
+<h3>public getForceLogoutUrl(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)</h3>
+Comment Text: <br/>Build the logout url.
+Issues: <br/>
+No Errors
+<h3>public getHostPort(javax.servlet.http.HttpServletRequest)</h3>
+Comment Text: <br/>Returns the host and port of the endpoint.
+Issues: <br/>
+No Errors
+<h3>public getHostPort(java.lang.String, java.lang.String)</h3>
+Comment Text: <br/>Returns the host and port of the endpoint.
+Issues: <br/>
+No Errors
+<h3>public getLoginRedirectUrl(javax.servlet.http.HttpServletRequest)</h3>
+Comment Text: <br/>get the url that the user will be redirected to for authentication. This url should send the user to a login
+ screen so that they can enter their credentials. Once the user sucessfully authenticates a callback will 
+ be received with the access code.
+Issues: <br/>
+No Errors
+<h3>public getRedirectUri(javax.servlet.http.HttpServletRequest)</h3>
+Comment Text: <br/>get the URI to redirect to for user authentication.
+Issues: <br/>
+No Errors
+<h3>public setConnectionName(java.lang.String)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setConnectionInfo(com.force.sdk.oauth.connector.ForceOAuthConnectionInfo)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setOAuthVersion(java.lang.String)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getOAuthVersion()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setUserDataRetrievalService(com.force.sdk.oauth.userdata.UserDataRetrievalService)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setTokenRetrievalService(com.force.sdk.oauth.connector.TokenRetrievalService)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+</html>

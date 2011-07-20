@@ -1,0 +1,12 @@
+com.force.sdk.codegen
+com.force.sdk.codegen.builder
+com.force.sdk.codegen.filter
+com.force.sdk.codegen.renderer
+com.force.sdk.codegen.selector
+com.force.sdk.connector
+com.force.sdk.jpa.crud
+com.force.sdk.jpa.entities
+com.force.sdk.jpa.entities.orderby
+com.force.sdk.jpa.mock
+com.force.sdk.jpa.query
+com.force.sdk.jpa.schema

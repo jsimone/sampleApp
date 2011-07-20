@@ -1,0 +1,54 @@
+<html>
+<h1>com.force.sdk.test.util.BaseTransactionalSpringContextJPAFTest</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Base class for tests that use spring to handle persistence and transactions. Depending on test 
+ properties configured the framework will reestablish the context to access an org that is created 
+ for the test. The base class defines the default application context which can be overridden by
+ bean definitions in application contexts of subclasses.  
+                                                                                   N</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public BaseTransactionalSpringContextJPAFTest()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public setDataSource(javax.sql.DataSource)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getTestName()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>protected reloadEntityManager()</h3>
+Comment Text: <br/>Create a new test org and reload the spring context to run against the test org.
+Issues: <br/>
+No Errors
+<h3>public static getServiceFromDefaultContext()</h3>
+Comment Text: <br/>Helper to create a service either from a dynamic org in the {@link TestContext} or from the 
+ credentials in force-sdk-test.properties.
+Issues: <br/>
+No Errors
+<h3>public static getPUInfoFromAppContext(org.springframework.context.ApplicationContext)</h3>
+Comment Text: <br/>Helper to retrieve PersistenceUnitInfo from the application context.
+Issues: <br/>
+No Errors
+<h3>public static getPersistenceUnitName(org.springframework.context.ApplicationContext)</h3>
+Comment Text: <br/>Retrieve the name of the configured persistence unit in the application context.
+Issues: <br/>
+No Errors
+<h3>protected testTeardown()</h3>
+Comment Text: <br/>
+Issues: <br/>
+<ul class='errorList'>
+<li>Comments are requried on protected methods
+</ul>
+<h3>protected cleanSchema()</h3>
+Comment Text: <br/>
+Issues: <br/>
+<ul class='errorList'>
+<li>Comments are requried on protected methods
+</ul>
+</html>

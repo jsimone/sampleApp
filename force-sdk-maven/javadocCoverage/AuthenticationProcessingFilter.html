@@ -1,0 +1,45 @@
+<html>
+<h1>com.force.sdk.springsecurity.AuthenticationProcessingFilter</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: This filter gets configured into the spring security filter chain as the FORM_LOGIN_FILTER.
+ There are two URLs of interest to this filter:
+ <ul>
+  <li>The oauth access code callback (_auth)
+  <li>The application's configured login page url. This is configured in the login-url attribute of the fss:oauth element. 
+  See @doclink force-security for more information.
+  </ul></h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>protected AuthenticationProcessingFilter()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public setOauthConnector(com.force.sdk.oauth.connector.ForceOAuthConnector)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setAuthenticationEntryPoint(org.springframework.security.web.AuthenticationEntryPoint)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setFilterProcessesUrl(java.lang.String)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)</h3>
+Comment Text: <br/>The main purpose of this filter is to decide if this is a request for the application's configured login URL.
+ If it is then a redirect to the Force.com login page will be sent to begin the OAuth handshake.
+Issues: <br/>
+No Errors
+<h3>public afterPropertiesSet()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public attemptAuthentication(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)</h3>
+Comment Text: <br/>Called when the access code callback is received. This will eventually trigger the {@code OAuthAuthenticationProvider}
+ which is registered as a provider to the authentication manager.
+Issues: <br/>
+No Errors
+</html>

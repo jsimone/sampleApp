@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Setup SpringSource Tool Suite</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000002d93828>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='setup_springsource_tool_suite'>Setup SpringSource Tool Suite</h1>
+
+<p>If you&#8217;ve gone through the quick start guide, you have a basic project template for a Force.com Java web application. Now, you can build out this web application in an IDE.</p>
+
+<p>The quick start application uses Maven as a build and dependency management tool. This makes it easy to import the project into most IDEs. Here, we will show you how to import and build the application in <a href='http://www.springsource.com/developer/sts'>SpringSource Tool Suite (STS)</a>, a flavor of Eclipse enhanced with useful tools for Spring projects.</p>
+
+<h2 id='1_install_springsource_tool_suite'>1. Install SpringSource Tool Suite</h2>
+
+<p>To download STS:</p>
+
+<ol>
+<li>Navigate to <a href='http://www.springsource.com/products/eclipse-downloads'>http://www.springsource.com/products/eclipse-downloads</a>.</li>
+
+<li>Download the STS version for your operating system.</li>
+
+<li>Follow the installation instructions on the download page.</li>
+</ol>
+
+<p>Note: The easiest way to get started is to download the most recent of the SpringSource Tool Suite distributions that includes Eclipse. However, you can also install the SpringSource Tool Suite components and dependencies from an update site into an existing 3.5-based Eclipse installation on your computer.</p>
+
+<h2 id='2_install_the_datanucleus_sts_plugin'>2. Install the DataNucleus STS Plugin</h2>
+
+<p>The Force.com JPA provider uses the <a href='http://www.datanucleus.org/products/accessplatform.html'>DataNucleus Access Platform</a> implementation of the JPA specification.</p>
+
+<p>To install DataNucleus Eclipse plugin:</p>
+
+<ol>
+<li>Click the SpringSource icon in the toolbar to open the Dashboard.</li>
+</ol>
+
+<ul>
+<li>Click the Extensions tab at the bottom left of the Dashboard.</li>
+
+<li>Search for DataNucleus and install the DataNucleus Eclipse Plugin.</li>
+
+<li>Click Install at the bottom right of the Dashboard.</li>
+
+<li>An Install popup window lists the items for installation. Click Next.</li>
+
+<li>Review the installation details and click Next and Finish.</li>
+
+<li>Restart SpringSource Tool Suite for the changes to take effect.</li>
+</ul>
+
+<h2 id='3_import_the_quick_start_sample_application'>3. Import the Quick Start Sample Application</h2>
+
+<ol>
+<li>Once you have STS installed, launch it with a new workspace.</li>
+
+<li>Click File &gt; Import.</li>
+
+<li>In the import source list, click Maven &gt; Existing Maven Projects and click Next.</li>
+
+<li>Click Browse and navigate to the root folder of your sample application (the folder that contains pom.xml).</li>
+
+<li>Click OK and you should see your pom.xml and project name in the Projects list.</li>
+
+<li>Click Finish.</li>
+</ol>
+
+<p>Your application should now show up in the Package Explorer and the first build will automatically kick off.</p>
+
+<h2 id='4_run_the_application_locally'>4. Run the Application Locally</h2>
+
+<p>After importing the project into STS, you can run the code on the <a href='http://www.springsource.com/products/tcserver'>SpringSource tc Server</a> that comes with STS. SpringSource tc Server is designed as a drop-in replacement for Apache Tomcat, and it ensures a seamless migration path for existing custom-built and commercial software applications already certified for Tomcat.</p>
+
+<p>You can run your application on a local Tomcat server and connect to the Force.com database. By running your application on a local server you can more quickly redeploy code and you can use standard debugging tools, such as the Eclipse debugger. Using a cloud database for development means that you still have to be online to develop, but the benefit is that the database is managed for you and you won&#8217;t have to deal with any incompatibility problems when you migrate from development to production. When you have tested locally, you can deploy your application wherever you want to host it.</p>
+
+<p>To run your application on SpringSource tc Server:</p>
+
+<ol>
+<li>Right click on the project name in the Package Explorer.</li>
+
+<li>Click Run As &gt; Run On Server.</li>
+
+<li>Click Finish.</li>
+</ol>
+
+<p>Note: If you are prompted to enable <a href='http://www.springsource.org/insight'>Spring Insight</a>, choose No for this optional feature.</p>
+
+<p>Your application server should start with your application running. If the application fails to start, you may need to run Project &gt; Clean.</p>
+
+<p>You can access the application by navigating to http://localhost:8080/<em>projectName</em>/ in a browser.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

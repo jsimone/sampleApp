@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - The persistence.xml Configuration File</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x000000018a9bd8>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='the_persistencexml_configuration_file'>The persistence.xml Configuration File</h1>
+
+<p>The standard JPA configuration file is persistence.xml. This file must reside in the root of the classpath of a compiled and packaged application; for example, in the WEB-INF/classes directory.</p>
+
+<p>The persistence.xml file includes one or more <em>persistence-unit</em> elements. A persistence unit defines a set of classes and how to persist them. Each persistence unit has a unique name. In this example, there is one unit named <em>forceDatabase</em>.</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;persistence xmlns=&quot;http://java.sun.com/xml/ns/persistence&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd&quot;
+    version=&quot;1.0&quot;&gt;
+    &lt;persistence-unit name=&quot;forceDatabase&quot;&gt;
+        &lt;provider&gt;com.force.sdk.jpa.PersistenceProviderImpl&lt;/provider&gt;
+        &lt;!-- In a single module web application, no need to specify classes. Classes
+        will be autodiscovered based on @Entity annotation --&gt;
+        &lt;properties&gt;
+            &lt;property name=&quot;datanucleus.storeManagerType&quot; value=&quot;force&quot; /&gt;
+            &lt;property name=&quot;datanucleus.autoCreateSchema&quot; value=&quot;true&quot; /&gt;
+            &lt;property name=&quot;datanucleus.validateTables&quot; value=&quot;false&quot; /&gt;
+            &lt;property name=&quot;datanucleus.validateConstraints&quot; value=&quot;false&quot; /&gt;
+            &lt;property name=&quot;datanucleus.Optimistic&quot; value=&quot;false&quot; /&gt;
+            &lt;property name=&quot;datanucleus.datastoreTransactionDelayOperations&quot;
+            value=&quot;true&quot; /&gt;
+            &lt;property name=&quot;datanucleus.jpa.addClassTransformer&quot; value=&quot;false&quot; /&gt;
+            &lt;property name=&quot;datanucleus.cache.level2.type&quot; value=&quot;none&quot; /&gt;
+            &lt;property name=&quot;datanucleus.detachAllOnCommit&quot; value=&quot;true&quot; /&gt;
+            &lt;property name=&quot;datanucleus.copyOnAttach&quot; value=&quot;false&quot; /&gt;
+        &lt;/properties&gt;
+    &lt;/persistence-unit&gt;
+&lt;/persistence&gt;</code></pre>
+
+<p>The persistence.xml file includes the following elements:</p>
+<dl>
+  <dt>&lt;provider> Element</dt>
+    <dd>Define a JPA persistence provider in a provider element. The provider for the Force.com JPA provider is
+*com.force.sdk.jpa.PersistenceProviderImp*.</dd>
+  <dt>&lt;properties> Element</dt>
+    <dd>Define properties to give you more control over behavior of the DataNucleus JPA implementation. Use the properties
+and values defined in the sample. Each of these properties is explained in the <a href='http://www.datanucleus.org/products/accessplatform/persistence_properties.html'>DataNucleus Persistence Properties
+documentation</a>.</dd>
+</dl>
+<p>The datanucleus.maxFetchDepth property is not listed in the earlier sample. For details about this property, see <a href='jpa-queries#fetchDepth'>Fetch Depth</a>.</p>
+<a name='schemaProps' />
+<h2 id='schema_creation_properties'>Schema Creation Properties</h2>
+
+<p>To control whether the Force.com JPA provider automatically creates schema for entities that don&#8217;t already exist in the Force.com database, you can configure the following properties in your application&#8217;s persistence.xml file.</p>
+<dl>
+  <dt>datanucleus.autoCreateSchema</dt>
+    <dd>Set this property to true to automatically create schema for entities that don't already exist in the Force.com database.
+If schema creation fails, the application is terminated during startup.</dd>
+  <dt>datanucleus.autoCreateWarnOnError</dt>
+    <dd>This property is only relevant if datanucleus.autoCreateSchema is set to false.</dd>
+    <dd>Set datanucleus.autoCreateWarnOnError to false to terminate the application on startup if there is a schema mismatch
+between a Java entity and the Force.com database. This is the recommended setting. If the property is set to true, the
+provider logs a warning about the schema mismatch. The schema in the Force.com database is out-of-sync with the Java
+entity definition, which may cause application errors or unpredictable behavior.</dd>
+</dl><dl>
+  <dt>datanucleus.ConnectionURL</dt>
+    <dd>There are two options for this property:
+        <ol>
+            <li>Use the URL format to encode all authentication information. This is the preferred option and overrides any values
+in the datanucleus.ConnectionUserName and datanucleus.ConnectionPassword properties. The URL format is:
+            <p>force://login.salesforce.com;user=user@salesforcedoc.org;password=samplePassword</p>
+            </li>
+            <li>Set the connection endpoint to https://vmf01.t.salesforce.com, which is the Force.com instance used for
+VMforce. Note the scheme is https as opposed to the force value used in the URL format. This option works in
+conjunction with the datanucleus.ConnectionUserName and datanucleus.ConnectionPassword properties.
+            <p>Note: If you use this option, you must set <property name='datanucleus.storeManagerType' value='force' /> too.</p>
+            </li>
+        </ol>
+    </dd>
+    <dd>Each version of the Force.com Java SDK is automatically linked with an API version.To override the default API version
+for the SDK, see <a href='connection-url#setAPIversion'>Setting an API Version</a>.</dd>
+  <dt>datanucleus.ConnectionUserName</dt>
+    <dd>Set this property to the username for authentication with Force.com. The application runs with the permissions and
+sharing of this user.</dd>
+  <dt>datanucleus.ConnectionPassword</dt>
+    <dd>Set this property to the password for the username specified in the datanucleus.ConnectionUserName property. You
+must append a security token to the password in the same way you would when authenticating a Force.com API client.
+For example, if your password is mypassword, and your security token is XXXXXXXXXX, then you must enter
+mypasswordXXXXXXXXXX. For more information about security tokens, see <a href='https://na1.salesforce.com/help/doc/en/user_security_token.htm'>Resetting Your Security Token</a>.</dd>
+</dl>
+
+For alternatives to using persistence.xml for user authentication in JPA, see [Force.com Database Connections](connection-url).
+
+<dl>
+  <dt>datanucleus.datastoreTransactionDelayOperations</dt>
+    <dd>Set this property to true to ensure that all JPA operations are buffered until either commit() is called on a transaction
+or flush() is called on an EntityManager. If the property is set to false, every operation handled by the EntityManager
+is independently committed to the database.</dd>
+
+  <dt>sfdc.AllOrNothing</dt>
+    <dd>Set this property to true to ensure that all changes are rolled back if any errors occur when persisting records. If the
+property is set to false, changes to records with no errors are committed even if there are errors persisting other records
+in the transaction.</dd>
+    <dd>If a transaction includes an insert, update, and a delete operation, this property applies to each operation separately. For
+example, if the insert and delete operations have no errors, but the update operation has at least one error, the insert and
+operations are committed, while the update operation doesn't change any records due to the error.</dd>
+
+  <dt>datanucleus.Optimistic</dt>
+    <dd>Set this property to true for optimistic transactions. Optimistic concurrency control is a method that assumes that
+multiple transactions can complete without affecting each other, and that transactions can proceed without locking the
+data resources that they affect. Before committing, each transaction verifies that no other transaction has modified its
+data. If the check reveals conflicting modifications, the committing transaction rolls back.</dd>
+    <dd>When this property is set to true, each Java class that models an entity used in a transaction should include a field with
+the following signature:
+    <pre><code>
+    @Version
+    Calendar lastModifiedDate;
+    </code></pre>
+    </dd>
+    <dd>The lastModifiedDate field is a system field that is automatically created for every object in the Force.com database.
+The @Version annotation enables JPA to use this date field to do ifModifiedBefore() checks on update and
+delete operations. If this check indicates that another operation has updated a record in the transaction, a
+javax.persistence.OptimisticLockException is thrown as the record in the transaction has stale data. If the
+sfdc.AllOrNothing property is enabled, the transaction is rolled back.</dd>
+    <dd>Note: If you're using optimistic transactions and you don't specify a lastModifiedDate field with an @Version annotation, then your transaction  always succeeds even if another operation has updated a record in the transaction.</dd>
+</dl>
+
+The following sample shows the subset of properties in persistence.xml that are related to transactions.
+
+    <properties>
+        <property name='datanucleus.datastoreTransactionDelayOperations' value='true' />
+        <property name='sfdc.AllOrNothing' value='true' />
+        <property name='datanucleus.Optimistic' value='true' />
+    </properties>
+		</div>
+	</div>
+</div>
+</body>
+</html>

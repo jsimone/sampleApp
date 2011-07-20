@@ -1,0 +1,40 @@
+<html>
+<h1>com.force.sdk.jpa.table.RelationshipImpl</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Representation of a collection of related objects on a Force.com object.
+ If Object A has a lookup field to Object B and B thus has a collection of 
+ Object As, the collection is not actually represented as a field in Force.com,
+ but rather the lookup to B implies the collection. Because of this we need
+ to be able to differentiate between these types of columns.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public RelationshipImpl(String)</h3>
+Comment Text: <br/>create a RelationshipImpl with a given field name, such as "Opportunities"
+ on the account object, or "MyCustomObjects__r".
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public isCustom()</h3>
+Comment Text: <br/>method that returns whether the relationship is from a custom lookup field
+ or one that comes standard with Force.com.
+Issues: <br/>
+No Errors
+<h3>public getFieldName()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getType()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public appendSelectString(com.force.sdk.jpa.query.ExpressionBuilderHelper, org.datanucleus.metadata.AbstractClassMetaData, int, boolean, java.lang.String)</h3>
+Comment Text: <br/>appends itself to the select statement of a query.
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+<h3>public getSelectFieldName()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+</html>

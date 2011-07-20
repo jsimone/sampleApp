@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Java and Force.com Terminology</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000003464070>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='java_and_forcecom_terminology'>Java and Force.com Terminology</h1>
+
+<p>The Force.com Java SDK enables you to model Java classes or entities as plain old Java objects (POJOs) that are automatically mapped to the Force.com database. The SDK does this mapping by using Java Persistence API ( JPA), which is a specification for managing Java objects in a database. The aim of JPA is to simplify the persistence of Java objects using transactions and their retrieval from a database.</p>
+
+<p>The Java SDK communicates with the Force.com database using the Web services API, but this happens under the covers. You can write Java code using JPA without having to learn about the Web services API. However, it is helpful to understand the terminology used for Force.com and how it maps to Java concepts that you are already familiar with.</p>
+
+<p>In Java terminology, a class maps to a JPA entity that is stored in a database. In Force.com terminology, these are called Force.com entities, which are equivalent to Web services API objects.</p>
+
+<p>API objects represent database tables. Objects already created for you by Force.com are called standard objects. Objects you create in your organization are called custom objects.</p>
+
+<p>A record is a particular occurrence of an API object, similar to a Java object being a particular occurrence of a Java class.</p>
+
+<p>A Java class consists of a set of fields. Similarly a Force.com entity or Web services API object has a set of fields. These fields are the equivalent of the columns in a database table.</p>
+
+<p>Standard objects have a set of standard fields, while custom objects have a set of custom fields. For example, a Wine Java class could have name and year fields that would map to custom fields in the Wine custom object.</p>
+
+<p>For more information about the Force.com database, see The Force.com Database. TODO <span>Mark</span>: add href here once target page is created.</p>
+
+<p>This table summarizes the mapping of terminology between Java and Force.com. If any table cell has more than one entry, the terms are equivalent.</p>
+<table border='1'>
+<tr>
+    <th>Java Terminology</th>
+    <th>Force.com Terminology</th>
+</tr>
+
+<tr>
+    <td>
+        <ul>
+            <li>Java class</li>
+            <li>JPA entity</li>
+        </ul>
+    </td>
+    <td>
+        <ul>
+            <li>Web services API object (standard or custom)</li>
+            <li>Force.com entity</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Java field</td>
+    <td>field (standard or custom)</td>
+</tr>
+<tr>
+    <td>Java object</td>
+    <td>record</td>
+</tr>
+
+</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

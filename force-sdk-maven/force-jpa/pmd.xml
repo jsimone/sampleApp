@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2011-06-04T10:33:04.847">
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jdo/ForceJDOPersistenceManagerFactory.java">
+<violation beginline="112" endline="117" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jdo" class="ForceJDOPersistenceManagerFactory" method="createPersistenceManagerFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/ForceEntityManager.java">
+<violation beginline="244" endline="247" begincolumn="21" endcolumn="21" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jpa" class="ForceEntityManager" method="merge" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/ForceFetchFieldManager.java">
+<violation beginline="425" endline="427" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jpa" class="ForceFetchFieldManager" method="fetchObjectField" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/ForceInsertFieldManager.java">
+<violation beginline="119" endline="124" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jpa" class="ForceInsertFieldManager" method="getSObject" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/ForceMetaDataManager.java">
+<violation beginline="201" endline="229" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.jpa" class="ForceMetaDataManager" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'clr'.
+</violation>
+<violation beginline="201" endline="229" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.jpa" class="ForceMetaDataManager" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'cls'.
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/ForceObjectManagerImpl.java">
+<violation beginline="210" endline="212" begincolumn="11" endcolumn="9" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.force.sdk.jpa" class="ForceObjectManagerImpl" method="postRollback" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/query/ForceQueryUtils.java">
+<violation beginline="199" endline="202" begincolumn="21" endcolumn="21" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jpa.query" class="ForceQueryUtils" method="deleteObjectsOfCandidateType" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="802" endline="804" begincolumn="29" endcolumn="29" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jpa.query" class="ForceQueryUtils" method="buildQuery" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="871" endline="892" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.jpa.query" class="ForceQueryUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'fetchPlan'.
+</violation>
+<violation beginline="1233" endline="1245" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.jpa.query" class="ForceQueryUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'h'.
+</violation>
+<violation beginline="1263" endline="1278" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.jpa.query" class="ForceQueryUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'h'.
+</violation>
+<violation beginline="1274" endline="1276" begincolumn="11" endcolumn="9" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.force.sdk.jpa.query" class="ForceQueryUtils" method="getParameterValue" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/schema/ForceAsyncResultProcessor.java">
+<violation beginline="86" endline="99" begincolumn="25" endcolumn="25" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jpa.schema" class="ForceAsyncResultProcessor" method="waitForAsyncResult" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/table/ForceColumnMetaData.java">
+<violation beginline="203" endline="218" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jpa.table" class="ForceColumnMetaData" method="validateColumn" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="272" endline="279" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.jpa.table" class="ForceColumnMetaData" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'storeMgr'.
+</violation>
+<violation beginline="502" endline="576" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.jpa.table" class="ForceColumnMetaData" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'precision'.
+</violation>
+<violation beginline="502" endline="576" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.force.sdk.jpa.table" class="ForceColumnMetaData" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'scale'.
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/table/TableImpl.java">
+<violation beginline="300" endline="302" begincolumn="11" endcolumn="9" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.force.sdk.jpa.table" class="TableImpl" method="getColumnFor" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/jpa/src/main/java/com/force/sdk/jpa/table/TableName.java">
+<violation beginline="129" endline="139" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.jpa.table" class="TableName" method="createTableName" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+</pmd>

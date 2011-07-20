@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Force.com Spring Security Integration</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000003492910>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='forcecom_spring_security_integration'>Force.com Spring Security Integration</h1>
+
+<p><a href='http://static.springsource.org/spring-security/site/docs/3.0.x/reference/springsecurity.html'>Spring Security</a> provides a comprehensive authentication and authorization solution for J2EE-based applications.</p>
+
+<p>The Force.com Spring Security Integration simplifies usage of the OAuth Connector with the Spring Security framework. You can take advantage of this if your application uses Spring Security.</p>
+
+<h2 id='configuring_springconfigurationxml_with_fss_namespace'>Configuring spring-configuration.xml with fss Namespace</h2>
+
+<p>The simplest way to configure a Spring application is to use the following spring-configuration.xml file.</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:security=&quot;http://www.springframework.org/schema/security&quot;
+       xmlns:fss=&quot;http://www.salesforce.com/schema/springsecurity&quot;
+       xsi:schemaLocation=&quot;
+	   http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   http://www.springframework.org/schema/security
+	   http://www.springframework.org/schema/security/spring-security-3.0.xsd
+	   http://www.salesforce.com/schema/springsecurity
+	   http://media.developerforce.com/schema/force-springsecurity-1.1.xsd&quot;&gt;
+
+    &lt;!-- Force.com OAuth security config --&gt;
+    &lt;fss:oauth logout-from-sfdc=&quot;true&quot; /&gt;
+	&lt;fss:oauthInfo endpoint=&quot;https://vmf01.t.salesforce.com&quot; oauth-key=&quot;${sfdc.oauthKey}&quot;
+	oauth-secret=&quot;${sfdc.oauthSecret}&quot; /&gt;
+    &lt;/fss:oauth&gt;
+
+    &lt;!-- Configure Spring Security --&gt;
+    &lt;security:http&gt;
+	&lt;security:anonymous /&gt;
+    &lt;/security:http&gt;
+   
+&lt;/beans&gt;</code></pre>
+
+<p>The main customizations of interest are:</p>
+
+<p>TODO: <span>Jesper</span>: We should simplify this here and link to examples, probably. Depends on whether this ends up being reference doc and how much of spring security config we want to support.</p>
+
+<ul>
+<li>Include the namespace: xmlns:fss=&#8221;http://www.salesforce.com/schema/springsecurity&#8221;</li>
+
+<li>Specify the schema location for the force-springsecurity XSD</li>
+
+<li>Add the \<a href='fss:oauth /'>fss:oauth /</a> tag</li>
+
+<li>Add the \<a href='security:http /'>security:http /</a> tag. For more information about this tag, see Spring Security documentation.</li>
+</ul>
+
+<p>The \<oauth /> tag requires that you provide OAuth properties. This can be done using an &#60;oauthInfo/&gt;, &#60;connectionUrl/&gt;, or &#60;connectionName /&gt; tag. Note that these tags are mutually exclusive and you can&#8217;t provide more than one or you will receive an error on application startup.</p>
+<b>&lt;oauthInfo/></b>
+<pre><code>&lt;fss:oauth&gt;
+	&lt;fss:oauthInfo endpoint=&quot;https://login.salesforce.com&quot; oauth-key=&quot;${oauthKey} oauth-secret=&quot;${oauthSecret}&quot; /&gt;
+&lt;/fss:oauth&gt;</code></pre>
+<b>&lt;connectionUrl/></b>
+<pre><code>&lt;fss:oauth&gt;
+    &lt;fss:connectionUrl url=&quot;force://login.salesforce.com;oauth_key=${oauthKey};oauth_secret=${oauthSecret}&quot; /&gt;
+&lt;/fss:oauth&gt;</code></pre>
+<b>&lt;connectionName /></b>
+<pre><code>  SET FORCE_MYCONNECTOR_URL=force://${endpoint};oauth_key=${oauthKey};oauth_secret=${oauth_secret}
+
+  &lt;!-- Uses the connection URL in the FORCE_MYCONNECTOR_URL environment variable --&gt;
+  &lt;fss:oauth&gt;
+    &lt;fss:connectionName name=&quot;myconnector&quot; /&gt;
+  &lt;/fss:oauth&gt;</code></pre>
+
+<p>TODO: <span>Mark@Jesper</span>: Should we recommend using the connectionName tag rather than the first two tags to avoid checking sensitive data into source control?</p>
+
+<p>In these samples, substitute values from your remote access application for the following variables:</p>
+
+<ul>
+<li>${oauthKey} - Specifies the consumer key for the application.</li>
+
+<li>${oauthSecret} - Specifies the consumer secret for the application.</li>
+</ul>
+
+<p>For more information about remote access applications, see <a href='oauth-auth#createRAA'>Creating a Force.com Remote Access Application</a>.</p>
+
+<p>The following attributes are optional for &#60;fss:oauth&gt; in spring-configuration.xml:</p>
+
+<ul>
+<li>default-login-success - A user is sent to this URL after a successful OAuth login if no redirect URL is specified. The default value is: /</li>
+
+<li>default-logout-success - A user is sent to this URL after a successful OAuth logout. The default value is: /spring/logoutSuccess</li>
+
+<li>login-url - Navigation to this URL initiates a login sequence. The default value is: /spring/login</li>
+
+<li>logout-url - Navigation to this URL initiates a logout sequence. The default is: /spring/logout</li>
+
+<li>logout-from-sfdc - This attribute controls whether a logout from the OAuth application also logs the user out of Force.com. The default value is: false</li>
+</ul>
+
+<h2 id='configuring_springconfigurationxml_without_fss_namespace'>Configuring spring-configuration.xml without fss Namespace</h2>
+
+<p>The earlier spring-configuration.xml file short cuts some bean creation and plumbing. If you want greater control than that provided with the fss namespace, use the following more detailed spring-configuration.xml file.</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:security=&quot;http://www.springframework.org/schema/security&quot;
+       xsi:schemaLocation=&quot;
+	   http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   http://www.springframework.org/schema/security
+	   http://www.springframework.org/schema/security/spring-security-3.0.xsd&quot;&gt;
+
+	&lt;security:authentication-manager alias=&quot;authenticationManager&quot;&gt;
+		&lt;security:authentication-provider ref=&quot;oauthAuthenticationProvider&quot; /&gt;
+	&lt;/security:authentication-manager&gt;
+
+	&lt;bean id=&quot;oauthAuthenticationProvider&quot;
+		class=&quot;com.force.sdk.springsecurity.OAuthAuthenticationProvider&quot;&gt;
+		&lt;property name=&quot;oauthConnector&quot; ref=&quot;oauthConnector&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id=&quot;oauthConnector&quot; class=&quot;com.force.sdk.oauth.connector.ForceOAuthConnector&quot;&gt;
+		&lt;property name=&quot;connectionName&quot; value=&quot;myConnector&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id=&quot;securityContextService&quot; class=&quot;com.force.sdk.oauth.context.SecurityContextServiceImpl&quot;&gt;
+		&lt;property name=&quot;userDataRetrievalService&quot; ref=&quot;customDataRetrievalService&quot; /&gt;
+		&lt;property name=&quot;securityContextStorageService&quot; ref=&quot;securityContextStorageService&quot;/&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id=&quot;securityContextStorageService&quot; class=&quot;com.force.sdk.oauth.context.store.SecurityContextCookieStore&quot;&gt;
+		&lt;!-- the secure key seed is a unique value that will be used to generate your encryption key.
+		It should be unique per application --&gt;
+		&lt;property name=&quot;secureKeySeed&quot; value=&quot;sampleseed&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;!-- This filter redirects the user to the OAuth login page --&gt;
+	&lt;bean id=&quot;authenticationProcessingFilterEntryPoint&quot;
+		class=&quot;com.force.sdk.springsecurity.AuthenticationProcessingFilterEntryPoint&quot;&gt;
+		&lt;property name=&quot;oauthConnector&quot; ref=&quot;oauthConnector&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;!-- This filter is invoked after OAuth login to exchange token for an access 
+	token --&gt;
+	&lt;bean id=&quot;authenticationFilter&quot;
+		class=&quot;com.force.sdk.springsecurity.AuthenticationProcessingFilter&quot;&gt;
+		&lt;property name=&quot;authenticationManager&quot; ref=&quot;authenticationManager&quot; /&gt;
+		&lt;property name=&quot;authenticationSuccessHandler&quot;&gt;
+			&lt;bean class=&quot;com.force.sdk.springsecurity.AuthenticationSuccessHandler&quot;&gt;
+				&lt;property name=&quot;defaultTargetUrl&quot; value=&quot;/blog.htm&quot; /&gt;
+			&lt;/bean&gt;
+		&lt;/property&gt;
+		&lt;property name=&quot;oauthConnector&quot; ref=&quot;oauthConnector&quot; /&gt;
+		&lt;property name=&quot;filterProcessesUrl&quot; value=&quot;/login&quot; /&gt;
+		&lt;property name=&quot;authenticationEntryPoint&quot; ref=&quot;authenticationProcessingFilterEntryPoint&quot; /&gt;
+		&lt;!-- needed for cookie based security context storage only --&gt;
+		&lt;property name=&quot;rememberMeServices&quot; ref=&quot;forceRememberMeServices&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;!-- This filter is invoked to provide remember me functionality --&gt;
+	&lt;!-- needed for cookie based security context storage only --&gt;
+	&lt;bean id=&quot;rememberMeFilter&quot;
+		class=&quot;org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter&quot;&gt;
+		&lt;property name=&quot;authenticationManager&quot; ref=&quot;authenticationManager&quot; /&gt;
+		&lt;property name=&quot;rememberMeServices&quot; ref=&quot;forceRememberMeServices&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id=&quot;forceRememberMeServices&quot; class=&quot;com.force.sdk.springsecurity.ForceRememberMeServices&quot;&gt;
+		&lt;property name=&quot;securityContextService&quot; ref=&quot;securityContextService&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;!-- This filter is invoked during logout --&gt;
+	&lt;!-- sets this as the authentication filter over the default --&gt;
+	&lt;bean id=&quot;logoutFilter&quot;
+		class=&quot;org.springframework.security.web.authentication.logout.LogoutFilter&quot;&gt;
+		&lt;constructor-arg index=&quot;0&quot;&gt;
+			&lt;bean class=&quot;com.force.sdk.springsecurity.LogoutSuccessHandler&quot;&gt;
+				&lt;property name=&quot;defaultTargetUrl&quot; value=&quot;/blog.htm&quot; /&gt;
+				&lt;property name=&quot;oauthConnector&quot; ref=&quot;oauthConnector&quot; /&gt;
+				&lt;property name=&quot;securityContextService&quot; ref=&quot;securityContextService&quot;/&gt;
+			&lt;/bean&gt;
+		&lt;/constructor-arg&gt;
+		&lt;constructor-arg index=&quot;1&quot;&gt;
+			&lt;list&gt;
+				&lt;bean class=&quot;com.force.sdk.springsecurity.LogoutHandler&quot; /&gt;
+				&lt;bean
+					class=&quot;org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler&quot; /&gt;
+			&lt;/list&gt;
+		&lt;/constructor-arg&gt;
+		&lt;property name=&quot;filterProcessesUrl&quot; value=&quot;/logout&quot; /&gt;
+	&lt;/bean&gt;
+
+    &lt;!-- Configure Spring Security --&gt;
+    &lt;security:http entry-point-ref=&quot;authenticationProcessingFilterEntryPoint&quot; &gt;
+	&lt;security:anonymous create-session=&quot;never&quot;/&gt;
+	&lt;!-- sets this as the authentication filter over the default --&gt;
+	&lt;security:custom-filter position=&quot;FORM_LOGIN_FILTER&quot; ref=&quot;authenticationFilter&quot;/&gt;
+	&lt;security:custom-filter position=&quot;REMEMBER_ME_FILTER&quot; ref=&quot;rememberMeFilter&quot; /&gt;
+	&lt;security:custom-filter position=&quot;LOGOUT_FILTER&quot; ref=&quot;logoutFilter&quot;/&gt;
+    &lt;/security:http&gt;
+   
+&lt;/beans&gt;</code></pre>
+
+<p>The main customizations of interest are:</p>
+
+<ul>
+<li>Set up the Authentication Manager to use the Force.com OAuth authentication provider. This is the sole authentication provider that is configured.</li>
+
+<li>Create the OAuth authentication provider bean</li>
+
+<li>Create the oauthConnecor bean with endpoint binding and other configuration parameters. This bean is injected into other beans.</li>
+
+<li>Create an authentication processing entry point bean.</li>
+
+<li>Create an authentication processing filter bean. Then connect various beans and specify default-login-success and login-url. There are no defaults for these if you don&#8217;t use the fss namespace.</li>
+
+<li>Create a logout filter bean. Then connect various beans and specify default-logout-success and logout-url. There are no defaults for these if you don&#8217;t use the fss namespace.</li>
+
+<li>Embed a logout success handler bean in the logout filter bean</li>
+
+<li>Embed two logout handlers in the logout filter bean: one for Force.com and one for Spring.</li>
+
+<li>Finally, configure \<http /> with entry-point-ref and override FORM_LOGIN_FILTER and LOGOUT_FILTER.</li>
+</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

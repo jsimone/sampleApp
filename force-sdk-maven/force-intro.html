@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Overview of the Force.com Database</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000003143750>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='overview_of_the_forcecom_database'>Overview of the Force.com Database</h1>
+
+<p>The Force.com database is designed to support business applications. This makes it different from other relational databases in a number of ways and it&#8217;s important to understand these differences when you design applications on the platform.</p>
+
+<p>The Force.com JPA provider enables you to use the JPA standard to work with Force.com data. JPA is an abstraction layer that lets you implement your persistence layer in standard Java code without having to focus on the specific</p>
+
+<p>APIs, data model language and query language of Force.com. But, as with all abstractions, it is beneficial to have at least some understanding of the underlying system. This section gives a brief overview of the Force.com database, how it works, and how it&#8217;s different from other databases.</p>
+
+<h2 id='schema_and_data_modeling'>Schema and data modeling</h2>
+
+<p>The Force.com database has many of the same data types as other relational databases, but the types and their names sometimes vary. In most cases, you don&#8217;t have to concern yourself with Force.com data types. Your Java types are translated automatically into the appropriate Force.com data type.</p>
+
+<p>The Force.com database supports two data types for relationships: lookup and master-detail. Lookup is the standard relationship and master-detail implies cascade delete. The relationship fields in your data model control which entities can be joined in a query. Only entities with explicit relationships between them can be part of a single join query unless you use a semi-join.</p>
+
+<p><a href='force-datatypes'>Read more</a> about Force.com data types.</p>
+
+<p>In Force.com terminology, database entities (tables) are called sObjects. Fields are called fields or custom fields and rows are called records.</p>
+
+<p>Force.com does not support standard DDL (Data Definition Language). Instead, it provides a Metadata API that uses an XML format for describing entities and is explicitly designed to support transactional synchronization of schema. The JPA provider uses the Metadata API to automatically create schema in Force.com based on the registered JPA entities.</p>
+
+<h2 id='data_api_and_transactions'>Data API and transactions</h2>
+
+<p>Clients (such as Java applications) access the Force.com database exclusively through a set of HTTP based APIs. The database can also be accessed using Apex, which is an embedded language runtime that runs inside Force.com application servers. The database does not offer any session-oriented wire protocol commonly offered by relational databases. Currently the following wire APIs are available:</p>
+
+<ul>
+<li>SOAP API - The most feature complete API. Includes full WSDL descriptions of the service and data model</li>
+
+<li>REST API - Currently in pilot and has a more limited feature set compared to SOAP API. It supports XML and JSON formats and general behave as you would expect from a REST API</li>
+
+<li>Bulk API - A REST API specifically intended for high-volume data operations.</li>
+</ul>
+
+<p>All of these APIs demarcate transactions at the request boundary. A transaction can never span a single HTTP request. This means that the database cannot provide the full range of transaction semantics to remote clients. Full transaction semantics <em>are</em> supported in Apex however. So, if you need to implement advanced transactional logic, you can write it in Apex and call it as a stored procedure from your Java code.</p>
+
+<p>In many cases that should not be necessary because you can batch up multiple records of different types in a single API call and have the database commit or rollback the whole set atomically. This lets you support the most common use cases, such as creating a parent record and a set of child records in a single transaction.</p>
+
+<h2 id='query'>Query</h2>
+
+<p>The Force.com database has its own query language called SOQL (Salesforce Object Query Language). It is similar to SQL with some additional syntax that makes it more object oriented. SOQL doesn&#8217;t allow arbitrary joins. You can only join entities.</p>
+
+<p>The Force.com JPA Provider lets you query in JPQL, the query language of JPA and you should not need to learn SOQL except if JPQL does not meet your needs. JPA has a &#8220;native query&#8221; feature that is meant for this purpose. For relational databases, the native query feature lets you write SQL that will be sent unmodified to the database. The Force.com JPA provider does the same, but it expects you to write SOQL instead of SQL.</p>
+
+<h2 id='primary_keys'>Primary Keys</h2>
+
+<p>Every entity in the Force.com database has a primary key and the primary key is always a string and is always auto-assigned. Primary keys look something like this: a0x30000000H7js. They come in two forms, a 15-character case-sensitive form and an 18-character case-insensitive form. The latter is always returned by API calls, but the former is also accepted in API requests.</p>
+
+<p>As long as you go through the JPA provider or any other API, there should be no confusion. You will always be using the 18-character version.</p>
+
+<p>The JPA standard allows you to define a variety of primary key types. These are not supported by the Force.com JPA provider. The only support primary key declaration is the following:</p>
+
+<pre><code>@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+String id;</code></pre>
+
+<p>The <code>id</code> field name is reserved and cannot be used by non-primary-key fields.</p>
+
+<h2 id='standard_objects'>Standard Objects</h2>
+
+<p>The Force.com database has not been completely separated from its CRM legacy. You may see reference to both &#8220;Standard Objects&#8221; and &#8220;Custom Objects&#8221; in various places. Standard Objects are the built-in CRM entities and even if you can&#8217;t see them in your particular database, they are still there and their names are reserved.</p>
+
+<p>You will need to know about these reserved names when you define your JPA entities. If you use a reserved name, the JPA provider will assume you are modeling an existing entity instead of a new one which may not be what you intend. You can find a list of standard objects and their API names in the <a href='(http://www.salesforce.com/us/developer/docs/api/index.htm)'>Web Services Developer Guide</a>.</p>
+
+<p>TODO: Add list of reserved names here or show how to get it from the API</p>
+
+<h2 id='standard_reserved_fields'>Standard, reserved fields</h2>
+
+<p>Each entity in the Force.com database has a set of pre-defined fields, including the id mentioned above. These fields are sometimes referred to as audit fields. The following is a complete list of audit fields:</p>
+
+<ul>
+<li>Id</li>
+
+<li>IsDeleted</li>
+
+<li>Name</li>
+
+<li>CreatedDate</li>
+
+<li>CreatedById</li>
+
+<li>LastModifiedDate</li>
+
+<li>LastModifiedById</li>
+
+<li>SystemModstamp</li>
+</ul>
+
+<p>You can find a more detailed description on <a href='(http://www.salesforce.com/us/developer/docs/api/Content/system_fields.htm)'>this page</a> in the Web Services Developer Doc</p>
+
+<p>In addition, all the standard objects come with a complete set of standard fields. For example, Account is a standard object and it has a standard field called AnnualRevenue. The <a href='(http://www.salesforce.com/us/developer/docs/api/index.htm)'>Web Services Developer Guide</a> also contains a complete list of these standard fields for each of the standard objects.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

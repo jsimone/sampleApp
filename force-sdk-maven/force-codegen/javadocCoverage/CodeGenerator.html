@@ -1,0 +1,44 @@
+<html>
+<h1>com.force.sdk.codegen.CodeGenerator</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Basic Code Generator.
+ <p>
+ The generator will load up all Force.com schema object (SObject) information 
+ for a given Force.com store (organization). It then filters and selects
+ the data that is necessary for code generation and writes
+ this to a {@code Template}.
+ <p>
+ Notice that code generation is analogous to MVC (well, at
+ least the MV parts): 
+ <p>
+ <ol>
+   <li>
+    Model = {@code DataFilter}, {@code DataSelector}. This provides the data that will
+    be used in the template.
+    </li>
+    <li>
+    View = {@code Template}.  This represents the physical layout of
+    the code being generated.
+    </li>
+    <li>
+    A {@code WriterProvider} provides Jave {@code Writer}s to the {@code CodeGenerator}
+    to tell it where to write the generated code. 
+    </li>
+ </ol></h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h2>Methods:</h2>
+<h3>public generateCode(com.sforce.soap.partner.PartnerConnection)</h3>
+Comment Text: <br/>Generates code based on a connection to a Force.com store (organization).
+ <p>
+ This will make various Force.com API calls to a Force.com store.  First,
+ it will run a global describe.  Next, it will run full describes on the
+ global describe results.  These calls will be batched in the most efficient
+ way possible (that is, making the least number of Force.com API calls).
+ <p>
+ The full describe results will be filtered and injected into a {@code Template}
+ whose contents will then be written to a Java {@code Writer}.
+Issues: <br/>
+No Errors
+</html>

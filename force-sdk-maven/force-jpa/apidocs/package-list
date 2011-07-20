@@ -1,0 +1,9 @@
+com.force.sdk.jdo
+com.force.sdk.jpa
+com.force.sdk.jpa.annotation
+com.force.sdk.jpa.exception
+com.force.sdk.jpa.model
+com.force.sdk.jpa.query
+com.force.sdk.jpa.query.formatter
+com.force.sdk.jpa.schema
+com.force.sdk.jpa.table

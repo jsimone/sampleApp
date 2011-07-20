@@ -1,0 +1,572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>force-build-tools - Reactor Dependency Convergence</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            force-build-tools
+    
+            </span>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2011-05-20
+                      </div>
+            <div class="xright">            <a href="${project.url}">force-build-tools</a>
+            
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                             <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="project-info.html">Project Information</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="index.html">About</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="integration.html">Continuous Integration</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="dependencies.html">Dependencies</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Dependency Convergence</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="issue-tracking.html">Issue Tracking</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="mail-lists.html">Mailing Lists</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="plugin-management.html">Plugin Management</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="license.html">Project License</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="project-summary.html">Project Summary</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="team-list.html">Project Team</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="source-repository.html">Source Repository</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Reactor Dependency Convergence</h2>
+<table class="bodyTable"><caption><b>Legend:</b></caption>
+<tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td>All projects share one version of the dependency.</td>
+</tr>
+<tr class="b"><td><img alt="error" src="images/icon_error_sml.gif" /></td>
+<td>At least one project has a differing version of the dependency.</td>
+</tr>
+</table>
+<br />
+<table class="bodyTable"><caption><b>Statistics:</b></caption>
+<tr class="a"><th>Number of sub-projects:</th>
+<td>7</td>
+</tr>
+<tr class="b"><th>Number of dependencies (NOD):</th>
+<td>28</td>
+</tr>
+<tr class="a"><th>Number of unique artifacts (NOA):</th>
+<td>28</td>
+</tr>
+<tr class="b"><th>Number of SNAPSHOT artifacts (NOS):</th>
+<td>0</td>
+</tr>
+<tr class="a"><th>Convergence (NOD/NOA):</th>
+<td><img alt="success" src="images/icon_success_sml.gif" />&#160;<b>100%</b></td>
+</tr>
+<tr class="b"><th>Ready for Release (100% Convergence and no SNAPSHOTS):</th>
+<td><img alt="success" src="images/icon_success_sml.gif" />&#160;<b>Success</b></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3>Dependencies used in sub-projects</h3>
+<div class="section"><h4>com.force.api:force-metadata-api</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">[22.0.0, 22.1.0)</td>
+<td><ol type="a"><li>com.force.sdk:force-connector</li>
+<li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.force.api:force-partner-api</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">[22.0.0, 22.1.0)</td>
+<td><ol type="a"><li>com.force.sdk:force-connector</li>
+<li>com.force.sdk:force-jpa</li>
+<li>com.force.sdk:force-oauth</li>
+<li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.force.api:force-wsc</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">[22.0.0, 22.1.0)</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+<li>com.force.sdk:force-connector</li>
+<li>com.force.sdk:force-jpa</li>
+<li>com.force.sdk:force-oauth</li>
+<li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.force.sdk:force-connector</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">22.0.0-SNAPSHOT</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+<li>com.force.sdk:force-jpa</li>
+<li>com.force.sdk:force-oauth</li>
+<li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.force.sdk:force-jpa</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">22.0.0-SNAPSHOT</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.force.sdk:force-oauth</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">22.0.0-SNAPSHOT</td>
+<td><ol type="a"><li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.google.code.findbugs:annotations</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.3.9</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+<li>com.force.sdk:force-connector</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.google.collections:google-collections</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.0</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.google.inject:guice</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.0</td>
+<td><ol type="a"><li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.googlecode.json-simple:json-simple</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.1</td>
+<td><ol type="a"><li>com.force.sdk:force-oauth</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>commons-lang:commons-lang</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.5</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>commons-logging:commons-logging</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.1.1</td>
+<td><ol type="a"><li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>javax.jdo:jdo2-api</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.3-ec</td>
+<td><ol type="a"><li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>javax.servlet:com.springsource.javax.servlet</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.5.0</td>
+<td><ol type="a"><li>com.force.sdk:force-oauth</li>
+<li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>javax.transaction:jta</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.1</td>
+<td><ol type="a"><li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>mockit:jmockit</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.999.6</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+<li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.antlr:stringtemplate</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.2</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.geronimo.specs:geronimo-jpa_2.0_spec</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.0</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+<li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.datanucleus:datanucleus-core</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.3</td>
+<td><ol type="a"><li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.datanucleus:datanucleus-enhancer</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.1.0-release</td>
+<td><ol type="a"><li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.datanucleus:datanucleus-jpa</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.1.7</td>
+<td><ol type="a"><li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.slf4j:slf4j-api</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.6.1</td>
+<td><ol type="a"><li>com.force.sdk:force-connector</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework.security:spring-security-config</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.3.RELEASE</td>
+<td><ol type="a"><li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework.security:spring-security-core</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.3.RELEASE</td>
+<td><ol type="a"><li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework.security:spring-security-web</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.3.RELEASE</td>
+<td><ol type="a"><li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-beans</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.3.RELEASE</td>
+<td><ol type="a"><li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-core</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.3.RELEASE</td>
+<td><ol type="a"><li>com.force.sdk:force-springsecurity</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.testng:testng</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">5.14.2</td>
+<td><ol type="a"><li>com.force.sdk:force-codegen</li>
+<li>com.force.sdk:force-jpa</li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2011
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

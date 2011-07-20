@@ -1,0 +1,570 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Force.com Database JPA Provider</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000000f31088>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='forcecom_database_jpa_provider'>Force.com Database JPA Provider</h1>
+
+<p>TODO: This is an old doc now and just included here as a sample.</p>
+
+<p>The Force.com JPA provider allows you to write Java applications that use JPA to persist data in the Force.com Database. This lets you write apps with a persistence layer that is intuitive and easy to understand for Java developers and it makes it much simpler to migrate your applications between different data stores.</p>
+
+<p>That being said, it&#8217;s important to understand that the Force.com database is different in several aspects from standard relational databases and the JPA provider reflects this difference. <a href='Overview-of-the-Force.com-Database'>This overview</a> explains the basics of the Force.com database and how it&#8217;s different. Make sure you understand these differences before you design your VMforce application. You should expect deviations from the JPA spec in the following areas:</p>
+
+<ul>
+<li>JPQL: Some query constructs are not supported. You will receive a proper error message if you try to use unsupported constructs. Most notably, you can&#8217;t perform arbitrary joins between unrelated entities.</li>
+
+<li>Transactions: The Force.com database is a web service and transactions are demarcated at the request boundaries. A single transaction cannot span multiple requests and therefore the full set of transaction semantics you would expect from a regular database is not available. Consult this and future, more complete documentation for more details.</li>
+
+<li>Data types: Force.com supports most data types found in JPA, but there are some differences. Consult this and future, more complete docs for details.</li>
+</ul>
+
+<p>VMforce uses the <a href='http://www.datanucleus.org/products/accessplatform.html'>DataNucleus Access Platform v2.1</a> implementation of the JPA specification. There are many aspects of the Force.com JPA provider that are directly provided by the DataNucleus framework and you may need to consult the DataNucleus documentation in some cases.</p>
+
+<h2 id='configuring_the_jpa_provider_in_your_spring_apps'>Configuring the JPA Provider in your Spring Apps</h2>
+
+<p>To enable the Force.com JPA provider in a standard Spring MVC application you need to include dependencies to the following libraries:</p>
+
+<ul>
+<li>DataNucleus Access Platform</li>
+
+<li>Force.com SDK</li>
+
+<li>Additional Spring libraries for container transactions if you don&#8217;t already have them</li>
+</ul>
+
+<p>You can add these libraries to a standard Spring MVC 3.0.4 project by adding the following dependencies to the <code>pom.xml</code> file:</p>
+
+<pre><code>&lt;dependency&gt;
+	&lt;groupId&gt;com.force.sdk&lt;/groupId&gt;
+	&lt;artifactId&gt;force-jpa&lt;/artifactId&gt;
+	&lt;version&gt;20.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.datanucleus&lt;/groupId&gt;
+	&lt;artifactId&gt;datanucleus-core&lt;/artifactId&gt;
+	&lt;version&gt;2.1.0-release&lt;/version&gt;
+	&lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.datanucleus&lt;/groupId&gt;
+	&lt;artifactId&gt;datanucleus-enhancer&lt;/artifactId&gt;
+	&lt;version&gt;2.1.0-release&lt;/version&gt;
+	&lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.datanucleus&lt;/groupId&gt;
+	&lt;artifactId&gt;datanucleus-jpa&lt;/artifactId&gt;
+	&lt;version&gt;2.1.0-release&lt;/version&gt;
+	&lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-tx&lt;/artifactId&gt;
+	&lt;version&gt;3.0.4.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-orm&lt;/artifactId&gt;
+	&lt;version&gt;3.0.4.RELEASE&lt;/version&gt;
+	&lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;cglib&lt;/groupId&gt;
+	&lt;artifactId&gt;cglib&lt;/artifactId&gt;
+	&lt;version&gt;2.2&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+
+<p>You&#8217;ll also need to add the Force.com Maven repository location to the repositories section</p>
+
+<pre><code>&lt;repository&gt;
+	&lt;id&gt;com.force.maven.release&lt;/id&gt;
+	&lt;name&gt;Force.com Maven Repo&lt;/name&gt;
+	&lt;url&gt;http://repo.t.salesforce.com/archiva/repository/releases&lt;/url&gt;
+&lt;/repository&gt;</code></pre>
+
+<p>See the <a href='https://github.com/forcedotcom/vmforce/blob/master/samples/VMforceSpringMVC/pom.xml'><code>pom.xml</code> file in the VMforceSpringMVC</a> sample app for a complete example.</p>
+
+<p>DataNucleus adds code to persistent classes using class enhancement. You can set up Maven to do this enhancement as a post-compilation step by adding the DataNucleus enhancer plugin to the <code>pom.xml</code> file&#8217;s <code>pluginRepositories</code> section:</p>
+
+<pre><code>&lt;pluginRepositories&gt;
+	&lt;pluginRepository&gt;
+		&lt;id&gt;DataNucleus_2&lt;/id&gt;
+		&lt;url&gt;http://www.datanucleus.org/downloads/maven2/&lt;/url&gt;
+	&lt;/pluginRepository&gt;
+&lt;/pluginRepositories&gt;</code></pre>
+
+<p>The VMforceSpringMVC sample demonstrates all this configuration and you can use diff to see exactly what was done to the basic Spring MVC app that STS generates by default:</p>
+
+<pre><code>$ cd [your_local_vmforce_repo]/samples/VMforceSpringMVC
+$ git diff -w 191e7bfd3dbb4b4a56afa4dc13713a4fa269de0c..HEAD .</code></pre>
+
+<p>This doc may not cover every detail in the sample app so if you&#8217;re building your own project and run into issues, this diff can help show how the sample app was built.</p>
+
+<h3 id='jpa_persistence_configuration'>JPA persistence configuration</h3>
+
+<p>VMforce uses the standard JPA <code>persistence.xml</code> file for its configuration file. In the compiled and packaged application this file must reside in the root of the classpath, for example in the root of the <code>WEB-INF/classes</code> directory. In the VMforce samples shown here, the file resides in <code>src/main/resources/META-INF</code> and maven is configured to copy this file to its target destination as part of the build process.</p>
+
+<p>This configuration file includes one or more persistence-unit elements. A persistence unit defines a set of classes and how to persist them. Each persistence unit has a unique name. In the following example, there is one unit named <code>forceDatabase</code>.</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;persistence xmlns=&quot;http://java.sun.com/xml/ns/persistence&quot; 
+             xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+             xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/persistence 
+			 	http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd&quot; 
+             version=&quot;1.0&quot;&gt;
+    &lt;persistence-unit name=&quot;forceDatabase&quot;&gt;
+      &lt;provider&gt;com.force.sdk.jpa.PersistenceProviderImpl&lt;/provider&gt;
+      &lt;properties&gt;
+         &lt;property name=&quot;datanucleus.ConnectionURL&quot; 
+                   value=&quot;sfdc:${force.endPoint}/services/Soap/u/${force.apiVersion}&quot;/&gt;
+         &lt;property name=&quot;datanucleus.ConnectionUserName&quot; value=&quot;${force.userName}&quot; /&gt;
+         &lt;property name=&quot;datanucleus.ConnectionPassword&quot; value=&quot;${force.password}&quot; /&gt;
+         &lt;property name=&quot;datanucleus.autoCreateSchema&quot; value=&quot;true&quot;/&gt;
+         &lt;property name=&quot;datanucleus.validateTables&quot; value=&quot;false&quot;/&gt;
+         &lt;property name=&quot;datanucleus.validateConstraints&quot; value=&quot;false&quot;/&gt;
+         &lt;property name=&quot;datanucleus.Optimistic&quot; value=&quot;true&quot;/&gt;
+         &lt;property name=&quot;datanucleus.datastoreTransactionDelayOperations&quot; value=&quot;true&quot;/&gt;
+         &lt;property name=&quot;datanucleus.jpa.addClassTransformer&quot; value=&quot;false&quot;/&gt;
+         &lt;property name=&quot;datanucleus.cache.level2.type&quot; value=&quot;none&quot;/&gt;
+         &lt;property name=&quot;sfdc.AllOrNothing&quot; value=&quot;true&quot;/&gt;
+      &lt;/properties&gt;
+   &lt;/persistence-unit&gt;
+&lt;/persistence&gt;</code></pre>
+
+<p>This example is from the <a href='https://github.com/forcedotcom/vmforce/tree/master/samples/VMforceSpringMVC/'>VMforceSpringMVC sample app</a>. The sample project defines a set of property placeholders, <code>force.userName</code>, <code>force.password</code>, etc. in this file. These properties are substituted with values during the build from the connector.properties file in the same directory. You can choose to configure your build differently and for example type the connector properties directly into the persistence.xml file. But it is recommended you keep sensitive information like passwords in separate files that you can exclude from version control.</p>
+
+<p>Besides the connector endpoint, version and credentials, you should only care about the following configurations in this file:</p>
+
+<h4 id='datanucleusautocreateschema'>datanucleus.autoCreateSchema</h4>
+
+<p>Set to false if you don&#8217;t want your schema created or updated automatically by DataNucleus each time you restart the server or run tests</p>
+
+<h4 id='datanucleusoptimistic'>datanucleus.Optimistic</h4>
+
+<p>Set this property to true for optimistic transactions. Optimistic concurrency control is a method that assumes that multiple transactions can complete without affecting each other, and that transactions can proceed without locking the data resources that they affect. Before committing, each transaction verifies that no other transaction has modified its data. If the check reveals conflicting modifications, the committing transaction rolls back. When this property is set to true, each Java class that models an entity used in a transaction should include a field with the following signature:</p>
+
+<pre><code>@Version 
+Calendar lastModifiedDate;</code></pre>
+
+<p>The <code>lastModifiedDate</code> field is a system field that is automatically created for every entity in the Force.com database. The @Version annotation enables JPA to use this date field to do <code>ifModifiedBefore()</code> checks on update and delete operations. If this check indicates that another operation has updated a record in the transaction, a <code>javax.persistence.OptimisticLockException</code> is thrown as the record in the transaction has stale data. If the <code>sfdc.AllOrNothing</code> property is enabled, the transaction is rolled back.</p>
+
+<h4 id='datanucleusdatastoretransactiondelayoperations'>datanucleus.datastoreTransactionDelayOperations</h4>
+
+<p>Set this property to true to ensure that all JPA operations are buffered until either commit() is called on a transaction or flush() is called on an EntityManager. If the property is set to false, every operation handled by the EntityManager is independently committed to the database.</p>
+
+<h4 id='sfdcallornothing'>sfdc.AllOrNothing</h4>
+
+<p>Set this property to true to ensure that all changes are rolled back if any errors occur when persisting records. If the property is set to false, changes to records with no errors are committed even if there are errors persisting other records in the transaction. If a transaction includes an insert, update, and a delete operation, this property applies to each operation separately. For example, if the insert and delete operations have no errors, but the update operation has at least one error, the insert and operations are committed, while the update operation doesn&#8217;t change any records due to the error.</p>
+
+<h3 id='setting_up_spring_components'>Setting up Spring components</h3>
+
+<p>The Spring framework will handle instantiation of the EntityManager and transactions for you and you&#8217;ll need to add some configuration to your basic Spring MVC Web app to make this work. It&#8217;s a good idea to keep this additional configuration in a separate Spring config file, to separate it as much as possible from the standard config. In the VMforceSpringMVC sample app this config is factored into the <a href='../samples/VMforceSpringMVC/src/main/webapp/WEB-INF/spring/force-config.xml'>force-config.xml</a> file which looks like this:</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+	xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd&quot;&gt;
+
+	&lt;tx:annotation-driven /&gt;
+	
+	&lt;context:component-scan base-package=&quot;com.vmforce.samples&quot; /&gt;
+
+	&lt;context:property-placeholder location=&quot;classpath:connector.properties&quot; /&gt;
+	
+	&lt;!-- Drives transactions using local JPA APIs --&gt;
+	&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.orm.jpa.JpaTransactionManager&quot;&gt;
+		&lt;property name=&quot;entityManagerFactory&quot; ref=&quot;entityManagerFactory&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id=&quot;entityManagerFactory&quot; class=&quot;org.springframework.orm.jpa.LocalEntityManagerFactoryBean&quot;&gt;
+		&lt;property name=&quot;persistenceUnitName&quot; value=&quot;forceDatabase&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;bean class=&quot;org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor&quot; /&gt;
+
+	&lt;bean id=&quot;forceService&quot; class=&quot;com.force.sdk.connector.ForceServiceConnector&quot;&gt;
+		&lt;property name=&quot;username&quot; value=&quot;${force.userName}&quot;/&gt;
+		&lt;property name=&quot;password&quot; value=&quot;${force.password}&quot;/&gt;
+		&lt;property name=&quot;endPoint&quot; value=&quot;${force.endPoint}/services/Soap/u/20.0&quot;/&gt;
+	&lt;/bean&gt;
+&lt;/beans&gt;</code></pre>
+
+<p>You&#8217;ll then need to add a reference to this file in the <a href='../samples/VMforceSpringMVC/src/main/webapp/WEB-INF/spring/root-config.xml'>root-config.xml</a>:</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+
+	&lt;!-- Root Context: defines shared resources visible to all other web components --&gt;
+	
+	&lt;import resource=&quot;force-config.xml&quot; /&gt;
+
+&lt;/beans&gt;</code></pre>
+
+<p>As mentioned earlier, check out the sample app and the diff from the checkin of the plain spring MVC app to see all the detailed differences.</p>
+
+<h2 id='defining_jpa_entities'>Defining JPA Entities</h2>
+
+<p>JPA lets you create entities as normal Java bean style classes (sometimes called POJOs) and use annotations to control special behavior where necessary. The Force.com JPA provider follows the standard conventions with various limitations and some customizations.</p>
+
+<p>Probably the most important constraint is how you define the primary key. You <em>must</em> declare your primary key in the following way:</p>
+
+<pre><code>@Id 
+@GeneratedValue(strategy=GenerationType.IDENTITY) 
+String id;</code></pre>
+
+<p>That is:</p>
+
+<ul>
+<li>Only the <code>GenerationType.IDENTITY</code> strategy is supported</li>
+
+<li>The primary key field name must be <code>id</code></li>
+
+<li>The primary key Java type must be <code>String</code></li>
+</ul>
+
+<p>If you are using optimistic concurrency (see above for how to turn it on/off), you also <em>must</em> include a <code>lastModifiedDate</code> field in your entity in the following way:</p>
+
+<pre><code>:::java
+@Version 
+java.util.Calendar lastModifiedDate;</code></pre>
+
+<h3 id='default_type_mappings'>Default Type Mappings</h3>
+
+<p>The JPA provider will map the fields on your entities from Java types to Force.com database field types. This table lists the mappings from Java to Force.com types:</p>
+
+<pre><code>Java type					Default Force.com type
+-----------------------------------------------------------------------
+boolean						Checkbox
+byte						Text (255)
+char						Text (255)
+short						Number (18,0)
+int							Number (18,0) 
+long						Number (18,0) 
+double						Number (18,2) 
+float						Number (18,2) 
+Boolean						Checkbox 
+Byte						Text (255) 
+Character					Text (255)
+Short						Number (18,0) 
+Integer						Number (18,0) 
+Long						Number (18,0) 
+Double						Number (18,2) 
+Float						Number (18,2) 
+String						Text (255)
+java.util.Date				Date 						
+Calendar					Date/Time 					
+GregorianCalendar			Date/Time
+BigInteger					Number (18, 0)
+BigDecimal					Currency
+String[]					Picklist (Multi-Select) for selected values
+enum						Picklist
+URL							URL</code></pre>
+
+<p>and this table has the same mappings but listed by Force.com type:</p>
+
+<pre><code>Force.com type				Default Java type
+-----------------------------------------------------------------------
+Auto Number					Currently not supported
+Formula						Currently not supported
+Lookup Relationship			Any @Entity annotated Java class 
+Master-Detail Relationship	Any @Entity annotated Java class
+Checkbox					boolean/Boolean
+Currency					BigDecimal
+Date						Date
+Date/Time					Calendar/GregorianCalendar
+Number						Short/short, Integer/int, Long/long, 
+							Double/double, Float/float, BigInteger
+Percent						Integer/int
+Phone						String
+Picklist					enum for available values,
+							String for selected value
+Picklist (Multi-Select) 	enum for available values, 
+							String[] for selected values
+Text						byte, String, char/Character
+Text Area					String
+Text Area (Long)			Currently not supported
+Text Area (Rich)			Currently not supported
+URL							URL</code></pre>
+
+<p>This default mapping behavior can be customized with annotations. The JPA provider understands standard JPA annotations and also defines two custom annotations: <code>@CustomObject</code> and <code>@CustomField</code> that are used to customize mappings and define features that are not part of JPA.</p>
+
+<h3 id='primary_key'>Primary Key</h3>
+
+<p>In Force.com, entities always have a primary key, it is always a String and it is always assigned by the database. Therefore, your entities must always contain a primary key field defined as follows:</p>
+
+<pre><code>:::java
+@Id 
+@GeneratedValue(strategy=GenerationType.IDENTITY) 
+String id;</code></pre>
+
+<h3 id='the__annotation'>The <code>@Basic</code> annotation</h3>
+
+<p>JPA defines a set of Java types that must be persisted automatically even if they are not annotated (such as String, int, double, etc.). If you want other types to be persisted you can use the <code>@Basic</code> annotation. Force.com supports this feature for ?? fields.</p>
+
+<h3 id='date_types'>Date types</h3>
+
+<p>Force.com has 2 different date types: Date and Date/Time. The former does not include time of day. By default, the JPA provider maps <code>java.util.Calendar</code> to Date/Time and <code>java.util.Date</code> to Date. You can customize this behavior using the JPA <code>@Temporal</code> annotation. For example, the following two Java fields will <em>both</em> be mapped to a Date/Time field in Force.com</p>
+
+<pre><code>:::java
+java.util.Calendar lastUpdated;
+
+@Temporal(TemporalType.TIMESTAMP)
+java.util.Date dateCreated;</code></pre>
+
+<p>Similarly, you can use the <code>@Temporal</code> annotation to force a calendar to become a Date field. In this example, both fields will be mapped to Date fields:</p>
+
+<pre><code>:::java
+java.util.Date birthDate;
+
+@Temporal(TemporalType.DATE)
+java.util.Calendar transactionDate;</code></pre>
+
+<p><code>java.util.GregorianCalendar</code> can be used instead of <code>java.util.Calendar</code>.</p>
+
+<h3 id='length_of_text_fields'>Length of text fields</h3>
+
+<p>The length of text fields is controlled by the <code>length</code> attribute of the <code>@Column</code> annotation. For example:</p>
+
+<pre><code>:::java
+@Column(length=1)
+String flag;</code></pre>
+
+<p>defines a text field called <code>flag</code> with length 1. The default length is 255.</p>
+
+<h3 id='precision_and_scale_of_number_types'>Precision and scale of number types</h3>
+
+<p>The precision and scale of number fields are controlled by the <code>@Column</code> annotation. For example:</p>
+
+<pre><code>:::java
+@Column(precision=1, scale=0)
+int digit;</code></pre>
+
+<p>Defines an integer that can range from 0 to 9. The default precision and scale are 18 and 0 for integers and 18 and 2 for floats and doubles (see table above).</p>
+
+<h3 id='enumeration_picklist'>Enumeration (picklist)</h3>
+
+<p>Force.com supports enumerations as a data type. You will see these referred to as picklists and multi-select picklists in Force.com terminology. Here&#8217;s how you can define a field that takes its value from an enumeration in the following way:</p>
+
+<pre><code>:::java
+public enum Variety { Cabernet_Sauvignon, Syrah, Pinot_Noir, Zinfandel }
+
+@Enumerated
+private Variety variety;</code></pre>
+
+<p>By default, Force.com will store ordinal values for your selection. For example if you set <code>variety</code> to <code>Syrah</code>, it will be stored as the value <code>1</code> in the database. To store the value strings instead of ordinals, you can do:</p>
+
+<pre><code>:::java
+public enum Variety { Cabernet_Sauvignon, Syrah, Pinot_Noir, Zinfandel }
+
+@Enumerated(EnumType.STRING)
+private Variety variety;</code></pre>
+
+<p>Multi-value selections is also supported. If you want to pick multiple varietals for a single wine, you simply use an array type instead:</p>
+
+<pre><code>:::java
+public enum Variety { Cabernet_Sauvignon, Syrah, Pinot_Noir, Zinfandel }
+
+@Enumerated(EnumType.STRING)
+private Variety[] variety;</code></pre>
+
+<h3 id='relationships'>Relationships</h3>
+
+<p>The Force.com database supports relationships between entities. You can perform join queries on related entities, but not on unrelated ones. Force.com defines two types of relationships: Lookup and master-detail.</p>
+
+<h4 id='lookup_relationship'>Lookup relationship</h4>
+
+<p>A lookup relationship is a foreign key to another entity. As opposed to the master-detail relationship, lookups do not trigger cascading deletes. I.e. if record A references record B, record A will not be deleted if record B is. A lookup relationship is always defined as a many-to-one relationship on the single cardinality side. For example, if the entity <code>Wine</code> has a many-to-one relationship to the entity <code>Producer</code>, the relationship is defined on the <code>Wine</code> entity as follows:</p>
+
+<pre><code>:::java
+@ManyToOne
+Producer producer;</code></pre>
+
+<p>If you want the field name in the Force.com database to be something other than <code>producer</code>, you can use the <code>@Column</code> annotation</p>
+
+<pre><code>:::java
+@Column(name = &quot;wine_producer&quot;)
+@ManyToOne
+Producer producer;</code></pre>
+
+<p>Bi-directional lookups are fully supported in Force.com, but as of 20.0.1, they are not mapped properly in JPA. This should be fixed in the next release. This means that right now you can&#8217;t navigate a relationship from the other side using the <code>@OneToMany</code> annotation.</p>
+
+<h4 id='masterdetail_relationship'>Master-detail relationship</h4>
+
+<p>A master-detail relationship is similar to a lookup relationship, with the difference that all children are deleted when the parent is deleted (i.e. it has cascade delete). Use the following construct to construct this relationship:</p>
+
+<pre><code>:::java
+@ManyToOne
+@CustomField(type = FieldType.MasterDetail)
+Producer producer;</code></pre>
+
+<h3 id='making_your_entity_collaborative_with_chatter'>Making your entity collaborative with Chatter</h3>
+
+<p>Force.com has collaboration built-in. You can enable feeds for every entity in your database. Users can follow entities and be updated when they change. To enable Chatter on an entity, you use the <code>@CustomObject(enableFeeds=true)</code> annotation on the entity class. For example:</p>
+
+<pre><code>:::java
+@Entity
+@CustomObject(enableFeeds=true)
+public class Wine {
+  
+  @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private String id;
+    
+    String name;
+    
+}</code></pre>
+
+<p>Once feeds is enabled for an entity, you can specify which fields should trigger feed updates using the <code>@CustomField(enableFeeds=true)</code>. For example:</p>
+
+<pre><code>:::java
+@CustomField(enableFeeds=true)
+private String myField;
+
+public String getMyField() {
+	return myField;
+}
+
+public void setMyField(String value) {
+	myField = value;
+}</code></pre>
+
+<h3 id='other_forcecom_specific_types'>Other Force.com specific types</h3>
+
+<h4 id='email'>Email</h4>
+
+<p>If you want to create a Force.com <code>email</code> field, use <code>@CustomField(type=FieldType.Email)</code> with a <code>String</code> Java type. For example:</p>
+
+<pre><code>:::java
+@CustomField(type=FieldType.Email)
+String orderEmail;</code></pre>
+
+<h4 id='phone'>Phone</h4>
+
+<p>If you want to create a Force.com <code>phone</code> field, use <code>@CustomField(type=FieldType.Phone)</code> with a <code>String</code> Java type. For example:</p>
+
+<pre><code>:::java
+@CustomField(type=FieldType.Phone)
+String businessPhone;</code></pre>
+
+<h4 id='percent'>Percent</h4>
+
+<p>If you want to create a Force.com <code>percent</code> field, use <code>@CustomField(type=FieldType.Percent)</code> with an <code>int</code> or <code>Integer</code> Java type. For example:</p>
+
+<pre><code>:::java
+@CustomField(type=FieldType.Percent)
+int mainVarietalPercent;</code></pre>
+
+<h2 id='writing_persistence_code'>Writing persistence code</h2>
+
+<p>coming soon&#8230;</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Data Type Mappings</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x000000034330e0>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='data_type_mappings'>Data Type Mappings</h1>
+
+<p>Force.com has its own built-in list of data types optimized for building business applications. This section describes how the Force.com JPA provider maps Java data types to Force.com types and vice versa.</p>
+
+<h2 id='mapping_java_to_forcecom_data_types'>Mapping Java to Force.com Data Types</h2>
+
+<p>This table maps commonly used Java data types to data types in Force.com. It includes a column for the standard JPA annotation used for each data type. This table is intended as a quick reference for Java developers who are not familiar with data types in Force.com.</p>
+<table border='1' cellpadding='4' cellspacing='0'>
+<thead align='left'>
+<tr>
+<th width='25.581395348837205%'>Java Data Type</th>
+
+<th width='37.20930232558139%'>Force.com Data Type</th>
+
+<th width='37.20930232558139%'>Standard JPA Annotation</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td width='25.581395348837205%'>boolean</td>
+
+<td width='37.20930232558139%'>Checkbox</td>
+
+<td width='37.20930232558139%'>N/A</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>byte</td>
+
+<td width='37.20930232558139%'>Text (255) <sup>1</sup></td>
+
+<td width='37.20930232558139%'>@Column(length=255)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>char</td>
+
+<td width='37.20930232558139%'>Text (255)</td>
+
+<td width='37.20930232558139%'>@Column(length=255)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>short</td>
+
+<td width='37.20930232558139%'>Number (6, 0)<sup>2</sup></td>
+
+<td width='37.20930232558139%'>@Column(precision=6, scale=0)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>int</td>
+
+<td width='37.20930232558139%'>Number (11, 0)</td>
+
+<td width='37.20930232558139%'>@Column(precision=11, scale=0)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>long</td>
+
+<td width='37.20930232558139%'>Number (18, 0)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=0)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>double</td>
+
+<td width='37.20930232558139%'>Number (18, 2)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=2)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>float</td>
+
+<td width='37.20930232558139%'>Number (18, 2)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=2)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Boolean</td>
+
+<td width='37.20930232558139%'>Checkbox</td>
+
+<td width='37.20930232558139%'>N/A</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Byte</td>
+
+<td width='37.20930232558139%'>Text (255)</td>
+
+<td width='37.20930232558139%'>@Column(length=255)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Character</td>
+
+<td width='37.20930232558139%'>Text (255)</td>
+
+<td width='37.20930232558139%'>@Column(length=255)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Short</td>
+
+<td width='37.20930232558139%'>Number (6, 0)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=0)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Integer</td>
+
+<td width='37.20930232558139%'>Number (11, 0)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=0)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Long</td>
+
+<td width='37.20930232558139%'>Number (18, 0)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=0)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Double</td>
+
+<td width='37.20930232558139%'>Number (18, 2)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=2)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Float</td>
+
+<td width='37.20930232558139%'>Number (18, 2)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=2)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>String</td>
+
+<td width='37.20930232558139%'>Text</td>
+
+<td width='37.20930232558139%'>@Column(length=fieldLength) <sup>3</sup></td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>java.util.Date</td>
+
+<td width='37.20930232558139%'>Date</td>
+
+<td width='37.20930232558139%'>@Temporal(TemporalType.DATE)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>Calendar</td>
+
+<td width='37.20930232558139%'>Date/Time</td>
+
+<td width='37.20930232558139%'>@Temporal(TemporalType.TIMESTAMP)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>GregorianCalendar</td>
+
+<td width='37.20930232558139%'>Date/Time</td>
+
+<td width='37.20930232558139%'>@Temporal(TemporalType.TIMESTAMP)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>BigInteger</td>
+
+<td width='37.20930232558139%'>Number (18, 0)</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=0)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>BigDecimal</td>
+
+<td width='37.20930232558139%'>Currency</td>
+
+<td width='37.20930232558139%'>@Column(precision=18, scale=2)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>byte[]</td>
+
+<td width='37.20930232558139%'>See Binary (Base64) Fields. TODO [Mark]: add href</td>
+
+<td width='37.20930232558139%'>N/A</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>String[]</td>
+
+<td width='37.20930232558139%'>Picklist (Multi-Select) for selected values</td>
+
+<td width='37.20930232558139%'>@Enumerated(EnumType.STRING) OR @Enumerated(EnumType.ORDINAL)</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>enum</td>
+
+<td width='37.20930232558139%'>Picklist for available
+values</td>
+
+<td width='37.20930232558139%'>N/A</td>
+
+</tr>
+
+<tr>
+<td width='25.581395348837205%'>URL</td>
+
+<td width='37.20930232558139%'>URL</td>
+
+<td width='37.20930232558139%'>N/A</td>
+
+</tr>
+
+</tbody>
+
+</table><p>
+<sup>1</sup> The number in parentheses represents the field length.</p><p>
+<sup>2</sup> The values in parentheses represent the decimal precision
+and decimal scale for the number. Precision
+is the number of digits in a number. Scale is the number of digits
+to the right of the decimal point in a number. For example, the number
+256.99 has a precision of 5 and a scale of 2.</p><p>
+<sup>3</sup> The <em>fieldLength</em> variable represents the field length.</p>
+<h2 id='mapping_forcecom_to_java_data_types'>Mapping Force.com to Java Data Types</h2>
+
+<p>This table maps Force.com data types to Java data types. It includes columns for the standard JPA annotation and custom Force.com annotations used for each data type. The Custom Force.com JPA Annotation column doesn&#8217;t show all the attributes available for the @CustomField annotation.</p>
+
+<p>TODO <span>Mark</span>: Add href - For more information, see @CustomField.</p>
+
+<p>This table is intended as a quick reference for Java developers who are familiar with data types in Force.com and want to see how they map to data types in Java and JPA.</p>
+<pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot;&gt;
+&lt;thead align=&quot;left&quot;&gt;
+&lt;tr&gt;
+&lt;th width=&quot;22.669491525423734%&quot; &gt;Force.com Data Type&lt;/th&gt;
+
+&lt;th width=&quot;18.43220338983051%&quot; &gt;Java Data Type&lt;/th&gt;
+
+&lt;th width=&quot;30.720338983050848%&quot; &gt;Standard JPA Annotation&lt;/th&gt;
+
+&lt;th class=&quot;featureTableHeader&quot; width=&quot;28.177966101694917%&quot; &gt;Custom Force.com JPA Annotation&lt;/th&gt;
+
+&lt;/tr&gt;
+
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Auto Number&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;&lt;ul&gt;
+&lt;li&gt;int&lt;/li&gt;
+
+&lt;li&gt;Integer&lt;/li&gt;
+
+&lt;/ul&gt;
+&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;N/A&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@CustomField(type = &quot;AutoNumber&quot;)&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Formula&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;String&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;@Column(length = fieldLength) &lt;sup&gt;1&lt;/sup&gt;&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@Column(type = &quot;Text&quot;, formula = &lt;em&gt;formulaValue&lt;/em&gt;)&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Lookup Relationship&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;Matches class of referenced object&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;@Entity&lt;p&gt;
+@ManyToOne&lt;/p&gt;
+&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@CustomField(type = &quot;Lookup&quot;, childRelationshipName
+= &quot;&lt;em&gt;childRelationshipName&lt;/em&gt;&quot;)&lt;p&gt;
+For more
+information about the childRelationshipName attribute, see  @CustomField.
+TODO [Mark]: fix link
+&lt;/p&gt;
+&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Master-Detail Relationship&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;Matches class of referenced object&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;@Entity&lt;p&gt;
+@ManyToOne&lt;/p&gt;
+&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@CustomField(type = &quot;MasterDetail&quot;,
+childRelationshipName = &quot;&lt;em&gt;childRelationshipName&lt;/em&gt;&quot;)&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Checkbox&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;&lt;ul&gt;
+&lt;li&gt;boolean&lt;/li&gt;
+
+&lt;li&gt;Boolean&lt;/li&gt;
+
+&lt;/ul&gt;
+boolean&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;N/A&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@CustomField(type = &quot;Checkbox&quot;)&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Currency&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;BigDecimal&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;@Column(precision=18,
+scale=2)&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@CustomField(type = &quot;Currency&quot;)&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Date&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;java.util.Date&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;@Temporal(TemporalType.DATE)&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@CustomField(type = &quot;Date&quot;)&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Date/Time&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;&lt;ul&gt;
+&lt;li&gt;Calendar&lt;/li&gt;
+
+&lt;li&gt;GregorianCalendar&lt;/li&gt;
+
+&lt;/ul&gt;
+&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;@Temporal(TemporalType.TIMESTAMP)&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@CustomField(type = &quot;DateTime&quot;)&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Email&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;String&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;@Column(length = &lt;em&gt;fieldLength&lt;/em&gt;)&lt;/td&gt;
+
+&lt;td width=&quot;28.177966101694917%&quot; &gt;@CustomField(type = &quot;Email&quot;, length
+= &lt;em&gt;fieldLength&lt;/em&gt;)&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td width=&quot;22.669491525423734%&quot; &gt;Number&lt;/td&gt;
+
+&lt;td width=&quot;18.43220338983051%&quot; &gt;&lt;ul&gt;
+&lt;li&gt;short&lt;/li&gt;
+
+&lt;li&gt;int&lt;/li&gt;
+
+&lt;li&gt;long&lt;/li&gt;
+
+&lt;li&gt;double&lt;/li&gt;
+
+&lt;li&gt;float&lt;/li&gt;
+
+&lt;li&gt;Short&lt;/li&gt;
+
+&lt;li&gt;Integer&lt;/li&gt;
+
+&lt;li&gt;Long&lt;/li&gt;
+
+&lt;li&gt;Double&lt;/li&gt;
+
+&lt;li&gt;Float&lt;/li&gt;
+
+&lt;li&gt;BigInteger&lt;/li&gt;
+
+&lt;/ul&gt;
+&lt;/td&gt;
+
+&lt;td width=&quot;30.720338983050848%&quot; &gt;@Column(precision = &lt;em&gt;decimalPrecision&lt;/em&gt;, scale = decimalScale&lt;/em&gt;</pre><td width='28.177966101694917%'>@CustomField(type = "Number", precision
+= <em>decimalPrecision</em>, scale = <em>decimalScale</em>)</td><pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;/tr&gt;</pre><tr>
+<td width='22.669491525423734%'>Percent</td>
+
+<td width='18.43220338983051%'><ul>
+<li>int</li>
+
+<li>Integer</li>
+
+</ul>
+</td>
+
+<td width='30.720338983050848%'>@Column(precision = <em>decimalPrecision</em>, scale = 0)</td>
+
+<td width='28.177966101694917%'>@CustomField(type = "Percent")</td>
+
+</tr><tr>
+<td width='22.669491525423734%'>Phone</td>
+
+<td width='18.43220338983051%'>String</td>
+
+<td width='30.720338983050848%'>@Column(length = <em>fieldLength</em>)</td>
+
+<td width='28.177966101694917%'>@CustomField(type = "Phone", length
+= <em>fieldLength</em>)</td>
+
+</tr><tr>
+<td width='22.669491525423734%'>Picklist</td>
+
+<td width='18.43220338983051%'>enum for available values<p>
+String for selected value</p>
+</td>
+
+<td width='30.720338983050848%'>For available values: @Enumerated(EnumType.STRING) OR @Enumerated(EnumType.ORDINAL)</td>
+
+<td width='28.177966101694917%'>@CustomField(type = "Picklist")</td>
+
+</tr><tr>
+<td width='22.669491525423734%'>Picklist (Multi-Select)</td>
+
+<td width='18.43220338983051%'>enum for available values<p>
+String[] for selected values</p>
+</td>
+
+<td width='30.720338983050848%'>For available values: @Enumerated(EnumType.STRING) OR @Enumerated(EnumType.ORDINAL)</td>
+
+<td width='28.177966101694917%'>@CustomField(type = "MultiselectPicklist")</td>
+
+</tr><tr>
+<td width='22.669491525423734%'>Text</td>
+
+<td width='18.43220338983051%'><ul>
+<li>byte</li>
+
+<li>String</li>
+
+<li>char</li>
+
+<li>Character</li>
+
+</ul>
+</td>
+
+<td width='30.720338983050848%'>@Column(length = <em>fieldLength</em>)</td>
+
+<td width='28.177966101694917%'>@CustomField(type = "Text", length
+= <em>fieldLength</em>)</td>
+
+</tr><tr>
+<td width='22.669491525423734%'>Text Area</td>
+
+<td width='18.43220338983051%'>String</td>
+
+<td width='30.720338983050848%'>@Column(length = <em>fieldLength</em>)</td>
+
+<td width='28.177966101694917%'>@CustomField(type = "TextArea", length
+= <em>fieldLength</em>)</td>
+
+</tr><tr>
+<td width='22.669491525423734%'>Text Area (Long) (Not
+currently supported)</td>
+
+<td width='18.43220338983051%'>Not currently supported</td>
+
+<td width='30.720338983050848%'>@Column(length = <em>fieldLength</em>)</td>
+
+<td width='28.177966101694917%'>N/A</td>
+
+</tr><tr>
+<td width='22.669491525423734%'>Text Area (Rich)</td>
+
+<td width='18.43220338983051%'>Not currently supported</td>
+
+<td width='30.720338983050848%'>@Column(length = <em>fieldLength</em>)</td>
+
+<td width='28.177966101694917%'>N/A</td>
+
+</tr><tr>
+<td width='22.669491525423734%'>URL</td>
+
+<td width='18.43220338983051%'>URL</td>
+
+<td width='30.720338983050848%'>@Column(length = <em>fieldLength</em>)</td>
+
+<td width='28.177966101694917%'>@CustomField(type = "Url", length
+= <em>fieldLength</em>)</td>
+
+</tr><pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;/tbody&gt;</pre><pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;/table&gt;</pre><p>
+<sup>1</sup> The <em>fieldLength</em> variable represents the field length.</p><p>
+<sup>2</sup> The <em>decimalPrecision</em> and <em>decimalScale</em> variables represent the decimal precision and decimal scale respectively
+for the number. Precision
+is the number of digits in a number. Scale is the number of digits
+to the right of the decimal point in a number. For example, the number
+256.99 has a precision of 5 and a scale of 2.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

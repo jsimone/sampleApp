@@ -1,0 +1,800 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - JPA 2.0 Specification Support</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000001c787d8>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='jpa_20_specification_support'>JPA 2.0 Specification Support</h1>
+
+<p>This section lists the areas of the JPA 2.0 specification that are supported by the Force.com JPA provider and how Force.com differs from the standard JPA specification. The section numbers of all sections below map directly to the sections of the <a href='http://jcp.org/aboutJava/communityprocess/final/jsr317/index.html'>JPA 2.0 specification (JSR 317)</a>. Overview sections and other sections that do not specify anything (such as examples) have been omitted.</p>
+
+<h2 id='2_entities'>2 Entities</h2>
+
+<h3 id='21_entity_class'>2.1 Entity Class</h3>
+
+<p>Supported</p>
+
+<h3 id='22_persistent_fields_and_properties'>2.2 Persistent Fields and Properties</h3>
+
+<p>Supported</p>
+
+<h3 id='23_access_type'>2.3 Access Type</h3>
+
+<p>Both field and getter method access is supported. However, use of both types on the same file results in undefined behavior.</p>
+
+<h3 id='24_primary_keys_and_entity_identity'>2.4 Primary Keys and Entity Identity</h3>
+
+<p>Partially supported. The primary key must be a String data type with @GeneratedValue(strategy=GenerationType.IDENTITY). Derived identities are not supported.</p>
+
+<h3 id='25_embeddable_class'>2.5 Embeddable Class</h3>
+
+<p>Supported</p>
+
+<h3 id='26_collections_of_embeddable_classes_and_basic_types'>2.6 Collections of Embeddable Classes and Basic Types</h3>
+
+<p>Supported</p>
+
+<h3 id='27_map_collections'>2.7 Map Collections</h3>
+
+<p>Works as specified (with some Force.com specifics)</p>
+
+<p>TODO: <span>@Mark</span> Need to link to part of doc that explains Force.com specifics</p>
+
+<h3 id='28_mapping_defaults_for_nonrelationship_fields_or_properties'>2.8 Mapping Defaults for Non-relationship Fields or Properties</h3>
+
+<p>Supported</p>
+
+<h3 id='29_entity_relationships'>2.9 Entity Relationships</h3>
+
+<p>OneToMany and ManyToOne are supported. There are some limitations on cascade and limits on depth.</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc that explains limitations.</p>
+
+<h3 id='210_relationship_mapping_defaults'>2.10 Relationship Mapping Defaults</h3>
+
+<p>Our mapping defaults differ from the spec.</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc for differences here</p>
+
+<h3 id='211_inheritance'>2.11 Inheritance</h3>
+
+<p>Partially supported. You must use single table inheritance.</p>
+
+<h3 id='212_inheritance_mapping_strategies'>2.12 Inheritance Mapping Strategies</h3>
+
+<p>We may vary from spec</p>
+
+<p>TODO: need to doc the differences</p>
+
+<h3 id='213_naming_of_database_objects'>2.13 Naming of Database Objects</h3>
+
+<p>Undelimited names are supported. Delimited names are not supported.</p>
+
+<h2 id='3_entity_operations'>3 Entity Operations</h2>
+
+<h3 id='31_entitymanager'>3.1 EntityManager</h3>
+
+<p>Supported</p>
+
+<h3 id='32_entity_instances_life_cycle'>3.2 Entity Instance&#8217;s Life Cycle</h3>
+
+<p>Supported</p>
+
+<h3 id='33_persistence_context_lifetime'>3.3 Persistence Context Lifetime</h3>
+
+<h4 id='331_transaction_commit'>3.3.1 Transaction commit</h4>
+
+<p>Supported with limitations</p>
+
+<p>TODO: need to doc the limitations</p>
+
+<h4 id='332_transaction_rollback'>3.3.2 Transaction rollback</h4>
+
+<p>Supported with limitations</p>
+
+<p>TODO: need to doc the limitations</p>
+
+<h3 id='34_locking_and_concurrency'>3.4 Locking and Concurrency</h3>
+
+<h4 id='341_optimistic_locking'>3.4.1 Optimistic Locking</h4>
+
+<p>Supported with some variation from the spec.</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc with the variations</p>
+
+<h4 id='342_version_attributes'>3.4.2 Version Attributes</h4>
+
+<p>The name and type of the version field are restricted.</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc with details</p>
+
+<h4 id='343_pessimistic_locking'>3.4.3 Pessimistic Locking</h4>
+
+<p>Not supported</p>
+
+<h4 id='344_lock_modes'>3.4.4 Lock Modes</h4>
+
+<p>Not supported</p>
+
+<h4 id='345_optimisticlockexception'>3.4.5 OptimisticLockException</h4>
+
+<p>Supported</p>
+
+<h3 id='35_entity_listeners_and_callback_methods'>3.5 Entity Listeners and Callback Methods</h3>
+
+<p>Supported</p>
+
+<h3 id='36_bean_validation'>3.6 Bean Validation</h3>
+
+<p>Not supported</p>
+
+<h3 id='37_caching'>3.7 Caching</h3>
+
+<p>Not supported</p>
+
+<h3 id='38_query_apis'>3.8 Query APIs</h3>
+
+<p>Not supported</p>
+
+<h3 id='39_summary_of_exceptions'>3.9 Summary of Exceptions</h3>
+
+<p>Exceptions work as specified for supported features</p>
+
+<h2 id='4_query_language'>4 Query Language</h2>
+
+<h3 id='42_statement_types'>4.2 Statement Types</h3>
+
+<p>Select is supported. Bulk delete is supported but not in transactions. Bulk update is not supported.</p>
+
+<h3 id='43_abstract_schema_types_and_query_domains'>4.3 Abstract Schema Types and Query Domains</h3>
+
+<p>Abstract schema types are supported. Query domains are not supported.</p>
+
+<h3 id='44_the_from_clause_and_navigational_declarations'>4.4 The FROM Clause and Navigational Declarations</h3>
+
+<p>Partially supported with limitations</p>
+
+<p>TODO: need to doc the limitations</p>
+
+<h4 id='441_identifiers'>4.4.1 Identifiers</h4>
+
+<h4 id='442_identification_variables'>4.4.2 Identification Variables</h4>
+
+<h4 id='443_range_variable_declarations'>4.4.3 Range Variable Declarations</h4>
+
+<h4 id='444_path_expressions'>4.4.4 Path expressions</h4>
+
+<h4 id='445_joins'>4.4.5 Joins</h4>
+
+<p>Partially supported with limitations</p>
+
+<h4 id='446_collection_member_declarations'>4.4.6 Collection Member Declarations</h4>
+
+<h4 id='447_from_clause_and_sql'>4.4.7 FROM clause and SQL</h4>
+
+<h4 id='448_polymorphism'>4.4.8 Polymorphism</h4>
+
+<h3 id='45_where_clause'>4.5 WHERE Clause</h3>
+
+<h3 id='46_conditional_expressions'>4.6 Conditional Expressions</h3>
+
+<h4 id='461_literals'>4.6.1 Literals</h4>
+
+<p>Supported except in the select clause. For example, SELECT &#8216;abc&#8217; FROM Entity is not supported.</p>
+
+<h4 id='462_identification_variables'>4.6.2 Identification Variables</h4>
+
+<p>Supported</p>
+
+<h4 id='463_path_expressions'>4.6.3 Path Expressions</h4>
+
+<p>Supported</p>
+
+<h4 id='464_input_parameters'>4.6.4 Input Parameters</h4>
+
+<p>Supported</p>
+
+<h4 id='465_conditional_expression_composition'>4.6.5 Conditional Expression Composition</h4>
+
+<p>Supported</p>
+
+<h4 id='466_operators_and_operator_precedence'>4.6.6 Operators and Operator Precedence</h4>
+
+<p>Supported</p>
+
+<h4 id='467_comparison_expressions'>4.6.7 Comparison Expressions</h4>
+
+<p>Supported</p>
+
+<h4 id='468_between_expressions'>4.6.8 Between Expressions</h4>
+
+<p>Supported</p>
+
+<h4 id='469_in_expressions'>4.6.9 In Expressions</h4>
+
+<p>Supported</p>
+
+<h4 id='4610_like_expressions'>4.6.10 Like Expressions</h4>
+
+<p>Supported</p>
+
+<h4 id='4611_null_comparison_expressions'>4.6.11 Null Comparison Expressions</h4>
+
+<p>Supported</p>
+
+<h4 id='4612_empty_collection_comparison_expressions'>4.6.12 Empty Collection Comparison Expressions</h4>
+
+<p>TODO <span>Mark</span> Ideally I wouldn&#8217;t put this here as this spec page could become very bloated. I have an open question about where to put query doc in the Ruby TOC but putting this here for now.</p>
+
+<p>You can use the <span>NOT</span> IS EMPTY comparison operator to select parent entities whose children or multi-select picklist field values are empty.</p>
+
+<p>The following examples use this field in a ParentEntity class: @OneToMany(mappedBy=&#8221;parent&#8221;, cascade=CascadeType.ALL) private Set<pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;ChildTestEntity&gt; children;</pre></p>
+
+<h5 id='child_entities'>Child Entities</h5>
+
+<p>This query returns ParentEntity records that have empty children.</p>
+
+<pre><code>em.createQuery(
+    &quot;SELECT o FROM ParentEntity o
+    WHERE o.children IS EMPTY&quot;
+).getResultList();</code></pre>
+
+<h5 id='multiselect_picklists'>Multi-Select Picklists</h5>
+
+<p>This query returns Entity records with no picklist values in the <b>multiPickValue</b> field.</p>
+
+<pre><code>em.createQuery(
+    &quot;SELECT o FROM Entity o
+    WHERE o.multiPickValue IS EMPTY&quot;
+).getResultList();</code></pre>
+
+<h4 id='4613_collection_member_expressions'>4.6.13 Collection Member Expressions</h4>
+
+<p>TODO <span>Mark</span> Ideally I wouldn&#8217;t put this here as this spec page could become very bloated. I have an open question about where to put query doc in the Ruby TOC but putting this here for now.</p>
+
+<p>You can use the <span>NOT</span> MEMBER OF comparison operator to select parent entities whose children or multi-select picklist field values match defined criteria.</p>
+
+<h5 id='child_entities'>Child Entities</h5>
+
+<p>The Force.com JPA provider uses the <b>name</b> standard field by default to filter for matching child entities.</p>
+
+<p>This query returns ParentEntity records that contain at least one child whose name is &#8216;entity1&#8217;.</p>
+
+<pre><code>em.createQuery(
+    &quot;SELECT o FROM ParentEntity o
+    WHERE &#39;entity1&#39; MEMBER OF o.children&quot;
+).getResultList();</code></pre>
+
+<p>You can filter by a field other than <b>name</b> by using a <b>MEMBER_OF_FIELD</b> query hint. This query returns ParentEntity records that contain at least one child whose gender is &#8216;Female&#8217; .</p>
+
+<pre><code>em.createQuery(
+    &quot;SELECT o FROM ParentEntity o
+    WHERE &#39;Female&#39; MEMBER OF o.children&quot;
+).setHint(QueryHints.MEMBER_OF_FIELD, &quot;gender&quot;).getResultList();</code></pre>
+
+<h5 id='multiselect_picklists'>Multi-Select Picklists</h5>
+
+<p>This query returns Entity records that have a a picklist value of &#8216;ONE&#8217; in the <b>multiPickValue</b> field.</p>
+
+<pre><code>em.createQuery(
+    &quot;SELECT o FROM Entity o 
+    WHERE &#39;ONE&#39; MEMBER OF o.multiPickValue&quot;
+).getResultList();</code></pre>
+
+<p>Use a semi-colon to check for multiple values in a picklist (boolean AND). Use a comma to check for one of multiple values (boolean OR). For example, this query returns Entity records that have a multiPickValue field including both (‘AAA’ and ‘BBB’) values or a ‘CCC’ value - (‘AAA’ &amp;&amp; ‘BBB’) || ‘CCC’.</p>
+
+<pre><code>SELECT o FROM Entity o 
+WHERE &#39;AAA;BBB,CCC&#39; MEMBER OF o.multiPickValue</code></pre>
+
+<h4 id='4614_exists_expressions'>4.6.14 Exists Expressions</h4>
+
+<p>Not supported</p>
+
+<h4 id='4615_all_or_any_expressions'>4.6.15 All or Any Expressions</h4>
+
+<p>Not supported</p>
+
+<h4 id='4616_subqueries'>4.6.16 Subqueries</h4>
+
+<h4 id='4617_scalar_expressions'>4.6.17 Scalar Expressions</h4>
+
+<p>Partially supported. Arithmetic and String functions are not supported. The CURRENT_TIME and CURRENT_TIMESTAMP date functions are not supported.</p>
+
+<h3 id='47_group_by_having'>4.7 GROUP BY, HAVING</h3>
+
+<p>Partially supported with limitations</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc with details</p>
+
+<h3 id='48_select_clause'>4.8 SELECT Clause</h3>
+
+<p>Supported, except the DISTINCT keyword in JPQL is not supported.</p>
+
+<p>However, you can use SOQL instead. You can use a GROUP BY clause without an aggregated function to query all the distinct values, including null, for an object. The following query returns the distinct set of values stored in the LeadSource field.</p>
+
+<p>SELECT LeadSource FROM Lead GROUP BY LeadSource</p>
+
+<h4 id='481_result_type_of_the_select_clause'>4.8.1 Result Type of the SELECT Clause</h4>
+
+<p>Supported</p>
+
+<h4 id='482_constructor_expressions_in_the_select_clause'>4.8.2 Constructor Expressions in the SELECT Clause</h4>
+
+<p>Supported</p>
+
+<h4 id='483_null_values_in_the_query_result'>4.8.3 Null Values in the Query Result</h4>
+
+<p>Supported</p>
+
+<h4 id='484_embeddables_in_the_query_result'>4.8.4 Embeddables in the Query Result</h4>
+
+<p>Supported</p>
+
+<h4 id='485_aggregate_functions_in_the_select_clause'>4.8.5 Aggregate Functions in the SELECT Clause</h4>
+
+<p>Partially supported</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc with details</p>
+
+<h4 id='486_numeric_expressions_in_the_select_clause'>4.8.6 Numeric Expressions in the SELECT Clause</h4>
+
+<p>Not supported</p>
+
+<h3 id='49_order_by_clause'>4.9 ORDER BY Clause</h3>
+
+<p>Supported</p>
+
+<h3 id='410_bulk_update_and_delete_operations'>4.10 Bulk Update and Delete Operations</h3>
+
+<p>Bulk delete is supported but it doesn&#8217;t participate in existing transactions. It runs in its own transaction. Bulk update is not supported.</p>
+
+<h3 id='411_null_values'>4.11 Null Values</h3>
+
+<p>Supported</p>
+
+<h3 id='412_equality_and_comparison_semantics'>4.12 Equality and Comparison Semantics</h3>
+
+<p>Supported</p>
+
+<h2 id='5_metamodel_api'>5 Metamodel API</h2>
+
+<p>Not supported</p>
+
+<h2 id='6_criteria_api'>6 Criteria API</h2>
+
+<p>Not supported</p>
+
+<h2 id='7_entity_managers_and_persistence_contexts'>7 Entity Managers and Persistence Contexts</h2>
+
+<h3 id='72_obtaining_an_entitymanager'>7.2 Obtaining an EntityManager</h3>
+
+<p>Only application-managed entity managers are supported. Obtaining an Entity Manager in a J2EE container is not supported.</p>
+
+<h3 id='73_obtaining_an_entitymanagerfactory'>7.3 Obtaining an EntityManagerFactory</h3>
+
+<p>Supported in Java SE; not supported in Java EE</p>
+
+<h3 id='75_controlling_transactions'>7.5 Controlling Transactions</h3>
+
+<p>JTA is not supported. Resource-local is supported and the EntityTransaction interface is supported.</p>
+
+<h3 id='76_containermanaged_persistence_contexts'>7.6 Container-managed Persistence Contexts</h3>
+
+<p>Supported</p>
+
+<h3 id='77_applicationmanaged_persistence_contexts'>7.7 Application-managed Persistence Contexts</h3>
+
+<p>Supported</p>
+
+<h3 id='78_requirements_on_the_container'>7.8 Requirements on the Container</h3>
+
+<p>Not supported</p>
+
+<h3 id='79_runtime_contracts_between_the_container_and_persistence_provider'>7.9 Runtime Contracts between the Container and Persistence Provider</h3>
+
+<p>Not supported</p>
+
+<h3 id='710_cache_interface'>7.10 Cache Interface</h3>
+
+<p>Not supported</p>
+
+<h3 id='711_persistenceunitutil_interface'>7.11 PersistenceUnitUtil Interface</h3>
+
+<p>Supported</p>
+
+<h2 id='8_entity_packaging'>8 Entity Packaging</h2>
+
+<h3 id='81_persistence_unit'>8.1 Persistence Unit</h3>
+
+<p>Supported</p>
+
+<h3 id='82_persistence_unit_packaging'>8.2 Persistence Unit Packaging</h3>
+
+<p>Supported. We have created additional properties in persistence.xml and there is some behavior specific to Force.com.</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc with details</p>
+
+<h2 id='9_container_and_provider_contracts_for_deployment_and_bootstrapping'>9 Container and Provider Contracts for Deployment and Bootstrapping</h2>
+
+<h3 id='91_java_ee_deployment'>9.1 Java EE Deployment</h3>
+
+<p>Not supported</p>
+
+<h3 id='92_bootstrapping_in_java_se_environments'>9.2 Bootstrapping in Java SE environments</h3>
+
+<p>Supported.</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc with details of how we read environment / file config for connection URL.</p>
+
+<h3 id='93_determining_the_available_persistence_providers'>9.3 Determining the Available Persistence Providers</h3>
+
+<p>Supported</p>
+
+<h3 id='94_responsibilities_of_the_persistence_provider'>9.4 Responsibilities of the Persistence Provider</h3>
+
+<p>Works as specified except we don&#8217;t support Java EE</p>
+
+<h3 id='95_javaxpersistencespipersistenceunitinfo_interface'>9.5 javax.persistence.spi.PersistenceUnitInfo Interface</h3>
+
+<p>Supported</p>
+
+<h3 id='96_javaxpersistencepersistence_class'>9.6 javax.persistence.Persistence Class</h3>
+
+<p>Supported</p>
+
+<h3 id='97_persistenceutil_interface'>9.7 PersistenceUtil Interface</h3>
+
+<p>Supported</p>
+
+<h2 id='10_metadata_annotations'>10 Metadata Annotations</h2>
+
+<h3 id='101_entity'>10.1 Entity</h3>
+
+<p>Supported</p>
+
+<h3 id='102_callback_annotations'>10.2 Callback Annotations</h3>
+
+<p>Supported</p>
+
+<h3 id='103_annotations_for_queries'>10.3 Annotations for Queries</h3>
+
+<h3 id='1031_namedquery_annotation'>10.3.1 NamedQuery Annotation</h3>
+
+<p>Supported</p>
+
+<h4 id='1032_namednativequery_annotation'>10.3.2 NamedNativeQuery Annotation</h4>
+
+<p>Supported</p>
+
+<p>Note: A native query uses SOQL. We don&#8217;t support SQL.</p>
+
+<h4 id='1033_annotations_for_sql_query_result_set_mappings'>10.3.3 Annotations for SQL Query Result Set Mappings</h4>
+
+<p>Supported</p>
+
+<p>Note: A native query uses SOQL. We don&#8217;t support SQL.</p>
+
+<h3 id='104_references_to_entitymanager_and_entitymanagerfactory'>10.4 References to EntityManager and EntityManagerFactory</h3>
+
+<p>Supported</p>
+
+<h2 id='11_metadata_for_objectrelational_mapping'>11 Metadata for Object/Relational Mapping</h2>
+
+<h3 id='111_annotations_for_objectrelational_mapping'>11.1 Annotations for Object/Relational Mapping</h3>
+
+<p>TODO <span>@Mark</span>: Maybe change this to a table for easier scanning?</p>
+
+<h4 id='1111_access_annotation'>11.1.1 Access Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='1112_associationoverride_annotation'>11.1.2 AssociationOverride Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='1113_associationoverrides_annotation'>11.1.3 AssociationOverrides Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='1114_attributeoverride_annotation'>11.1.4 AttributeOverride Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='1115_attributeoverrides_annotation'>11.1.5 AttributeOverrides Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='1116_basic_annotation'>11.1.6 Basic Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='1117_cacheable_annotation'>11.1.7 Cacheable Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='1118_collectiontable_annotation'>11.1.8 CollectionTable Annotation</h4>
+
+<p>Not supported. Use OneToMany/ManyToOne instead.</p>
+
+<h4 id='1119_column_annotation'>11.1.9 Column Annotation</h4>
+
+<p>Supported with some limitations.</p>
+
+<p>TODO: need to doc the limitations. Any other attributes not supported?</p>
+
+<p>The table attribute is not supported.</p>
+
+<h4 id='11110_discriminatorcolumn_annotation'>11.1.10 DiscriminatorColumn Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11111_discriminatorvalue_annotation'>11.1.11 DiscriminatorValue Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11112_elementcollection_annotation'>11.1.12 ElementCollection Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11113_embeddable_annotation'>11.1.13 Embeddable Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11114_embedded_annotation'>11.1.14 Embedded Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11115_embeddedid_annotation'>11.1.15 EmbeddedId Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11116_enumerated_annotation'>11.1.16 Enumerated Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11117_generatedvalue_annotation'>11.1.17 GeneratedValue Annotation</h4>
+
+<p>Partially supported. You must use the GenerationType.IDENTITY strategy.</p>
+
+<h4 id='11118_id_annotation'>11.1.18 Id Annotation</h4>
+
+<p>Partially supported. The ID must be a String data type.</p>
+
+<h4 id='11119_idclass_annotation'>11.1.19 IdClass Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11120_inheritance_annotation'>11.1.20 Inheritance Annotation</h4>
+
+<p>Partially supported. You must use the InheritanceType.SINGLE_TABLE strategy.</p>
+
+<h4 id='11121_joincolumn_annotation'>11.1.21 JoinColumn Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11122_joincolumns_annotation'>11.1.22 JoinColumns Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11123_jointable_annotation'>11.1.23 JoinTable Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11124_lob_annotation'>11.1.24 Lob Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11125_manytomany_annotation'>11.1.25 ManyToMany Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11126_manytoone_annotation'>11.1.26 ManyToOne Annotation</h4>
+
+<p>Supported with some limitations</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc with details</p>
+
+<h4 id='11127_mapkey_annotation'>11.1.27 MapKey Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11128_mapkeyclass_annotation'>11.1.28 MapKeyClass Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11129_maykeycolumn_annotation'>11.1.29 MayKeyColumn Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11130_mapkeyenumerated_annotation'>11.1.30 MapKeyEnumerated Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11131_mapkeyjoincolumn_annotation'>11.1.31 MapKeyJoinColumn Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11132_mapkeyjoincolumns_annotation'>11.1.32 MapKeyJoinColumns Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11133_mapkeytemporal_annotation'>11.1.33 MapKeyTemporal Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11134_mappedsuperclass_annotation'>11.1.34 MappedSuperclass Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11135_mapsid_annotation'>11.1.35 MapsId Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11136_onetomany_annotation'>11.1.36 OneToMany Annotation</h4>
+
+<p>Supported with some limitations</p>
+
+<p>TODO: <span>@Mark</span> need to link to doc with details</p>
+
+<h4 id='11137_onetoone_annotation'>11.1.37 OneToOne Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11138_orderby_annotation'>11.1.38 OrderBy Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11139_ordercolumn_annotation'>11.1.39 OrderColumn Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11140_primarykeyjoincolumn_annotation'>11.1.40 PrimaryKeyJoinColumn Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11141_primarykeyjoincolumns_annotation'>11.1.41 PrimaryKeyJoinColumns Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11142_secondarytable_annotation'>11.1.42 SecondaryTable Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11143_secondarytables_annotation'>11.1.43 SecondaryTables Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11144_sequencegenerator_annotation'>11.1.44 SequenceGenerator Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11145_table_annotation'>11.1.45 Table Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11146_tablegenerator_annotation'>11.1.46 TableGenerator Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11147_temporal_annotation'>11.1.47 Temporal Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11148_transient_annotation'>11.1.48 Transient Annotation</h4>
+
+<p>Supported</p>
+
+<h4 id='11149_uniqueconstraint_annotation'>11.1.49 UniqueConstraint Annotation</h4>
+
+<p>Not supported</p>
+
+<h4 id='11150_version_annotation'>11.1.50 Version Annotation</h4>
+
+<p>Supported with limitations (restricted field name and type)</p>
+
+<p>TODO: confirm that only use java.util.Calendar lastModifiedDate or are there other variations?</p>
+
+<h2 id='12_xml_objectrelational_mapping_descriptor'>12 XML Object/Relational Mapping Descriptor</h2>
+
+<p>Not supported</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

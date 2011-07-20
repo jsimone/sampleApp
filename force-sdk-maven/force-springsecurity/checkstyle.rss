@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>force-springsecurity - Checkstyle report</title>
+    <link>${project.url}</link>
+    <description>force-springsecurity - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2011</copyright>
+    <item>
+      <title>File: 11,
+             Errors: 656,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>${project.url}/checkstyle.html</link>
+      <description>
+        <p>Click <a href="${project.url}/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.ForceRememberMeServices.java">com/force/sdk/springsecurity/ForceRememberMeServices.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  41
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.config.ForceOAuthNamespaceHandler.java">com/force/sdk/springsecurity/config/ForceOAuthNamespaceHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.OAuthAuthenticationProvider.java">com/force/sdk/springsecurity/OAuthAuthenticationProvider.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  42
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.ForceLogoutHandler.java">com/force/sdk/springsecurity/ForceLogoutHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.config.OAuthBeanDefinitionParser.java">com/force/sdk/springsecurity/config/OAuthBeanDefinitionParser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  255
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.AuthenticationProcessingFilter.java">com/force/sdk/springsecurity/AuthenticationProcessingFilter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  69
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.OAuthAuthenticationToken.java">com/force/sdk/springsecurity/OAuthAuthenticationToken.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  33
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.AuthenticationProcessingFilterEntryPoint.java">com/force/sdk/springsecurity/AuthenticationProcessingFilterEntryPoint.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  30
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.LogoutSuccessHandler.java">com/force/sdk/springsecurity/LogoutSuccessHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  58
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.AuthenticationSuccessHandler.java">com/force/sdk/springsecurity/AuthenticationSuccessHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  32
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.force.sdk.springsecurity.ForceConnectionStorageFilter.java">com/force/sdk/springsecurity/ForceConnectionStorageFilter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  49
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

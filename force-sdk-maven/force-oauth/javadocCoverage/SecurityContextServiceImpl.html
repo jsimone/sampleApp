@@ -1,0 +1,61 @@
+<html>
+<h1>com.force.sdk.oauth.context.SecurityContextServiceImpl</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: The security context service provides the basic functionality for managing a security context
+ in the session of the authenticated user.
+ 
+ The implementation provided here is customizable because it delegates user data retrieval to a UserDataRetrievalService
+ and the security context storage to a SecurityContextStorageService. The implementation used for each of these can vary
+ depending on if a custom user data retriever is being used and whether server side session or browser cookie based
+ security context storage is used.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public SecurityContextServiceImpl()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public setUserDataRetrievalService(com.force.sdk.oauth.userdata.UserDataRetrievalService)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setSecurityContextStorageService(com.force.sdk.oauth.context.store.SecurityContextStorageService)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setSecurityContextToSession(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.force.sdk.oauth.context.SecurityContext)</h3>
+Comment Text: <br/>Use the SecurityContextStorageService to store the security context.
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+<h3>public getSecurityContextFromSession(javax.servlet.http.HttpServletRequest)</h3>
+Comment Text: <br/>This method retrieves the security context. The security context
+ will either come out of the session or will be built from a call
+ to the partner api. The partner api will be called if:
+ - There is no security context in the session, but there is 
+ a session id available in a cookie
+ - There is a security context in the session, but the session id
+ that it contains doesn't match the one available in the cookie
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+<h3>public verifyAndRefreshSecurityContext(com.force.sdk.oauth.context.SecurityContext, javax.servlet.http.HttpServletRequest)</h3>
+Comment Text: <br/>Verify the passed in security context against the browser cookies. This will
+ make sure that the necessary cookies exist and that the values match those
+ in the security context. It will create a fresh security context with data 
+ from the partner API if necessary.
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+<h3>public clearSecurityContext(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)</h3>
+Comment Text: <br/>Clear the security context from the security context store and use the
+ SecurityContextUtil to clear the other security related cookies.
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+<h3>public getSecretKey()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+</html>

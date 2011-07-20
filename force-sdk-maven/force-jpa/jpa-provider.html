@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Force.com JPA Provider</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000001c4cbd8>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='forcecom_jpa_provider'>Force.com JPA Provider</h1>
+
+<p>The Force.com JPA provider enables you to write Java applications that use JPA to persist data in the Force.com database. JPA is an abstraction layer that lets you implement your persistence layer in standard Java code without having to focus on the specific APIs, terminology, or query language of Force.com.</p>
+
+<p>It&#8217;s important to understand that the Force.com database is different in several aspects from standard relational databases and the Force.com JPA provider reflects this difference. This section describes how the Force.com JPA provider differs from other implementations of the JPA specification.</p>
+
+<p>The Force.com JPA provider is built on top of the <a href='http://www.datanucleus.org/products/accessplatform_1_1/index.html'>DataNucleus Access Platform</a>.</p>
+
+<p>TODO <span>Mark</span> link to JPA spec page that details our support of the spec.</p>
+
+<h2 id='data_types'>Data types</h2>
+
+<p>The Force.com database has many of the same data types as other relational databases, but the types and their names are shaped by business needs. For example, there are Phone and URL types. In most cases, you don&#8217;t have to concern yourself with Force.com data types. Your Java types are translated automatically into the appropriate Force.com data type.</p>
+
+<p>TODO <span>Mark</span> link to Force.com Data Types in the Reference section. also, link to Java -&gt; Force.com and vice versa mapping tables in Reference section.</p>
+<a name='primaryKeys' />
+<h2 id='primary_keys'>Primary Keys</h2>
+
+<p>Every entity in the Force.com database has a primary key that is an automatically generated string. A sample primary key value is a0x30000000H7js.</p>
+
+<p>The JPA standard allows you to define a variety of primary key types. These are not all supported by the Force.com JPA provider, which has the following constraints for the primary key:</p>
+
+<ul>
+<li>The primary key Java type must be String</li>
+
+<li>Only the GenerationType.IDENTITY strategy is supported</li>
+
+<li>Composite primary keys are not supported</li>
+
+<li>Fields, including the primary key, must always start with a lowercase letter. You can&#8217;t use Id instead of id.</li>
+</ul>
+
+<p>You can declare your primary key as follows:</p>
+
+<pre><code>@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+String id;</code></pre>
+
+<p>The id field name is a reserved system field and can&#8217;t be used by non-primary-key fields.</p>
+
+<p>If you want to use a field name other than id for the primary key field in your Java class, use the @Column standard annotation. For example:</p>
+
+<pre><code>@Id
+@Column(name=&quot;id&quot;)
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+String sfdcId;</code></pre>
+
+<p>Note: Primary keys in the Force.com database have two formats: a 15-character case-sensitive string and an 18-character case-insensitive string. API calls always return 18–character values, but API requests also accept 15-character values. If you use the Force.com JPA provider or an API call, you always use the 18-character format.</p>
+
+<h2 id='entities'>Entities</h2>
+
+<p>The Force.com base entity - (the basic custom object) Built-in entities - (standard objects)</p>
+
+<p>TODO <span>@Fiaz</span> Need some input here on base entity. Putting text from PDF as placeholder but it&#8217;s out-of-date as it was before codegen feature work.</p>
+
+<p>The Force.com database has not been completely separated from its legacy of CRM and other features. Objects already created for you by Force.com are called standard objects. Even if you can&#8217;t see these standard objects in your database, they are still present and their names are reserved.</p>
+
+<p>You need to be aware of the reserved names for standard objects when you define your JPA entities. If you use a reserved name, the JPA provider assumes that you are modeling an existing entity instead of a new one. This may not be what you intend. You can find a list of standard objects and their API names in the <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_objects_list.htm'>Standard Objects</a> section of the Web Services API Developer&#8217;s Guide.</p>
+
+<p>Objects you create in your organization are called custom objects. The Force.com JPA provider automatically creates a custom object in the Force.com database that represents your Java entity.</p>
+
+<h2 id='relationships'>Relationships</h2>
+
+<p>TODO <span>@Fiaz</span> Leaving high-level notes in as i want to ensure Fiaz&#8217;s point about @OnetoMany is being explained as he would like ManyToOne is main one, OneToMany is fabricated, &#8230; Focus on how our JPA provider is different, not Force.com low-level details</p>
+
+<p>The Force.com database supports two data types for relationships: lookup and master-detail. The importance of relationships is that you can only join between entities that have explicit relationships. The relationship fields in your data model control which entities can be joined in a query.</p>
+
+<p>A master-detail relationship links entities so that the master record controls certain behaviors of any detail records. For example, when a master record is deleted, the related detail records are also deleted. The ownership and security settings of a detail record are determined by the master record and can&#8217;t be changed for a detail record.</p>
+
+<p>A lookup relationship is a foreign key to another entity, but it has no effect on deletion, record ownership, or security settings.</p>
+
+<p>Define Lookup or Master-Detail relationship fields in Java classes by using a @ManyToOne annotation on the field in the class on the many side of a relationship and a @OneToMany annotation on the field in the class on the one side of the relationship.</p>
+
+<p>If you annotate a field with @OneToMany, the Force.com JPA provider populates the data for this field in your Java object. <span>@Fiaz</span> Anything to change or add here?</p>
+
+<p>TODO <span>Mark</span>: link to Relationship fields in Force.com Data Types in Reference section (content currently in PDF) for more details and sample field definitions.</p>
+
+<h2 id='transactions'>Transactions</h2>
+
+<p>The Force.com JPA provider uses the Web services API to access the Force.com database so transactions are demarcated by single HTTP requests. A single transaction can&#8217;t span multiple requests. Therefore, the full set of transaction semantics you would expect from a database is not available.</p>
+
+<p>TODO <span>Mark</span>: link to Transaction Properties section of persistence.xml Reference doc (content currently in PDF) To configure transactions with the Force.com JPA provider, you must set transaction properties (TODO: make this a link) in persistence.xml.</p>
+
+<p>TODO <span>@Fiaz</span>: should we say anything about @Transactional or flush() here? (flush() is mentioned in the Transaction Properties section)</p>
+
+<h2 id='queries'>Queries</h2>
+
+<p>The Force.com database has its own query language called SOQL (Salesforce Object Query Language). The syntax is similar to SQL but it doesn&#8217;t allow arbitrary joins. You can only join entities linked by a relationship field.</p>
+
+<p>The Force.com JPA provider allows you to query in JPQL, the standard JPA query language. You should not need to learn SOQL except if JPQL doesn&#8217;t satisfy your query requirements.The native query feature in the Force.com JPA provider enables you to use SOQL. You can&#8217;t use SQL.</p>
+
+<p>TODO <span>@Jesper, @Fiaz</span> The PDF has around 10 pages on query. I need some input on what content you would like to see on github and where it would live. This includes JPQL - Bulk Delete, JPQL Date (Temporal) Functions, JPQL Joins - SOQL Queries incl Relationship queries, API Queries, Eager Versus Lazy Fetch Types</p>
+
+<h2 id='limits'>Limits</h2>
+
+<p>TODO <span>@Jesper, @Fiaz</span> Work out what we want to put in here. Anything other than API stuff? 200 record limit for create/delete/update?</p>
+
+<p>API limits are documented at:</p>
+
+<ul>
+<li>http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/implementation_considerations.htm#sforce_api_rate_metering</li>
+
+<li>http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/implementation_considerations.htm#choosing_a_user</li>
+</ul>
+
+<h2 id='session_management_usersecurity'>Session Management (user/security)</h2>
+
+<p>TODO <span>@Jesper, @Fiaz</span> Work out what we want to put in here.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

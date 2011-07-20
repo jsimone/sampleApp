@@ -1,0 +1,588 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Querying Data</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x000000015d4b18>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='querying_data'>Querying Data</h1>
+
+<p>TODO <span>@Jesper</span>: This page is really long. We should talk whether we need to cut content out or whether we can implement one more level of depth with an expand/collapse icon in the TOC so that we can move content to sub-pages, similar to the PDF output.</p>
+
+<p>JPA supports Java Persistence Query Language (JPQL), a platform-independent object-oriented query language.</p>
+
+<p>Note: Although JPA supports native queries with SQL, the Force.com JPA provider doesn&#8217;t support SQL. Instead, the Force.com JPA provider supports native queries with <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_soql.htm'>SOQL</a>, a query language optimized for querying Force.com entities.</p>
+
+<p>You can also bypass JPA and execute a query() call using the Web services API.</p>
+
+<p>The most portable approach to writing queries is to use JPQL, but it is your choice to use JPQL, SOQL, or the Web services API.</p>
+
+<h2 id='jpql_queries'>JPQL Queries</h2>
+
+<p>The JPQL syntax resembles SQL, but it executes against JPA entities rather than directly against database tables. Since JPQL is a JPA standard, it is the preferred approach for building queries with the Force.com JPA provider.</p>
+
+<p>For complete information on JPQL syntax, see the <a href='http://www.datanucleus.org/products/accessplatform/jpa/jpql.html'>DataNucleus documentation</a>.</p>
+
+<p>The following sample shows a simple JPQL query and iteration of the query results.</p>
+
+<pre><code>private void sampleJpqlQuery()
+{
+    EntityManagerFactory factory =
+        Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = factory.createEntityManager();
+
+    try {
+        String jpqlQuery = &quot;SELECT Email, LastName &quot; +
+                &quot;FROM User WHERE FirstName = :firstName&quot;;
+        Query q = em.createQuery(jpqlQuery);
+        // Bind the named parameter into the query
+        q.setParameter(&quot;firstName&quot;, &quot;Bob&quot;);
+
+        List&lt;User&gt; results = (List)q.getResultList();
+        int size = results.size();
+        User user;
+        for (int i = 0; i &lt; size; i++) {
+            user = results.get(i);
+            System.out.println(&quot;Email: &quot; + user.getEmail());
+            System.out.println(&quot;LastName: &quot; + user.getLastName() + &quot;\n&quot;);
+        }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+    finally {
+        em.close();
+    }
+}</code></pre>
+
+<h3 id='bulk_delete_and_queries'>Bulk Delete and Queries</h3>
+
+<p>As well as querying records, JPQL supports deleting records.</p>
+
+<p>Note: Records deleted with JPQL don&#8217;t participate in all-or-nothing transactions or trigger cascading deletion for child records. Don&#8217;t use bulk delete with JPQL if you want the option to roll back the deletions as part of a transaction or use cascade deletion. Use the remove() method in EntityManager to delete individual records instead.</p>
+
+<p>To delete a set of records, call executeUpdate() on a Query object representing a delete operation. For example:</p>
+
+<pre><code>public void sampleJpqlQueryDelete(EntityManager em)
+    throws Exception
+{
+    String jpqlDelete = &quot;DELETE FROM Wine__c WHERE varietal = &#39;Zinfandel&#39;&quot;;
+    Query q = em.createQuery(jpqlDelete);
+    int deletedRecords = q.executeUpdate();
+}</code></pre>
+
+<p>To delete a set of records without storing them in the Recycle Bin, set a hint on your query. For example:</p>
+
+<pre><code>public void sampleJpqlQueryDelete(EntityManager em)
+    throws Exception
+{
+    String jpqlDelete = &quot;DELETE FROM Wine__c WHERE varietal = &#39;Zinfandel&#39;&quot;;
+    Query q = em.createQuery(jpqlDelete).setHint(QueryHints.EMPTY_RECYCLE_BIN, true);
+    int deletedRecords = q.executeUpdate();
+}</code></pre>
+
+<p>Note: Although JPQL supports a similar syntax for UPDATE, the Force.com JPA provider doesn&#8217;t support updating records with JPQL.</p>
+
+<h3 id='jpql_date_temporal_functions'>JPQL Date (Temporal) Functions</h3>
+
+<p>JPA supports date literals, such as <a href='http://www.datanucleus.org/products/accessplatform/jpa/jpql_functions.html'>CURRENT_DATE</a>, in JPQL to perform comparisons with Date or Date/Time fields. For example, the following JPQL query returns users that have logged in before today:</p>
+
+<pre><code>SELECT Email, LastName FROM User WHERE LastLoginDate &lt; CURRENT_DATE</code></pre>
+
+<p>Note: The Force.com JPA provider doesn&#8217;t support the CURRENT_TIME and CURRENT_TIMESTAMP JPA date literals.</p>
+
+<p>The Force.com JPA provider also supports <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_soql_select_dateformats.htm'>date literals</a>, such as TOMORROW, that aren&#8217;t part of the JPA specification. The CURRENT_DATE JPA date literal is equivalent to the TODAY Force.com date literal.</p>
+
+<p>To use Force.com date literals, use a query hint. For example:</p>
+
+<pre><code>EntityManagerFactory factory =
+    Persistence.createEntityManagerFactory(persistenceUnitName);
+EntityManager em = factory.createEntityManager();
+
+try {
+    String jpqlQuery = &quot;SELECT Email, LastName &quot; +
+            &quot;FROM User WHERE LastLoginDate &gt; CURRENT_DATE&quot;;
+    Query q = em.createQuery(jpqlQuery).setHint(
+                  QueryHints.CURRENT_DATE, &quot;YESTERDAY&quot;);
+    List&lt;User&gt; results = (List)q.getResultList();
+}
+catch (Exception e) {
+    e.printStackTrace();
+}
+finally {
+    em.close();
+}</code></pre>
+
+<p>To include multiple date literals in one query, use a String<span /> for the hint. The hints are substituted in the query in the order they are listed in the String<span />. For example:</p>
+
+<pre><code>String jpqlQuery = &quot;SELECT Email, LastName &quot; +
+    &quot;FROM User &quot; +
+    &quot;WHERE LastLoginDate &lt; CURRENT_DATE AND LastLoginDate &gt; CURRENT_DATE&quot;;
+    Query q = em.createQuery(jpqlQuery).setHint(
+                  QueryHints.CURRENT_DATE, new String[]{&quot;TOMORROW&quot;, &quot;YESTERDAY&quot;});
+    List&amp;lt;User&gt; results = (List)q.getResultList();</code></pre>
+
+<p>The DataNucleus Access Platform supports date (temporal) functions, such as YEAR(dateField). These are not supported by the Force.com JPA provider, which instead supports <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_soql_select_date_functions.htm'>date functions</a>, such as CALENDAR_YEAR(dateField). Use native queries with SOQL to work with the Force.com date functions.</p>
+
+<h3 id='jpql_joins'>JPQL Joins</h3>
+
+<p>You often want to retrieve related data from multiple objects in one query to avoid having to merge results from multiple queries in your code. The Force.com JPA provider provides a few different ways to join data from related entities in one JPQL query.</p>
+
+<p>TODO <span>Mark</span>: add bullet list of options here if it&#8217;s not auto generated by doc site</p>
+
+<h4 id='implicit_joins'>Implicit Joins</h4>
+
+<p>The Force.com JPA provider automatically performs implicit joins on JQPL queries that reference a parent entity with an @OneToMany field related to a collection or map of child entity records.</p>
+
+<p>For example, a Producer entity with a one-to-many relationship to a Wine entity could point to a collection of wines. If you query the Producer entity and retrieve the collection of wines from the result set, the Force.com JPA provider creates an implicit join to fetch the collection of wines.</p>
+
+<pre><code>// Exception handling omitted for brevity
+List&lt;Producer&gt; jpqlResult =
+    (List&lt;ParentTestEntity&gt;)em.createQuery(&quot;SELECT p from Producer p)&quot;).getResultList();
+// Collection/Map records are lazily fetched by default.
+// The actual loading of the collection happens when the next line is executed.
+ArrayList&lt;Wine&gt; wines = (ArrayList&lt;Wine&gt;)jpqlResult.get(0).getWines();
+String wineName = wines.get(0).getName();</code></pre>
+
+<p>If you add the FetchType.EAGER attribute to the @OneToMany annotation in Producer.java, the collection of wines is returned without the need for a second query in the background.</p>
+
+<p>Note: If you use a native SOQL query instead of JPQL, there is no implicit join; you would have to write a sub-query referencing the parent-to-child relationship.</p>
+
+<h5 id='ordering_with_orderby'>Ordering with @OrderBy</h5>
+
+<p>An implicit join returns the elements in a collection or map in random order. To order the results, add an @OrderBy annotation to the @OneToMany field. For example, the following @OrderBy annotation sorts the elements in the collection by the name field in the Wine entity:</p>
+
+<pre><code>@OneToMany(mappedBy=&quot;producer&quot;)
+@OrderBy(value=&quot;name ASC&quot;)
+private Collection&lt;Wine&gt; wines;</code></pre>
+
+<h5 id='filtering_with_joinfilter'>Filtering with @JoinFilter</h5>
+
+<p>The custom Force.com @JoinFilter annotation enables implicit queries to include a WHERE clause to filter the returned child collection or map. The following code shows a collection field. When the collection is returned in an implicit query, the child joined entity is aliased as w and the query results are filtered by the w.name LIKE &#8216;Chateau%&#8217; WHERE clause.</p>
+
+<pre><code>@OneToMany(mappedBy=&quot;producer&quot;)
+@JoinFilter(alias=&quot;w&quot;, value=&quot;w.name LIKE &#39;Chateau%&#39;&quot;)
+private Collection&lt;Wine&gt; wines;</code></pre>
+
+<h4 id='explicit_joins'>Explicit Joins</h4>
+
+<p>You can use the JOIN syntax in JPQL queries to perform explicit joins that navigate a parent-to-child or a child-to-parent relationship. In this sample, a ParentEntity has relationships to ChildEntity and User entities. The query joins to the other entities using the relationship fields.</p>
+
+<pre><code>SELECT p
+FROM ParentEntity p
+    JOIN p.childEntities c
+    JOIN p.ownerId o
+WHERE c.name = &#39;sample1&#39;)
+    AND o.username LIKE &#39;bob%&#39;</code></pre>
+
+<p>Note: The Force.com JPA provider always performs outer joins, so there is no difference in the query results if you use JOIN or LEFT OUTER JOIN.</p>
+
+<h4 id='in_joins'>IN Joins</h4>
+
+<p>In some cases, you can use an IN clause instead of JOIN. For example:</p>
+
+<pre><code>SELECT p
+FROM ParentEntity p
+    IN (o.childEntities) c
+WHERE c.name = &#39;sample1&#39;</code></pre>
+
+<p>This query is equivalent to a similar query using the JOIN syntax.</p>
+
+<pre><code>SELECT p
+FROM ParentEntity p
+    JOIN (o.childEntities) c
+WHERE c.name = &#39;sample1&#39;</code></pre>
+
+<h4 id='semijoins_and_antijoins'>Semi-Joins and Anti-Joins</h4>
+
+<p>A semi-join is a subquery on another object in an IN clause to restrict the records returned. For example:</p>
+
+<pre><code>SELECT p
+FROM ParentEntity p
+WHERE id IN (
+    SELECT c.parent FROM ChildEntity c
+    WHERE c.name = &#39;sample1&#39;
+)</code></pre>
+
+<p>An anti-join is a subquery on another object in a NOT IN clause to restrict the records returned. For example:</p>
+
+<pre><code>SELECT p
+FROM ParentEntity p
+WHERE id NOT IN (
+    SELECT c.parent FROM ChildEntity c
+    WHERE c.name = &#39;sample1&#39;
+)</code></pre>
+
+<p>For more information on semi- and anti-joins in SOQL, see the <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_soql_select_comparisonoperators.htm#semi_and_anti'>Web Services API Developer&#8217;s Guide</a>.</p>
+
+<h4 id='relationship_joins'>Relationship Joins</h4>
+
+<p>Relationships between entities in Force.com are represented by a lookup or master-detail field in a child entity. You can&#8217;t create relationships with other field types. For more information, see <a href='force-datatypes#relFields'>Relationship Fields</a>.</p>
+
+<p>For each relationship between objects, there is a relationshipName property that enables you to traverse the relationship in a query. For more information about relationships, see <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_soql_relationships.htm'>Understanding Relationship Names</a>.</p>
+
+<p>In a JPQL query, you can navigate child-to-parent relationships using a dot notation to perform a join. For example, the c.ParentEntity.name notation in the following query navigates the child-to-parent relationship to reference the name field in the parent entity.</p>
+
+<pre><code>SELECT t
+FROM ChildEntity c
+WHERE c.ParentEntity.name in (&#39;Parent1&#39;, &#39;Parent2&#39;)</code></pre>
+
+<p>Note: You can&#8217;t navigate parent-to-child relationships like you can in native SOQL queries. However, it&#8217;s easier to take advantage of implicit joins in JPQL queries for querying parent-to-child relationships.</p>
+
+<p>For more information about the number of levels of relationships that you can traverse in a query, see <a href='#fetchDepth'>Fetch Depth</a>.</p>
+
+<h4 id='childmap_joins'>Child-Map Joins</h4>
+
+<p>If you are joining a parent entity to a child entity represented by a map, you can use the key(), value(), and entry() functions in a JPQL query to select and filter records. Let&#8217;s look at MapParentEntity class with an @OnetoMany children field containing a map of child MapChildEntity records.</p>
+
+<pre><code>@OneToMany(mappedBy=&quot;parent&quot;, cascade=CascadeType.ALL)
+@MapKey(name=&quot;name&quot;)
+private Map&lt;String, MapChildEntity&gt; children;</code></pre>
+
+<h5 id='key'>key()</h5>
+
+<p>Use key() in the SELECT and WHERE to select and filter records based on the map&#8217;s key. In this sample, key() is used in the WHERE clause to return a filtered map.</p>
+
+<pre><code>SELECT o
+FROM MapParentEntity o
+    JOIN o.children c
+WHERE key(c) = &#39;sample1&#39;</code></pre>
+
+<p>The next sample is similar and shows key() in the SELECT and WHERE clauses. The key() function in the SELECT clause returns a List<pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;String&gt; as the map key is a String. </pre></p>
+
+<pre><code>SELECT o.name, key(c)
+FROM MapParentEntity o
+JOIN o.children c
+WHERE key(c) = &#39;sample1&#39;</code></pre>
+
+<h5 id='value'>value()</h5>
+
+<p>Use value() in a SELECT clause to return a List of values from the child collection. This sample returns List<pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;MapChildEntity&gt; for value().</pre></p>
+
+<pre><code>SELECT o.name, value(c)
+FROM MapParentEntity o
+    JOIN o.children c
+WHERE key(c) = &#39;sample1&#39;</code></pre>
+
+<h5 id='entry'>entry()</h5>
+
+<p>Use entry() in a SELECT clause when you want to return the key-value pair for a map entry. This sample returns List<pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;Map.Entry&lt;String, MapChildEntity&gt;&gt; for entry().</pre></p>
+
+<pre><code>SELECT o.name, entry(c)
+FROM MapParentEntity o
+    JOIN o.children c
+WHERE key(c) = &#39;sample1&#39;</code></pre>
+
+<p>Note the following when using these functions:</p>
+
+<ul>
+<li>You can only use one of the key(), value(), and entry() functions in a single SELECT clause.</li>
+
+<li>Map joins are always eager joins so there is only one query used to return the keys, values, or entries.</li>
+</ul>
+
+<h2 id='soql_queries'>SOQL Queries</h2>
+
+<p>JPQL is the preferred approach for writing queries with the Force.com JPA provider. However, you can also use native queries with SOQL. There are three different approaches for executing SOQL queries.</p>
+
+<p>TODO <span>Mark</span>: Add bullet links to 3 sub-topics</p>
+
+<h3 id='returning_sobject_records'>Returning SObject Records</h3>
+
+<p>This first approach returns a list of SObject records.</p>
+
+<pre><code>private void sampleSObjectSOQLQuery()
+{
+    EntityManagerFactory factory =
+        Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = factory.createEntityManager();
+
+    try {
+        String soqlQuery = &quot;SELECT Email, LastName &quot; +
+                &quot;FROM User WHERE FirstName = :firstName&quot;;
+        Query q = em.createNativeQuery(soqlQuery);
+        // Bind the named parameter into the query
+        q.setParameter(&quot;firstName&quot;, &quot;Bob&quot;);
+
+        List&lt;SObject&gt; results = q.getResultList();
+        int size = results.size();
+        User user;
+        for (int i = 0; i &lt; size; i++) {
+            user = (User)results.get(i);
+            System.out.println(&quot;Email: &quot; + user.getEmail());
+            System.out.println(&quot;LastName: &quot; + user.getLastName() + &quot;\n&quot;);
+        }
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+    finally {
+        em.close();
+    }
+}</code></pre>
+
+<h3 id='returning_typedobject_records'>Returning Typed-Object Records</h3>
+
+<p>This second approach returns a list of records of an explicit SObject sub-type. The type of records in the list corresponds to the type, in this case User.class, passed in as the second argument to the createNativeQuery() method.</p>
+
+<pre><code>private void sampleObjectTypedSOQLQuery()
+{
+    EntityManagerFactory factory =
+        Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = factory.createEntityManager();
+
+    try {
+        String soqlQuery = &quot;SELECT Email, LastName &quot; +
+                &quot;FROM User WHERE FirstName = :firstName&quot;;
+        Query q = em.createNativeQuery(soqlQuery, User.class);
+        // Bind the named parameter into the query
+        q.setParameter(&quot;firstName&quot;, &quot;Bob&quot;);
+
+        List&lt;User&gt; results = q.getResultList();
+        int size = results.size();
+        User user;
+        for (int i = 0; i &lt; size; i++) {
+            user = results.get(i);
+            System.out.println(&quot;Email: &quot; + user.getEmail());
+            System.out.println(&quot;LastName: &quot; + user.getLastName() + &quot;\n&quot;);
+        }
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+    finally {
+        em.close();
+    }
+}</code></pre>
+
+<h3 id='returning_mixedobject_records'>Returning Mixed-Object Records</h3>
+
+<p>The third approach returns a list of records that can have different object types. This is used for cases where the query result is used to create objects of multiple types. The resultSetMapping parameter passed in as the second argument to the createNativeQuery() method points to a named mapping that defines the various types of objects returned.</p>
+
+<h3 id='relationship_queries'>Relationship Queries</h3>
+
+<p>Relationship queries traverse parent-to-child and child-to-parent relationships between entities so that you can return data or filter based on fields in multiple objects. Relationships are represented by a lookup or master-detail field in a child object. You can&#8217;t create relationships with other field types. For more information, see <a href='force-datatypes#relFields'>Relationship Fields</a>.</p>
+
+<p>In a SOQL query, you can navigate child-to-parent and parent-to-child relationships. For each relationship between entities, there is a relationshipName property that enables you to traverse the relationship in a query. For more information about relationships, see <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_soql_relationships.htm'>Understanding Relationship Names</a>.</p>
+
+<p>The following sample uses a child entity, ChildEntity, that has a lookup relationship to a parent entity, ParentEntity. The parent entity includes a childEntities field that is a Collection of child ChildEntity records. The query in the sample uses the ParentEntity_ChildEntitys__r relationship name, which represents the parent-to-child relationship in ParentEntity. ChildEntity includes a boolType__c custom field.</p>
+
+<pre><code>private void sampleSOQLRelationshipQuery(EntityManager em)
+    throws Exception
+{
+    String soqlQuery = &quot;SELECT id, name, &quot; +
+        &quot;(SELECT id, boolType__c FROM ParentEntity_ChildEntitys__r) &quot; +
+        &quot;FROM ParentEntity__c&quot;;
+    Query q = em.createNativeQuery(soqlQuery, ParentEntity.class);
+    List&lt;SObject&gt; results = q.getResultList();
+    // Assume at least one result so can use get(0)
+    ArrayList&lt;ChildEntity&gt; childEntities =
+        (ArrayList&lt;ChildEntity&gt;) results.get(0).getChildEntities();
+    boolean boolType1 = childEntities.get(0).getBoolType();
+}</code></pre>
+
+<p>Note that Collection objects are lazily loaded by default. A separate query is executed to populate the childEntities field when getBoolType() is called.To fetch the Collection eagerly, you can manually mark the childEntities field as FetchType.EAGER in an @OneToMany annotation in ParentEntity.java. This avoids execution of the second query.</p>
+
+<p>For more information about the number of levels of relationships that you can traverse in a query, see <a href='#fetchDepth'>Fetch Depth</a>.</p>
+
+<h2 id='api_queries'>API Queries</h2>
+
+<p>An alternative to using JPQL or SOQL is to bypass JPA and execute a query() call using the Web services API. This is less preferable than using JPQL or SOQL. The advantage of using SOQL rather than a <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_calls_query.htm'>query()</a> call is that JPA entities are populated with the results of your query instead of requiring you to loop through a QueryResult object.</p>
+
+<p>The following sample shows a simple query using the Web services API. It uses <a href='http://code.google.com/p/sfdc-wsc/wiki/GettingStarted'>WSC</a> as a Web services client and assumes that you have logged in and established an EnterpriseConnection using the <a href='http://www.salesforce.com/us/developer/docs/api/index_Left.htm#StartTopic=Content/sforce_api_quickstart_intro.htm#enterprise_wsdl'>enterprise WSDL</a>.</p>
+
+<pre><code>private void sampleAPIQuery(EnterpriseConnection connection)
+{
+    try {
+        String soqlQuery = &quot;SELECT Email, LastName &quot; +
+                &quot;FROM User WHERE FirstName = &#39;John&#39;&quot;;
+        QueryResult queryResults = connection.query(soqlQuery);
+        User user;
+        if (queryResults.getSize() &gt; 0) {
+            for (int i=0; i &lt; queryResults.getRecords().length; i++) {
+                // cast the SObject to a User object
+                User user = (User)queryResults.getRecords()[i];
+                System.out.println(&quot;Email: &quot; + user.getEmail());
+                System.out.println(&quot;LastName: &quot; + user.getLastName() + &quot;\n&quot;);
+            }
+        }
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+}</code></pre>
+
+<h2 id='eager_versus_lazy_fetch_types'>Eager Versus Lazy Fetch Types</h2>
+
+<p>There are two different fetch types for fields in a record returned by a query: lazy or eager. If a field has an eager fetch type, it is loaded at the time the query is executed, and the field is populated in the query results. If a field has a lazy fetch type, the query results don&#8217;t include the data for the field. When the field is accessed�by a getter method, for example�a separate query executes in the background and returns the actual field data.</p>
+
+<p>Fields of the following data types are members of a default fetch group and are eagerly loaded by default.</p>
+<dl>
+  <dt><b>Primitives</b></dt>
+    <dd>
+    <ul>
+        <li>boolean</li>
+        <li>byte</li>
+        <li>char</li>
+        <li>double</li>
+        <li>float</li>
+        <li>int</li>
+        <li>long</li>
+        <li>short</li>
+    </ul>
+    </dd>
+  
+  <dt><b>Object Wrappers for Primitives</b></dt>
+    <dd>
+    <ul>
+        <li>Boolean</li>
+        <li>Byte</li>
+        <li>Character</li>
+        <li>Double</li>
+        <li>Float</li>
+        <li>Integer</li>
+        <li>Long</li>
+        <li>Short</li>
+    </ul>
+    </dd>
+
+  <dt><b>Others</b></dt>
+    <dd>
+    <ul>
+        <li>String</li>
+        <li>Number</li>
+        <li>Enum</li>
+        <li>BigDecimal</li>
+        <li>BigInteger</li>
+        <li>Date</li>
+        <li>Calendar</li>
+        <li>GregorianCalendar</li>
+    </ul>
+    </dd>
+</dl>
+<p>These default eager data types are standard for DataNucleus, except for Calendar and GregorianCalendar, which are eagerly loaded by the Force.com jPA provider to support optimistic transactions.</p>
+
+<p>You can also explicitly mark a field as eager or lazy by adding the FetchType.EAGER or FetchType.LAZY attribute to an @Basic, @OneToMany, or @ManyToOne annotation.</p>
+
+<p>Note: A separate query is executed when you access the data for any lazily loaded field.</p>
+<a name='fetchDepth' />
+<h3 id='fetch_depth'>Fetch Depth</h3>
+
+<p>Fetch depth is the number of levels of relationships traversed and fetched for a query. Consider a Grandchild entity with a lookup relationship to a Child entity that has a lookup relationship to a Parent entity. If a query references the child-to-parent relationships from the Grandchild to Child entities and the Child to Parent entities, you must set the fetch depth to two to retrieve FetchType.EAGER fields for the Parent entity.</p>
+
+<p>A query doesn&#8217;t return an error if it references FetchType.EAGER fields that exceed the fetch depth; it just returns data within the fetch depth. Setting fetch depth to zero means that you only get data for the entity in the FROM clause and relationships are ignored.</p>
+
+<p>The default fetch depth is one. You can change the default fetch depth by setting the datanucleus.maxFetchDepth property in persistence.xml. You can also change the fetch depth for an individual query by using a query hint. For example, to set the fetch depth to two in a JPQL query:</p>
+
+<pre><code>em.createQuery(&quot;SELECT o FROM SampleEntity o)&quot;, SampleEntity.class)
+    .setHint(QueryHints.MAX_FETCH_DEPTH, 2).getResultList();</code></pre>
+
+<p>Similarly, you can use a query hint in a find() method to set the fetch depth to two:</p>
+
+<pre><code>em.find(SampleEntity.class, &quot;entityIdHere&quot;,
+    Collections.singletonMap(QueryHints.MAX_FETCH_DEPTH, (Object)2 ));</code></pre>
+
+<p>For child-to-parent relationships, the maximum fetch depth is five.</p>
+
+<p><strong>Caution:</strong> A query containing a parent-to-child relationship can only traverse one relationship level. Setting query depth greater than one on FetchType.EAGER parent-to-child relationships will result in an error.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

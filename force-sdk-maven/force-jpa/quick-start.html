@@ -1,0 +1,95 @@
+<h1 id='quick_start_guide'>Quick start guide</h1>
+
+<p>This guide will walk you through creating a brand new Spring MVC application (from a template) that defines a simple JPA entity stored in Force.com. You can use this template as a starting point for your own web application.</p>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#prerequisites'>Prerequisites</a><ul style='list-style: none;'><li><a href='#a_word_about_maven_before_you_get_started'>A word about Maven before you get started</a></li></ul></li><li><a href='#1_install_cliforce_command_line_tool'>1. Install cliforce command line tool</a><ul style='list-style: none;'><li><a href='#linux'>Linux</a></li><li><a href='#windows'>Windows</a></li></ul></li><li><a href='#2_create_a_new_project_from_a_template'>2. Create a new project from a template</a></li><li><a href='#3_set_up_a_connection_to_forcecom'>3. Set up a connection to Force.com</a></li><li><a href='#4_build_and_run_your_application'>4. Build and run your application</a></li><li><a href='#5_next_steps'>5. Next Steps</a></li></ul></div>
+<h2 id='prerequisites'>Prerequisites</h2>
+
+<ul>
+<li>Username, password and <a href='https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm&amp;language=en'>security token</a> for a <a href='http://www.developerforce.com/events/regular/registration.php?d=70130000000EjHb'>Force.com Developer Edition account</a> or other system administrator account on a Salesforce organization.</li>
+
+<li><a href='http://maven.apache.org/download.html'>Maven 3</a></li>
+
+<li><a href='http://www.oracle.com/technetwork/java/javase/downloads/index.html'>A recent JDK 1.6</a>, like 1.6.0_24</li>
+</ul>
+
+<h3 id='a_word_about_maven_before_you_get_started'>A word about Maven before you get started</h3>
+
+<p>Many of the commands in this quick start trigger downloads of additional Maven dependencies. If you have never used Maven before or if you are going through this quick start on a new machine or with a new user account, this can be slow initially. However, once the modules are downloaded, they are cached in a local repository and subsequent commands execute quicker.</p>
+<a name='installcliforce' />
+<h2 id='1_install_cliforce_command_line_tool'>1. Install cliforce command line tool</h2>
+
+<p>You can use the extensible cliforce command-line tool for a variety of tasks when creating and developing Java applications. Download the executable jar from:</p>
+
+<p><a href='http://media.developerforce.com/download/cliforce-21.0.2-BETA.jar'>http://media.developerforce.com/download/cliforce-21.0.2-BETA.jar</a></p>
+
+<p>and save it as <code>cliforce.jar</code>. Execute cliforce from the command line by running:</p>
+
+<pre><code>$ java -jar cliforce.jar</code></pre>
+
+<p>We recommend that you create a script for ease of execution.</p>
+
+<h3 id='linux'>Linux</h3>
+
+<p>If you&#8217;re using bash, save the jar in <code>$HOME/bin</code>, and put the following line in a script file in <code>$HOME/bin/cliforce</code>:</p>
+
+<pre><code>java -Xmx512M -jar `dirname $0`/cliforce.jar &quot;$@&quot;</code></pre>
+
+<p>Make the script executable by running:</p>
+
+<pre><code>chmod u+x $HOME/bin/cliforce</code></pre>
+
+<h3 id='windows'>Windows</h3>
+
+<p>Create a cliforce.bat file containing the following:</p>
+
+<pre><code>set SCRIPT_DIR=%~dp0
+java -Xmx512M -jar &quot;%SCRIPT_DIR%cliforce.jar&quot; %*</code></pre>
+<a name='createProjectTemplate' />
+<h2 id='2_create_a_new_project_from_a_template'>2. Create a new project from a template</h2>
+
+<p>You can use cliforce to quickly create a new application project. For example, if you want to create a project called &#8220;hellocloud&#8221; you run:</p>
+
+<pre><code>$ cliforce template:create hellocloud</code></pre>
+
+<p>This will create a new <code>hellocloud</code> directory with a basic Spring MVC application project structure. Change to this directory:</p>
+
+<pre><code>$ cd hellocloud</code></pre>
+
+<h2 id='3_set_up_a_connection_to_forcecom'>3. Set up a connection to Force.com</h2>
+
+<p>The template application defines a simple entity to be stored in Force.com. The default configuration requires you to specific a database connection named &#8220;forceDatabase&#8221;. You can configure this using cliforce:</p>
+
+<pre><code>$ cliforce connection:add
+connection name: forceDatabase
+user: scott@acme.com
+password: ********
+security token: VXoAIbgYSMOhSEVtcGxgt4mRP
+Connection: forceDatabase added</code></pre>
+
+<h2 id='4_build_and_run_your_application'>4. Build and run your application</h2>
+
+<p>Building your application is simple:</p>
+
+<pre><code>$ mvn package</code></pre>
+
+<p>This will build the project and run tests. Now you can start a Tomcat server running the hellocloud application:</p>
+
+<pre><code>$ mvn tomcat:run</code></pre>
+
+<p>And go to <a href='http://localhost:8080/hellocloud'>http://localhost:8080/hellocloud</a> where you should see a welcome screen. When Tomcat started up, the Force.com JPA provider automatically created a new entity in Force.com called MyEntity. You can create new records of this entity from the &#8220;New Entity&#8221; link.</p>
+
+<h2 id='5_next_steps'>5. Next Steps</h2>
+
+<p>The Force.com SDK is not tied to any particular runtime. You can now proceed to deploy the application on your own server, Cloud Foundry, EC2 or other cloud runtimes as long as you can make HTTPS connections to Force.com.</p>
+
+<p>If you want to take a look at an application that is built out a little bit more, you can look at the &#8220;Music Library&#8221; application here: <a href='https://github.com/forcedotcom/musiclib'>https://github.com/forcedotcom/musiclib</a>. You can clone this project with</p>
+
+<pre><code>$ git clone git://github.com/forcedotcom/musiclib.git</code></pre>
+
+<p>Build and run it:</p>
+
+<pre><code>$ mvn package &amp;&amp; mvn tomcat:run</code></pre>
+
+<p>And visit it at <a href='http://localhost:8080/musiclib'>http://localhost:8080/musiclib</a>. It will pick up the same connection parameters that you already set up and create entities in the same Force.com org.</p>
+
+<p>Happy coding.</p>

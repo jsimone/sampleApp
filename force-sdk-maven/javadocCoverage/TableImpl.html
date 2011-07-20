@@ -1,0 +1,110 @@
+<html>
+<h1>com.force.sdk.jpa.table.TableImpl</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Represents an object (custom or standard) in Force.com.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public TableImpl(String, TableName, DescribeSObjectResult, ForceManagedConnection)</h3>
+Comment Text: <br/>Create a TableImpl for an entity.
+Issues: <br/>
+No Errors
+<h3>public TableImpl(TableName, AbstractClassMetaData)</h3>
+Comment Text: <br/>Constructor used for virtual schema (aka tables that aren't actually backed by an object, like Owner).
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public isValid()</h3>
+Comment Text: <br/>Entities are considered valid if they exist in the Force.com database.
+ However, during schema creation the table may be invalidated,
+ but should return to valid after a describe call confirms its existence.
+ Use {@link #exists()} instead if you want to find out if the table exists in the org
+Issues: <br/>
+No Errors
+<h3>public setIsValid(boolean)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public exists()</h3>
+Comment Text: <br/>Check existence of a table in the organization used by the application.
+Issues: <br/>
+No Errors
+<h3>public getExternalIdColumn()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getColumnByForceApiName(java.lang.String)</h3>
+Comment Text: <br/>Retrieves a Force.com column with a fully qualified Force.com API name.
+Issues: <br/>
+No Errors
+<h3>public getColumnByJavaName(java.lang.String)</h3>
+Comment Text: <br/>Retrieves a Force.com column with a Java field name.
+ <p>
+ Make sure if you're calling this that it happens after schema creation, because this will not
+ be populated until all the class metadata has been fully initialized.
+Issues: <br/>
+No Errors
+<h3>public registerJavaColumn(java.lang.String, com.force.sdk.jpa.table.ColumnImpl)</h3>
+Comment Text: <br/>Register a column impl (with specific Force.com attributes, like the API name) under its field or
+ property  name in java.
+Issues: <br/>
+No Errors
+<h3>public getColumnAt(int)</h3>
+Comment Text: <br/>Retrieves a Force.com column at the given index.
+Issues: <br/>
+No Errors
+<h3>public getListOfColumns()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getTableName()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public toString()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getColumnsFor(org.datanucleus.metadata.AbstractClassMetaData, org.datanucleus.metadata.AbstractMemberMetaData, com.force.sdk.jpa.ForceStoreManager, java.util.List<com.force.sdk.jpa.table.ColumnImpl>)</h3>
+Comment Text: <br/>Retrieve a list of Force.com columns with the given JPA field metadata.
+ <p>
+ This method can handle embedded JPA metadata.
+Issues: <br/>
+No Errors
+<h3>public getColumnAt(org.datanucleus.metadata.AbstractClassMetaData, int)</h3>
+Comment Text: <br/>Retrieve a Force.com column from the given JPA class metadata at the given field position.
+Issues: <br/>
+No Errors
+<h3>public getColumnFor(org.datanucleus.metadata.AbstractClassMetaData, org.datanucleus.metadata.AbstractMemberMetaData)</h3>
+Comment Text: <br/>Retrieve a Force.com column with the given JPA field metadata.
+Issues: <br/>
+No Errors
+<h3>public getPKFieldName(org.datanucleus.metadata.AbstractClassMetaData)</h3>
+Comment Text: <br/>Retrieves the primary key Force.com API field name for the
+ given class metadata.
+Issues: <br/>
+No Errors
+<h3>public createTableAndFields(org.datanucleus.metadata.AbstractClassMetaData, com.force.sdk.jpa.ForceStoreManager, com.force.sdk.jpa.ForceManagedConnection)</h3>
+Comment Text: <br/>Create the custom objects and fields for schema creation. This method should only be called if it has been verified
+ that schema creation for tables is enabled
+Issues: <br/>
+No Errors
+<h3>public createFields(org.datanucleus.metadata.AbstractClassMetaData, com.force.sdk.jpa.ForceStoreManager)</h3>
+Comment Text: <br/>Create custom fields only.
+ If autoCreateTables is false but autoCreateColumns is true, this method should be called.
+ It assumes that the table already exists in the org or has already been created
+Issues: <br/>
+No Errors
+<h3>public refresh(com.sforce.soap.partner.DescribeSObjectResult, com.force.sdk.jpa.ForceManagedConnection)</h3>
+Comment Text: <br/>refresh the describe result to verify that objects have been created as we expected.
+Issues: <br/>
+No Errors
+<h3>public getTableAlreadyExistsInOrg()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getMetaData(org.datanucleus.metadata.AbstractClassMetaData)</h3>
+Comment Text: <br/>Retrieves Force.com table metadata for the given JPA class metadata.
+Issues: <br/>
+No Errors
+</html>

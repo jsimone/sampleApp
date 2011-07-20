@@ -1,0 +1,27 @@
+<html>
+<h1>com.force.sdk.oauth.context.store.SecurityContextStorageService</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Defines the interface for storing, retrieving, and clearing a SecurityContext to/from 
+ a means of storage. Implementors of this interface will represent different methods of 
+ of handling the storage of a SecurityContext.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h2>Methods:</h2>
+<h3>public storeSecurityContext(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.force.sdk.oauth.context.SecurityContext)</h3>
+Comment Text: <br/>Store the security context. The means of storage will vary by implementation.
+Issues: <br/>
+No Errors
+<h3>public retreiveSecurityContext(javax.servlet.http.HttpServletRequest)</h3>
+Comment Text: <br/>Retrieve the security context. The means of storage will vary by implementation.
+Issues: <br/>
+No Errors
+<h3>public clearSecurityContext(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)</h3>
+Comment Text: <br/>Clears the security context from storage. This won't be relevant for all storage types.
+Issues: <br/>
+No Errors
+<h3>public getSecureKey()</h3>
+Comment Text: <br/>Retrieves the secret key if one is used in this security context store.
+Issues: <br/>
+No Errors
+</html>

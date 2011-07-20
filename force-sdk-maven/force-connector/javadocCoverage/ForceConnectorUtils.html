@@ -1,0 +1,62 @@
+<html>
+<h1>com.force.sdk.connector.ForceConnectorUtils</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Shared utilities for Force.com connectors.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h2>Methods:</h2>
+<h3>public static buildForceApiEndpoint(java.lang.String)</h3>
+Comment Text: <br/>Builds a valid Force.com API endpoint.
+ <p>
+ This method will pass through fully qualified, versioned Force.com
+ API endpoints. If the endpoint parameter is found not to be a
+ fully qualified Force.com API endpoint, then one will be constructed
+ using the API version bound to the Force.com SDK.
+ <p>
+ All built endpoints will be forced to use the https:// protocol unless
+ the host is {@code localhost} or contains the keyword "internal".
+Issues: <br/>
+No Errors
+<h3>public static loadConnectorPropsFromName(java.lang.String)</h3>
+Comment Text: <br/>Loads Force.com connection properties from a connection name.
+ <p>
+ A connection name can represent connection properties in several
+ locations (and different formats). Connection properties will be
+ searched for in the following order:
+ <p>
+ <ol>
+   <li>
+   Force.com connection URL in an environment variable of the form FORCE_<CONNECTIONNAME>_URL 
+   (case insensitive match)
+   </li>
+   <li>
+   Force.com connection URL in a Java System property of the form force.<connectionName>.url 
+   (case sensitive match)
+   </li>
+   <li>
+   Force.com connection URL in a properties file on the classpath of the form <connectionName>.properties 
+   (case sensitive match)
+   </li>
+   <li>
+   key=value connection properties in a properties file on the classpath of the form <connectionName>.properties 
+   (case sensitive match)
+   </li>
+   <li>
+   Force.com connection URL in the CLIForce connection file of the form <connectionName>=<connection URL> 
+   (case sensitive match)
+   </li> 
+ </ol>
+Issues: <br/>
+No Errors
+<h3>public static loadConnectorPropsFromUrl(java.lang.String)</h3>
+Comment Text: <br/>Loads Force.com connection properties from a Force.com connection url
+ <p>
+ A Force.com connection url must start with the force:// protocol followed
+ by a non empty endpoint string.  Connection properties are specified with
+ key=value pairs and delimited by a semi-colon (';') after the endpoint.
+ Any connection property keys not recognized (i.e. that are not in the 
+ {@link ForceConnectionProperty} enum) are ignored.
+Issues: <br/>
+No Errors
+</html>

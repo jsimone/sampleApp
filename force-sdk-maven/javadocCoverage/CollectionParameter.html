@@ -1,0 +1,30 @@
+<html>
+<h1>com.force.sdk.jpa.query.CollectionParameter</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Use this class to encapsulate collection parameters. The toString() method is overridden to 
+ return a properly serialized String representation of the collection, appropriate for SOQL
+ queries.
+ 
+ String collections get all members wrapped. So [AAA,BBB] -->  ('AAA', 'BBB')
+ Date/Calendar collections get serialized according to SOQLDateFormatUtil formatting methods.
+ All other collection types rely on their respective toString() methods. So [1,2,3] --> (1,2,3)</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public CollectionParameter(Collection<?>)</h3>
+Comment Text: <br/>Stores off the given collection for use with the toString() method later.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public toString()</h3>
+Comment Text: <br/>Given a collection of unknown type, return a serialized String representation of the collection
+ appropriate to inclusion in SOQL queries.
+ 
+ Empty arrays return the value NULL, resulting in queries like '... WHERE Id IN (NULL). This works in SOQL
+ independent of type.
+ 
+ Strings are wrapped in single quotes.
+ All other types are returned as simple comma separated lists.
+Issues: <br/>
+No Errors
+</html>

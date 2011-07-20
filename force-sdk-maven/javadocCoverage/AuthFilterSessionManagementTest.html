@@ -1,0 +1,47 @@
+<html>
+<h1>com.force.sdk.oauth.AuthFilterSessionManagementTest</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: This class tests the session management of the AuthFilter. All tests assume that a user has already authenticated via
+ OAuth so this state is initialized ahead of time. With each test we are simulating whether you have a session with
+ your security context on the server you hit or not. Also whether the data in that security context may be stale.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public AuthFilterSessionManagementTest()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public init()</h3>
+Comment Text: <br/>
+Issues: <br/>
+<ul class='errorList'>
+<li>Comments are requried on public methods
+</ul>
+<h3>public testValidSessionData()</h3>
+Comment Text: <br/>User is authenticated and they visit an instance that has their java session. Here we set up a request that has
+ the sfdc sid and endpoint cookies. A security context is also put into the session. We test that the context in
+ the session at the end is the same as what we started with. there should be no call to the partner api.
+Issues: <br/>
+No Errors
+<h3>public testInvalidSessionException()</h3>
+Comment Text: <br/>User appears to be authenticated, but when the API is used a sessioned timed out exception gets thrown. This
+ causes a session renewal to be attempted which should result in an redirect to the OAuth authentication URL.
+Issues: <br/>
+No Errors
+<h3>public testInvalidSFDCSessionId()</h3>
+Comment Text: <br/>User is authenticated and they visit an instance that has their java session, but the sfdc session id in the
+ Security Context doesn't match the one in their cookie (stale data). Here we set up a request that has the sfdc
+ sid and endpoint cookies. A security context is also put into the session, but it has a different session id in
+ it. This simulates stale data in the session. We test that the context in the session at the end came from the
+ partner api because we expect a call to refresh the data.
+Issues: <br/>
+No Errors
+<h3>public testNoDataInSession()</h3>
+Comment Text: <br/>User is authenticated and they visit an instance that does not have their Java session. Here we set up a request
+ that has the sfdc sid and endpoint cookies. No security context is put into the session to simulate hitting an
+ instance that you don't have a session with. We test that the context in the session at the end came from the
+ partner api because we expect a call to get the data.
+Issues: <br/>
+No Errors
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - OAuth Authentication</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000002965e78>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='oauth_authentication'>OAuth Authentication</h1>
+
+<p>COMMENT: <span>jesper</span> Should be merged with <a href='force-security'>Oauth doc</a></p>
+
+<p>Your Java applications can use Force.com user accounts for authentication and identity management. The Force.com Java SDK simplifies the process of authenticating users in Force.com using the OAuth protocol.</p>
+
+<h2 id='forcecom_oauth_connector'>Force.com OAuth Connector</h2>
+
+<p>The Force.com OAuth Connector is a library of classes that handles most of the details of the OAuth handshake for you.</p>
+<a name='createRAA' />
+<h3 id='prerequisitecreating_a_forcecom_remote_access_application'>Prerequisite:Creating a Force.com Remote Access Application</h3>
+
+<p>Before you can use OAuth to authenticate users for your application, you must create a remote access application in Force.com. This generates the consumer key and secret that you&#8217;ll need for the OAuth configuration.</p>
+
+<ol>
+<li>Log in at https://login.salesforce.com.</li>
+</ol>
+
+<ul>
+<li>Click <em>Your Name</em> | Setup | Develop | Remote Access.</li>
+
+<li>Click New.</li>
+
+<li>Enter your application name in the Application field and your email in the Contact Email field.</li>
+
+<li>Enter a Callback URL for your application. This is the URL that the user will be returned to after they approve access for the application. To use the Force.com OAuth Connector, your callback URL must be https://<em>applicationName</em>.alpha.vmforce.com/_auth. If you&#8217;re testing your application on your localhost, the URL can be http://localhost:<em>port</em>/<em>applicationName</em>/_auth. If you are running your application somewhere other than localhost, your URL must use HTTPS.</li>
+
+<li>Click Save.</li>
+</ul>
+
+<p>TODO: <span>Jesper</span>: We will have a cliforce command for all these steps above.</p>
+
+<p>You&#8217;ll now see your application in the list of remote access applications. Click on your application to see the details and retrieve the automatically generated consumer key and secret. The consumer key and secret are the values that you&#8217;ll use for {$oauthKey} and {$oauthSecret} when you configure the Force.com OAuth Connector in your application.</p>
+
+<h3 id='configuring_the_forcecom_oauth_connector'>Configuring the Force.com OAuth Connector</h3>
+
+<p>To use the connector, add the following servlet filter to your application&#8217;s web.xml file:</p>
+
+<pre><code>&lt;!-- Enables Security --&gt;
+&lt;filter&gt;
+	&lt;filter-name&gt;AuthFilter&lt;/filter-name&gt;
+	&lt;filter-class&gt;com.force.sdk.oauth.AuthFilter&lt;/filter-class&gt;
+		 &lt;init-param&gt;
+		 	&lt;param-name&gt;connectionName&lt;/param-name&gt;
+		 	&lt;param-value&gt;nameOfConnectionToUse&lt;/param-value&gt;
+		&lt;/init-param&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+	&lt;filter-name&gt;AuthFilter&lt;/filter-name&gt;
+	&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</code></pre>
+
+<p>The OAuth Connector uses the Force.com API Connector to access the Force.com APIs. The connectionName is used to look up OAuth properties defined in an environment variable, or a Java system property, or in a properties file on the classpath. For more information, see <a href='connection-url'>Force.com Database Connections</a>.</p>
+
+<p>TODO: <span>Jesper</span>: See W-918255. We should make it work without any params using proper defaulting.</p>
+
+<p>The filter-mapping element above contains a url-pattern of &#8220;/*&#8221;. This redirects every URL through the filter. It is not required to do this. If your application requires only certain URL patterns to be authenticated, you can configure the filter to match a subset of requests. However, the filter must always include the &#8220;/_auth*&#8221; URL pattern. Otherwise, the OAuth callback won&#8217;t be properly handled. For example, if you only wanted to check for authentication for &#8220;/Secure&#8221; your configuration would look like this:</p>
+
+<pre><code>&lt;filter-mapping&gt;
+	&lt;filter-name&gt;AuthFilter&lt;/filter-name&gt;
+	&lt;url-pattern&gt;/Secure&lt;/url-pattern&gt;
+	&lt;url-pattern&gt;/_auth*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</code></pre>
+		</div>
+	</div>
+</div>
+</body>
+</html>

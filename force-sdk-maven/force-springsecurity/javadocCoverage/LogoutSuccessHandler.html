@@ -1,0 +1,41 @@
+<html>
+<h1>com.force.sdk.springsecurity.LogoutSuccessHandler</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Called after all logout handlers are processed. Redirects user to the configured logout URL.
+ Can be configured to also log the user out of Force.com. Both options can be configured on the fss:oauth element.
+ The logout URL comes from the default-logout-success attribute and the flag for logging out from Force.com comes
+ from the logout-from-force-dot-com attribute. See @doclink force-security for more information.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public LogoutSuccessHandler()</h3>
+Comment Text: <br/>Default constructor. No values defaulted. 
+ The oauthConnector and securityContextService must be set manually if not created in a Spring container.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public setLogoutFromForceDotCom(boolean)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setOauthConnector(com.force.sdk.oauth.connector.ForceOAuthConnector)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public setSecurityContextService(com.force.sdk.oauth.context.SecurityContextService)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public afterPropertiesSet()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>protected determineTargetUrl(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public onLogoutSuccess(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.security.core.Authentication)</h3>
+Comment Text: <br/>Clear the security context. This is necessary when cookie based storage is used.
+Issues: <br/>
+No Errors
+</html>

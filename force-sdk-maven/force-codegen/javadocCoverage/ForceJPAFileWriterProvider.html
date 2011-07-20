@@ -1,0 +1,52 @@
+<html>
+<h1>com.force.sdk.codegen.writer.ForceJPAFileWriterProvider</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: A {@link WriterProvider} which provides {@code FileWriter}s for Force.com JPA
+ enabled Java classes.
+ <p>
+ A {@code ForceJPAFileWriterProvider} cares about three pieces of state:
+ <p>
+ <ol>
+   <li>A destination (project) directory</li>
+   <li>A Java package name</li>
+   <li>A Java class name</li>
+ </ol>
+ For example, if the destination directory is /home/tkral, the Java package name
+ is com.force and the class name is TestClass, a {@code ForceJPAFileWriterProvider} 
+ will provide a {@code FileWriter} to the following file:
+ <p>
+   {@code /home/tkral/com/force/TestClass.java}
+ A Java package name need not be specified explicitly.  If no package name is provided,
+ {@code ForceJPAFileWriterProvider} will create a package name based off of the callers
+ Force.com store name (i.e. Organization name).  Similarly, a Java class name need not
+ be specified explicitly.  If missing, {@code ForceJPAFileWriterProvider} will use
+ the name from a Force.com {@code DescribeSObjectResult} object.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceJPAFileWriterProvider(File)</h3>
+Comment Text: <br/>Initalizes a {@code ForceJPAFileWriterProvider} to provide {@code FileWriter}s
+ to the given destination (project) directory.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public setClassName(java.lang.String)</h3>
+Comment Text: <br/>Sets the Java class name of the generate Java classes.
+ <p>
+ If no class name is specified, one will be created based
+ off of a Force.com {@code DescribeSObjectResult} object.
+Issues: <br/>
+No Errors
+<h3>public setPackageName(java.lang.String)</h3>
+Comment Text: <br/>Sets the Java package name under which the generated Java
+ classes will be written.
+ <p>
+ If no package name is specified, one will be created based
+ off of the callers Force.com store name (i.e. Organization name).
+Issues: <br/>
+No Errors
+<h3>public getWriter(com.sforce.soap.partner.GetUserInfoResult, com.sforce.soap.partner.DescribeSObjectResult)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+</html>

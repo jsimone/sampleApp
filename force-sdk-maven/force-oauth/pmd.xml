@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2011-06-04T10:33:56.878">
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/oauth/src/main/java/com/force/sdk/oauth/connector/ForceOAuthConnector.java">
+<violation beginline="194" endline="196" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.oauth.connector" class="ForceOAuthConnector" method="createTokenInternal" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="257" endline="259" begincolumn="15" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.force.sdk.oauth.connector" class="ForceOAuthConnector" method="getForceLogoutUrl" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/oauth/src/main/java/com/force/sdk/oauth/context/SecurityContextServiceImpl.java">
+<violation beginline="132" endline="135" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.force.sdk.oauth.context" class="SecurityContextServiceImpl" method="verifyAndRefreshSecurityContext" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/home/jsimone/gitdev/java-sdk-docwork/java-sdk/oauth/src/main/java/com/force/sdk/oauth/context/store/AESUtil.java">
+<violation beginline="173" endline="175" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.force.sdk.oauth.context.store" class="AESUtil" method="getSecretKey" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+</pmd>

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - What is the Force.com SDK for Java?</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x000000031f7920>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='what_is_the_forcecom_sdk_for_java'>What is the Force.com SDK for Java?</h1>
+
+<p>The Force.com SDK is a set of Java libraries and tools that makes it easy for Java developers to build applications that</p>
+
+<ul>
+<li>use Force.com as the database for application data</li>
+
+<li>interact with data already stored in Force.com</li>
+
+<li>use the Force.com user management and security model</li>
+
+<li>extend existing Force.com applications and functionality</li>
+</ul>
+
+<p>The SDK is not tied to any particular runtime. You can build apps that run on your own server, on Cloud Foundry, on EC2 or other cloud runtimes as long as you can make HTTPS connections to Force.com.</p>
+
+<p>The SDK consists of the following components</p>
+
+<h2 id='forcecom_service_connector'>Force.com Service Connector</h2>
+
+<p>The service connector is a basic utility for connecting to the Force.com service. Its main responsibility is to read connection configuration from a variety of sources and to refresh sessions automatically. The connector uses <a href='http://code.google.com/p/sfdc-wsc'>WSC</a> for the actual protocol implementation.</p>
+
+<p><a href='connection-url'>Read more</a></p>
+
+<h2 id='forcecom_jpa_provider'>Force.com JPA Provider</h2>
+
+<p>The JPA provider lets you use Force.com as a persistent data store for entities defined in Java using the JPA standard. You can define entities in pure Java, including related entities using OneToMany or ManyToOne relationships and the JPA provider will automatically manage the schema in Force.com. It also lets you map existing entities in Force.com to JPA entities so you can query and transact on data that&#8217;s already in your Force.com database such as your CRM entities. The JPA provider is based on <a href='http://www.datanucleus.org'>DataNucleus Access Platform</a>.</p>
+
+<p><a href='jpa-provider'>Read more</a></p>
+
+<h2 id='forcecom_oauth_authentication_and_authorization'>Force.com OAuth authentication and authorization</h2>
+
+<p>If you&#8217;re building an application for authenticated Force.com users, you can configure single sign-on and leverage Force.com&#8217;s security model using OAuth2.</p>
+
+<p><a href='force-security'>Read more</a></p>
+
+<h2 id='spring_security_plugin'>Spring security plugin</h2>
+
+<p>This plugin lets you use Spring Security for authentication and authorization in your applications. The Spring Security library uses the API Connector and the OAuth Connector to allow authentication via the Force.com APIs. There is also a custom Spring Security namespace that helps to simplify configuration.</p>
+
+<p><a href='force-security'>Read more</a></p>
+
+<h2 id='cliforce_commandline_tool'>CLIforce command-line tool</h2>
+
+<p>The CLIforce command-line tool is used to manage Force.com connections locally on you development machine and to manually execute tasks such as</p>
+
+<ul>
+<li>creating new projects from templates,</li>
+
+<li>updating the schema in Force.com and</li>
+
+<li>importing data</li>
+</ul>
+
+<p>The commands can be executed from an interactive shell or as batch scripts. You can also execute scripts via a maven plugin.</p>
+
+<p><a href='cliforce'>Read more</a></p>
+
+<h2 id='spring_mvc_project_template'>Spring MVC project template</h2>
+
+<p>The SDK includes a Spring MVC project template distributed as a Maven archetype. You can create new projects from this template using the <code>cliforce template:create</code> command. The template sets up all the rigth maven dependencies for starting a new Spring MVC app using the JPA provider and Spring Security plugin.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

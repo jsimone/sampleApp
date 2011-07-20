@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Force.com Database Connections</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000002ff9218>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='forcecom_database_connections'>Force.com Database Connections</h1>
+
+<p>Java applications run with the permissions and sharing of the user that authenticates the application with the Force.com database. You can configure a JPA connection URL that sets a default integration user to authenticate your application with the Force.com database. This allows a connection to the database before users authenticate with their own credentials. If your application requires a user to log in to use some or all of the application, the application runs with the permissions and sharing of the user after they log in.</p>
+
+<p>The Force.com Java SDK includes a Force.com OAuth Connector that simplifies the process of using OAuth to authenticate Force.com users.</p>
+
+<h2 id='typical_web_application_authentication_scenarios'>Typical Web Application Authentication Scenarios</h2>
+
+<p>This section describes some typical authentication scenarios for Web applications. It is not an exhaustive list and you can use a different scheme for authenticating your applications.</p>
+
+<h3 id='application_allows_anonymous_access'>Application Allows Anonymous Access</h3>
+
+<p>Any user can access the application without authentication.</p>
+
+<p>You must configure JPA connection information for the default integration user that authenticates your application with the Force.com database. No OAuth credentials are needed since users don&#8217;t need to authenticate.</p>
+
+<h3 id='application_requires_user_authentication'>Application Requires User Authentication</h3>
+
+<p>A user must authenticate with their Force.com credentials before accessing the application.</p>
+
+<p>You must configure JPA connection information for the default integration user that authenticates your application with the Force.com database. This user is used when your application needs to create schema in the Force.com database. You must configure OAuth credentials if you want to use OAuth to authenticate users.</p>
+
+<h3 id='application_requires_a_mix_of_user_authentication_and_anonymous_access'>Application Requires a Mix of User Authentication and Anonymous Access</h3>
+
+<p>A user can access some application pages without authentication, but they must authenticate with their Force.com credentials before accessing protected application pages.</p>
+
+<p>You must configure JPA connection information for the default integration user that authenticates your application with the Force.com database. This user is used when your application needs to connect to the Force.com database. You must configure OAuth credentials if you want to use OAuth to authenticate users.</p>
+
+<p>The next section describes the various options for configuring your JPA connection or OAuth credentials. These options offer you flexibility for managing your configuration information in different environments. For example, you may want to manage authentication information differently in development, staging, and production environments.</p>
+
+<p>You can encode the authentication information in a URL or you can split the information into a few separate properties.</p>
+
+<h2 id='connection_urls'>Connection URLs</h2>
+
+<p>You can encode the JPA connection information or OAuth credentials in a connection URL. There are two flavors of this connection URL: one that includes a username and password and another that includes an OAuth consumer key and secret</p>
+<dl>
+  <dt>Username and Password</dt>
+    <dd>force://login.salesforce.com;user=<em>user@salesforcedoc.org</em>;password=<em>samplePassword</em></dd>
+  <dt>OAuth Consumer Key and Secret</dt>
+    <dd>force://login.salesforce.com;oauth_key=<em>xyz</em>;oauth_secret=<em>abc</em></dd>
+</dl>
+<p>Substitute values in the <em>user</em> and <em>password</em> fields for the Username and Password connection URL. Substitute values in the <em>oauth_key</em> and <em>oauth_secret</em> fields for the OAuth Consumer Key and Secret connection URL.</p>
+
+<p>TODO <span>Mark</span>: link to remote access application doc to get OAuth credentials</p>
+
+<p>There is also an optional <em>timeout</em> parameter, which is the number of milliseconds to wait to establish a connection before timing out. This parameter is equivalent to the <b>datanucleus.datastoreReadTimeout</b> property in persistence.xml. This connection URL shows sample usage:</p>
+
+<pre><code>force://login.salesforce.com;user=user@salesforcedoc.org;password=samplePassword;timeout=10000</code></pre>
+
+<h2 id='configuring_jpa_connections_and_oauth_credentials'>Configuring JPA Connections and OAuth Credentials</h2>
+
+<p>The Force.com JPA provider looks for configuration information for a JPA connection or OAuth credentials in the following order. The first matching configuration is used for the JPA connection.</p>
+
+<ol>
+<li><a href='jpa-config-persistence#authProps'>Connection URL in persistence.xml</a></li>
+
+<li><a href='jpa-config-persistence#authProps'>Connection Properties in persistence.xml</a></li>
+
+<li><a href='#UrlEnvVar'>Connection URL in Environment Variable</a></li>
+
+<li><a href='#UrlJavaSysProp'>Connection URL in Java System Property</a></li>
+
+<li><a href='#propFile'>Connection URL in Properties file in the Classpath</a></li>
+
+<li><a href='#propFile'>Connection Properties in Properties file in the Classpath</a></li>
+
+<li><a href='#UrlConnectionsPropFile'>Connection URL in $HOME/.force/connections.properties</a></li>
+</ol>
+
+<p>TODO <span>@Jesper</span>: Should cliforce.home system prop/env var be mentioned here too? If so, what are the details?</p>
+
+<p><strong>Caution</strong>: For many applications, you may need JPA connection information and OAuth credentials. The following sections describe how there are multiple options for setting this information. You must be careful to use different connection names for your JPA connection information and OAuth credentials to avoid the JPA connection information overwriting the OAuth credentials or vice versa.</p>
+
+<p>For example, if you set the JPA connection information in a forceDatabase.properties file and you use a connection name of <em>forceDatabase</em> and a corresponding FORCE_<em>FORCEDATABASE</em>_URL environment variable for the OAuth credentials, the OAuth credentials will take precedence and replace the JPA connection information. If you need both configurations, changing the OAuth connection name to <em>forceOAuth</em> would avoid a connection name clash.</p>
+
+<p>TODO <span>@John</span>: Please verify the accuracy of the above caution.</p>
+<a name='UrlEnvVar' />
+<h3 id='connection_url_in_environment_variable'>Connection URL in Environment Variable</h3>
+
+<p>You can set the connection URL in an environment variable. The name of the environment variable depends on values in your application&#8217;s persistence.xml file. If a <em>persistence-unit</em> element contains a <b>force.ConnectionName</b> property, the name depends on the property value; otherwise, it depends on the persistence-unit name.</p>
+
+<p>For example, if you have a <pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;persistence-unit name=&quot;*persistenceUnitName*&quot;&gt; element, you can set the authentication
+information for this persistence unit in an environment variable named FORCE\_*PERSISTENCEUNITNAME*\_URL.</pre></p>
+
+<p>Note: The environment variable name must contain all uppercase characters including the name of the persistence-unit element or the <b>force.ConnectionName</b> property converted to uppercase characters.</p>
+
+<p>If you use an environment variable to set the authentication information, you must include <property name='datanucleus.storeManagerType' value='force' /> in the persistence-unit element in your application&#8217;s persistence.xml file.</p>
+<a name='UrlJavaSysProp' />
+<h3 id='connection_url_in_java_system_property'>Connection URL in Java System Property</h3>
+
+<p>You can set the connection URL in a Java system property. The name of the Java system property depends on values in your application&#8217;s persistence.xml file. If a persistence-unit element contains a <b>force.ConnectionName</b> property, the name of the Java system property depends on the <b>force.ConnectionName</b> property value; otherwise, it depends on the persistence-unit name.</p>
+
+<p>For example, if you have a <pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;persistence-unit name=&quot;*persistenceUnitName*&quot;&gt; element, you can set the authentication
+information for this persistence unit in a Java system property named force.*persistenceUnitName*.url.</pre></p>
+
+<p>Note: The Java system property name is case sensitive.</p>
+
+<p>The following code shows you how to set the authentication information in a Java system property:</p>
+
+<pre><code>System.setProperty(&quot;force.persistenceUnitName.url&quot;,
+    &quot;force://vmf01.t.salesforce.com;user=user@salesforcedoc.org;password=samplePassword&quot;);</code></pre>
+
+<p>If you use a Java system property to set the authentication information, you must include <property name='datanucleus.storeManagerType' value='force' /> in the persistence-unit element in your application&#8217;s persistence.xml file.</p>
+<a name='propFile' />
+<h3 id='connection_properties_file'>Connection Properties File</h3>
+
+<p>You can set the connection URL or individual properties in a properties file in the classpath. If you add the properties file to the src/main/resources directory of your application, Maven automatically copies it to your classpath.</p>
+
+<p>The name of the properties file depends on values in your application&#8217;s persistence.xml file. If a persistence-unit element contains a <b>force.ConnectionName</b> property, the file name depends on the property value; otherwise, it depends on the persistence-unit name.</p>
+
+<p>For example, if you have a <pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;persistence-unit name=&quot;*persistenceUnitName*&quot;&gt; element, you can set the authentication
+information for this persistence unit in a *persistenceUnitName*.properties file in the classpath.</pre></p>
+
+<p>Note: The property file name and lookup of property names in the file are case sensitive.</p>
+
+<p>You can use a configuration URL or individual properties. A file containing the following line is an example of a properties file containing a url property.</p>
+
+<pre><code>url=force://vmf01.t.salesforce.com;user=user@salesforcedoc.org;password=samplePassword</code></pre>
+
+<p>A file containing the following is an example of a properties file containing <strong>endpoint</strong>, <strong>user</strong>, and <strong>password</strong> properties.</p>
+
+<pre><code>endpoint=https://login.salesforce.com
+user=user@salesforcedoc.org
+password=samplePassword</code></pre>
+
+<p>Note: The scheme is <em>https</em> in the endpoint property as opposed to the <em>force</em> value used in the url property.</p>
+<a name='UrlConnectionsPropFile' />
+<h3 id='connection_url_in_homeforceconnectionsproperties'>Connection URL in $HOME/.force/connections.properties</h3>
+
+<p>You can set the connection URL in the $HOME/.force/connections.properties properties file, where $HOME refers to your home directory. The format is:</p>
+
+<pre><code>url=force://login.salesforce.com;user=user@salesforcedoc.org;password=samplePassword</code></pre>
+
+<p>TODO <span>@Jesper or anybody else</span> is the above format correct? I don&#8217;t see details in the spec. Can you also set individual endpoint, user, and password props in connections.properties?</p>
+<a name='setAPIversion' />
+<h2 id='setting_an_api_version'>Setting an API Version</h2>
+
+<p>Each version of the Force.com Java SDK is automatically linked with an API version. For example, version 22.0.0 of the SDK uses API version 22.0.</p>
+
+<p>However, you can override the default API version of the SDK by specifying a fully qualified API endpoint. For example, if you want to use API version 19.0 with version 21.0.0 of the SDK, use one of these options when configuring your JPA connection:</p>
+<dl>
+  <dt>Connection URL</dt>
+    <dd>force://login.salesforce.com/services/Soap/u/19.0;user=user@salesforcedoc.org;password=samplePassword</dd>
+  <dt>Connection Endpoint</dt>
+    <dd>https://login.salesforce.com/services/Soap/u/19.0</dd>
+</dl>
+<p>For more information about connection endpoints, see <a href='jpa-config-persistence#authProps'>Authentication Properties</a>.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

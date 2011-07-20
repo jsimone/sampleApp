@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Standard JPA Annotations</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000001b9d7e8>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='standard_jpa_annotations'>Standard JPA Annotations</h1>
+
+<p>JPA annotations enable you to define how the JPA provider persists your Java class.</p>
+
+<p>Note: You can associate an annotation with each field or the getter method for the field. You must be consistent within a class by using one approach or the other. If you add one annotation to a field and another to a getter method, an error occurs. We recommend that you annotate the field instead of the getter method.</p>
+
+<p>The <a href='http://jcp.org/aboutJava/communityprocess/final/jsr317/index.html'>JPA 2.0 specification (JSR 317)</a> lists all standard JPA annotations. <a href='jps-spec-support'>JPA 2.0 Specification Support</a> lists the areas of the JPA 2.0 specification that are supported by the Force.com JPA provider and how Force.com differs from the standard JPA specification.</p>
+
+<p>Some common standard JPA annotations are:</p>
+<pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;dl&gt;
+  &lt;dt&gt;@Entity&lt;/dt&gt;
+    &lt;dd&gt;Marks a Java class as persistent. Each Java class must include an @Entity annotation.&lt;/dd&gt;
+    &lt;dd&gt;When you start up your application, each class that&apos;s annotated with @Entity is loaded and synchronized with the Force.com
+database. If there is no existing standard or custom object matching the entity name, a new custom object is created. If the standard or custom object already exists, you can use the Java class representation to interact with records of that object type. For example, you create an Account Java class and use it to create or delete account records.&lt;/dd&gt;
+  
+  &lt;dt&gt;@Basic&lt;/dt&gt;
+    &lt;dd&gt;Explicitly declares a field in a class as persistent. To make a field in a class persistent, its type must either be one that is
+persisted by default or you must explicitly declare it as persistent by using the @Basic annotation. The [DataNucleus
+documentation](http://www.datanucleus.org/products/accessplatform_1_1/jpa/types.html) lists a table of common Java data types and indicates whether each is persisted by default.&lt;/dd&gt;
+  
+  &lt;dt&gt;@GeneratedValue&lt;/dt&gt;
+    &lt;dd&gt;Indicates that the identity value is generated by the database. This is mostly used for primary keys. Only the GenerationType.IDENTITY strategy is supported.&lt;/dd&gt;
+  
+  &lt;dt&gt;@Id&lt;/dt&gt;
+    &lt;dd&gt;Marks a field to use for the identity (primary key) of the class. Force.com entities always have a primary key. The Force.com JPA provider doesn&apos;t support all JPA standard primary types. For more information, see [Primary Keys](jpa-provider#primaryKeys).&lt;/dd&gt;
+  
+  &lt;dt&gt;@Version&lt;/dt&gt;
+    &lt;dd&gt;Defines a field as holding the version for the class.&lt;/dd&gt;
+    &lt;dd&gt;If you are using optimistic concurrency, you must include a lastModifiedDate field in your entity as follows:
+    &lt;pre&gt;
+    &lt;code&gt;
+    @Version
+    private java.util.Calendar lastModifiedDate;
+    &lt;code&gt;
+    &lt;/pre&gt;</pre>
+<pre><code>&lt;/dd&gt;</code></pre>
+<pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;/dl&gt;</pre>
+<p>For information on usage of the @ManyToOne and @OneToMany annotations, see <a href='force-datatypes#relFields'>Relationship Fields</a>.</p>
+
+<h2 id='required_and_unique_fields'>Required and Unique Fields</h2>
+
+<p>Use the @Column standard annotation to mark fields as required or unique.</p>
+
+<h3 id='required_fields'>Required Fields</h3>
+
+<p>Use a @Column(nullable = false) annotation to mark a field as required.</p>
+
+<h3 id='unique_fields'>Unique Fields</h3>
+
+<p>Use a @Column(unique = true) annotation to mark a field as unique.We recommend that you mark unique fields to be required too.</p>
+
+<p>Note: The @UniqueConstraint annotation is not supported.</p>
+
+<h2 id='sample_class_using_standard_annotations'>Sample Class Using Standard Annotations</h2>
+
+<p>The following sample Java class uses standard JPA annotations.</p>
+
+<p>Note: You can associate an annotation with each field or the getter method for the field. You must be consistent within a class by using one approach or the other. If you add one annotation to a field and another to a getter method, an error occurs.We recommend that you annotate the field instead of the getter method.</p>
+
+<pre><code>import java.util.Date;
+import javax.persistence.*;
+
+@Entity
+public class Student
+{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    String id;
+
+    @Basic
+    // Explicitly marked as persistent. This is not necessary as String
+    // fields are persisted by default
+    private String firstName;
+
+    // No annotation but String fields are persisted by default
+    private String lastName;
+
+    // No annotation but String fields are persisted by default
+    private String email;
+
+    // No annotation but Date fields are persisted by default
+    private Date dateOfBirth;
+
+    // getters and setters
+    public String getId() {
+        return id;
+
+    public String getFirstName() {
+        return firstName;
+    } 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    } 
+
+    public String getLastName() {
+        return lastName;
+    } 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    } 
+
+    public String getEmail() {
+        return email;
+    } 
+    public void setEmail(String email) {
+        this.email = email;
+    } 
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    } 
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    } 
+
+}</code></pre>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<h1>com.force.sdk.jpa.schema.ForceSchemaWriter</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Writes schema to Force.com database using the metadata API. It can be used 
+ to create or delete objects/fields</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceSchemaWriter(SchemaDeleteProperty)</h3>
+Comment Text: <br/>Create a schema writer for generating the deploy zip and using the metadata API
+ to manipulate schema.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public addCustomObject(com.sforce.soap.metadata.CustomObject, org.datanucleus.metadata.AbstractClassMetaData, com.force.sdk.jpa.ForceStoreManager, com.force.sdk.jpa.table.ForceMetaData)</h3>
+Comment Text: <br/>Adds a custom object to the map of objects that will be created or deleted.
+Issues: <br/>
+No Errors
+<h3>public addCustomObject(com.sforce.soap.metadata.CustomObject, boolean)</h3>
+Comment Text: <br/>This method is used by test cleanup. Use {@link #addCustomObject(com.sforce.soap.metadata.CustomObject,
+ org.datanucleus.metadata.AbstractClassMetaData, com.force.sdk.jpa.ForceStoreManager,
+ com.force.sdk.jpa.table.ForceMetaData)} if you're intending to use schemaCreation. includeInPackageFile
+ can be true or false depending on the table metadata.
+Issues: <br/>
+No Errors
+<h3>public addCustomField(com.sforce.soap.metadata.CustomObject, com.sforce.soap.metadata.CustomField)</h3>
+Comment Text: <br/>add a custom field to the map which will be written to the package file later
+ for deployment.
+Issues: <br/>
+No Errors
+<h3>public write(com.force.sdk.jpa.ForceManagedConnection)</h3>
+Comment Text: <br/>create the proper deploy zip and make the metadata API call.
+Issues: <br/>
+No Errors
+</html>

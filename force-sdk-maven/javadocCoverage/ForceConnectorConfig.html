@@ -1,0 +1,107 @@
+<html>
+<h1>com.force.sdk.connector.ForceConnectorConfig</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: A Force.com SDK wrapper for the Force.com API {@code ConnectorConfig}.
+ <p>
+ This wrapper stores the same state as a Force.com API {@code ConnectorConfig}
+ and can itself be used for a Force.com SOAP connection.  However, it provides
+ extra functionality that is useful for the Force.com SDK.  This functionality
+ includes:
+ <p>
+ <ul>
+   <li>A unique cacheId which can be used for config caching</li>
+   <li>Message tracing which is subject to a log TRACE level</li>
+   <li>Force.com connection URL support</li>
+   <li>Automatic SOAP version binding</li>
+   <li>ClientId state for conveniently setting a Force.com connection identifier</li>
+ </ul></h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceConnectorConfig()</h3>
+Comment Text: <br/>Initializes a {@code ForceConnectorConfig} object which contains no
+ connection properties.
+ <p>
+ This constructor will set the trace message flag to true which means
+ that messaging tracing is controlled by setting the {@code com.force.sdk.connector}
+ log level to TRACE.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public setAuthEndpoint(java.lang.String)</h3>
+Comment Text: <br/>Sets the Force.com authentication endpoint.
+ <p>
+ The authEndpoint parameter may be a fully qualified, 
+ versioned Force.com API endpoint.  If it is not, this
+ {@code ForceConnectorConfig} will attempt to build
+ a qualified Force.com API endpoint and bind the version
+ to the API version used in the Force.com SDK.
+ <p>
+Issues: <br/>
+No Errors
+<h3>public getClientId()</h3>
+Comment Text: <br/>Returns the Force.com connection client id.
+ <p>
+ The client id is a {@code String} identifier which
+ will be set on the Force.com connection created
+ from this {@code ForceConnectorConfig}
+Issues: <br/>
+No Errors
+<h3>public setClientId(java.lang.String)</h3>
+Comment Text: <br/>Sets the Force.com connection client id.
+ <p>
+ The client id is a {@code String} identifier which
+ will be set on the Force.com connection created
+ from this {@code ForceConnectorConfig}
+Issues: <br/>
+No Errors
+<h3>public setConnectionUrl(java.lang.String)</h3>
+Comment Text: <br/>Parses a Force.com connection URL and accordingly sets the connection
+ properties found within.
+Issues: <br/>
+No Errors
+<h3>public setTraceMessage(boolean)</h3>
+Comment Text: <br/>Turns on the ability for this {@code ForceConnectorConfig} to
+ trace messages.
+ <p>
+ Ultimately, message tracing is controlled by setting the {@code com.force.sdk.connector}
+ log level to TRACE. However, this granular control can be removed by setting
+ the trace message flag to {@code false} here.
+ <p>
+ When a {@code ForceConnectorConfig} object is constructed, this flag is
+ set to {@code true}
+Issues: <br/>
+No Errors
+<h3>public setUsername(java.lang.String)</h3>
+Comment Text: <br/>Sets the Force.com connection username.
+ <p>
+ This is overridden here because the Force.com connection
+ username is used in part to generate the unique cache id
+ for this {@code ForceConnectorConfig}
+Issues: <br/>
+No Errors
+<h3>public getTraceStream()</h3>
+Comment Text: <br/>Returns the {@code PrintStream} to which the
+ Force.com connection will print traced API messages.
+Issues: <br/>
+No Errors
+<h3>public hashCode()</h3>
+Comment Text: <br/>Returns a hash code for this {@code ForceConnectorConfig}.
+ <p>
+ The hash code is computed by finding the hash code
+ of this {@code ForceConnectorConfig}'s unique cacheId.
+Issues: <br/>
+No Errors
+<h3>public equals(java.lang.Object)</h3>
+Comment Text: <br/>Compares this {@code ForceConnectorConfig} to the specified object.
+ <p>
+ The result is {@code true} if and only if the argument 
+ is not {@code null} and is a {@code ForceConnectorConfig} object
+ with the same unique cacheId as this {@code ForceConnectorConfig}.
+Issues: <br/>
+No Errors
+<h3>protected clone()</h3>
+Comment Text: <br/>Makes a copy of this {@code ForceConnectorConfig}.
+Issues: <br/>
+No Errors
+</html>

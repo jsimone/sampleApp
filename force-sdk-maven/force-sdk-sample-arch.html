@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jesper - Force.com Java SDK In Action</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/docs.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+</head>
+<body>
+
+  <div id="header"> 
+    Jesper's Stuff Liquid error: undefined method `keys' for #<Liquid::Context:0x00000002fa4450>
+  </div>
+<div id="bodywrap">
+	<div id="docsnav">
+    <ul> <li> <h3>Getting started</h3> <ul> <li><a href="force-sdk-overview.html">Intro</a></li>
+
+ <li><a href="quick-start">Quick Start Guide</a></li>
+
+ <li><a href="sts">SpringSource Tool Suite</a></li>
+
+ <li><a href="/java-force-terminology">Force.com Terminology</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Persistence</h3> <ul> <li><a href="/jpa-provider">JPA Provider Overview</a></li>
+
+ <li><a href="/jpa-config-persistence">Configuration</a></li>
+
+ <li><a href="/jpa-annotations-standard">Standard JPA Annotations</a></li>
+
+ <li><a href="/jpa-annotations-custom">Custom Force.com Annotations</a></li>
+
+ <li><a href="/jpa-cud">Creating, Updating, and Deleting Data</a></li>
+
+ <li><a href="/jpa-queries">Querying with JPQL</a></li>
+
+ <li><a href="/jpa-queries-soql">Querying with SOQL</a></li>
+
+ <li><a href="/force-datatypes">Force.com Data Types</a></li>
+
+ <li><a href="/java-force-datatypes-map">Java to Force.com Data Types</a></li>
+
+ <li><a href="/jpa-spec-support">JPA 2.0 Specification Support</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Authentication</h3> <ul> <li><a href="/oauth-auth">OAuth Authentication</a></li>
+
+ <li><a href="/spring-security">Spring Security Plugin</a></li>
+
+ <li><a href="/retrieve-user-data">Retrieving User Data</a></li>
+
+ </ul> </li>
+
+ <li> <h3>Low-level Connector</h3> <ul> <li><a href="/connection-url">Connection Configuration</a></li>
+
+ <li><a href="/native-api">Native API Clients</a></li>
+
+ </ul> </li>
+
+ </ul>
+ 
+<!--
+	topic 'quick-start',        'Quick Start Guide'
+	topic 'sts',                'SpringSource Tool Suite'
+	topic 'java-force-terminology', 'Force.com Terminology'
+end
+
+section 'persistence', "Persistence" do
+	topic 'jpa-provider',             'JPA Provider Overview'
+	topic 'jpa-config-persistence',   'Configuration'
+	topic 'jpa-annotations-standard', 'Standard JPA Annotations'
+	topic 'jpa-annotations-custom',   'Custom Force.com Annotations'
+	topic 'jpa-cud',                  'Creating, Updating, and Deleting Data'
+	topic 'jpa-queries',              'Querying with JPQL'
+	topic 'jpa-queries-soql',         'Querying with SOQL'
+	topic 'force-datatypes',          'Force.com Data Types'
+	topic 'java-force-datatypes-map', 'Java to Force.com Data Types'
+	topic 'jpa-spec-support',         'JPA 2.0 Specification Support'
+end
+
+section 'authentication', "Authentication" do
+	topic 'oauth-auth'  ,       'OAuth Authentication'
+	topic 'spring-security',    'Spring Security Plugin'
+	topic 'retrieve-user-data',    'Retrieving User Data'
+end
+
+section 'connector', "Low-level Connector" do
+	topic 'connection-url',     'Connection Configuration'
+  topic 'native-api',         'Native API Clients'
+end
+
+-->
+
+	</div>
+
+	<div id="content">
+		<div class="topic_content">
+      <h1 id='forcecom_java_sdk_in_action'>Force.com Java SDK In Action</h1>
+
+<p>COMMENT: <span>Jesper</span> This doc should be merged with the <a href='spring-crud-tutorial'>CRUD app tutorial doc</a> instead of standing alone. It</p>
+
+<p>The Force.com SDK provides a set of tools that you can utilize however you want for your application. Here is an example of a typical web application&#8217;s architecture including the interactions between components.</p>
+
+<p>TODO <span>Mark</span>: work out why img tag is not working here</p>
+<img alt='Force.com Java SDK Application Architecture Example' src='javaSdkArchitectureExample.png' />
+<h2 id='web_layer'>Web Layer</h2>
+
+<p>The web layer can use any MVC framework. In this example, Spring Web is the MVC framework. Controller classes call application-specific services that contain the business logic.</p>
+
+<p>Since the application uses Spring Web, it makes sense to use Spring Security because of their tight integration. Spring Security also integrates with other MVC frameworks so using Spring Web is not mandatory. The Spring Security Integration uses the OAuth Connector to provide OAuth authentication to the application.</p>
+
+<p>If you don&#8217;t want to use Spring Security, the OAuth connector can be integrated with any other security framework, including custom frameworks. The OAuth Connector uses the API Connector to connect to the underlying Force.com APIs needed to perform the authentication.</p>
+
+<h2 id='business_layer'>Business Layer</h2>
+
+<p>Business logic is contained in application-specific classes and services that are called from the controllers in the web layer. These services use POJOs that are annotated or configured as JPA entities.</p>
+
+<h2 id='data_access_layer'>Data Access Layer</h2>
+
+<p>The Force.com JPA provider implements the JPA specification and uses standard JPA techniques to persist entities defined in the business layer and retrieve them from the Force.com database. The API Connector provides the connection to the Force.com APIs needed to access the Force.com database.</p>
+
+<p>A variety of environment-specific configuration options are available to connect the application with different environments during the development lifecycle. If all API access goes through the connector, you can easily port the application from one environment to another without rebuilding or reconfiguring your application. For more information about configuring connections to the Force.com database, see <a href='connection-url'>Force.com Database Connections</a>.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

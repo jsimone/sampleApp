@@ -1,0 +1,99 @@
+<html>
+<h1>com.force.sdk.jpa.ForceStoreManager</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: The store manager that holds all of the persistence.xml properties.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceStoreManager(ClassLoaderResolver, OMFContext)</h3>
+Comment Text: <br/>create a store manager for use with the Force.com API. Setup the API connection
+ configs, set some default properties and read in values from persistence.xml
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>protected registerConnectionMgr()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getConfig()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public close()</h3>
+Comment Text: <br/>Release of resources.
+Issues: <br/>
+No Errors
+<h3>public getNucleusConnection(org.datanucleus.store.ExecutionContext)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getSupportedOptions()</h3>
+Comment Text: <br/>Accessor for the supported options in string form.
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+<h3>public isAutoCreateColumns()</h3>
+Comment Text: <br/>Whether fields should be created automatically on app startup.
+Issues: <br/>
+No Errors
+<h3>public isAutoCreateTables()</h3>
+Comment Text: <br/>Whether objects should be created automatically on app startup.
+Issues: <br/>
+No Errors
+<h3>public isAutoCreateWarnOnError()</h3>
+Comment Text: <br/>Used for schema mismatches, e.g. a column or table are specified in an application,
+ the column or table does not exist in the Force.com organization, and schema creation
+ is turned OFF for field or columns. Value defaults to false but can be set in persistence.xml,
+ if true warnings will be logged, exceptions will not be thrown.
+Issues: <br/>
+No Errors
+<h3>public getPoolMinEvictableIdleTimeMillis()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getPoolTimeBetweenEvictionRunsMillis()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getTable(org.datanucleus.metadata.AbstractClassMetaData)</h3>
+Comment Text: <br/>Retrieves Force.com table information from JPA class metadata.
+Issues: <br/>
+No Errors
+<h3>public addTable(org.datanucleus.metadata.AbstractClassMetaData, com.force.sdk.jpa.ForceManagedConnection)</h3>
+Comment Text: <br/>register a table with the schema handler.
+Issues: <br/>
+No Errors
+<h3>public addVirtualTable(org.datanucleus.metadata.AbstractClassMetaData)</h3>
+Comment Text: <br/>register a virtual table with the schema handler (a table not backed by
+ an actual object but is still needed for JPA queries, e.g. Owner)
+Issues: <br/>
+No Errors
+<h3>public isEnableOptimisticTransactions()</h3>
+Comment Text: <br/>Whether optimistic locking is enabled for this persistence unit. Optimistic transactions
+ prevent two separate transactions from updating the same record at the same time, thus
+ overwriting one transaction's update
+Issues: <br/>
+No Errors
+<h3>public getMetaDataListener()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public createConnection()</h3>
+Comment Text: <br/>creates a ForceManagedConnection for connection to Force.com.
+Issues: <br/>
+No Errors
+<h3>public getSchemaWriter()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public isForDelete()</h3>
+Comment Text: <br/>whether this application has been started up with the flag to delete schema
+ rather than create/upsert it.
+Issues: <br/>
+No Errors
+<h3>public isSchemaCreateClient()</h3>
+Comment Text: <br/>This is a flag for clients that can create schema to set. Users would not
+ be setting this flag themselves
+Issues: <br/>
+No Errors
+</html>

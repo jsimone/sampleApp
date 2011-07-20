@@ -1,0 +1,72 @@
+<html>
+<h1>com.force.sdk.jpa.ForceFetchFieldManager</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Field manager for retrieving records from Force.com.  This class handles
+ parsing the different field types that come back from SOQL requests and
+ returning the proper objects to DataNucleus.</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceFetchFieldManager(ObjectProvider, ForceStoreManager, ForceManagedConnection, Object, int[], Query)</h3>
+Comment Text: <br/>Create a manager that will retrieve the specified field values of a particular entity with a known id.
+Issues: <br/>
+No Errors
+<h3>public ForceFetchFieldManager(ObjectProvider, ForceStoreManager, ForceManagedConnection, XmlObject, Query)</h3>
+Comment Text: <br/>Instantiate a fetch field manager with an sobject.
+Issues: <br/>
+No Errors
+<h3>public ForceFetchFieldManager(ExecutionContext, AbstractClassMetaData, ForceStoreManager, ForceManagedConnection, XmlObject, Query)</h3>
+Comment Text: <br/>Instantiate a fetch field manager with an sobject and execution context.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public fetchBooleanField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchByteField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchCharField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchDoubleField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchFloatField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchIntField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchLongField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchObjectField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchShortField(int)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public fetchStringField(int)</h3>
+Comment Text: <br/>Fetch the field value from the sObject and return it as a string. Most of the fetch fields will
+ delegate to this one and that parse it into the proper type (like an int or double)
+ {@inheritDoc}
+Issues: <br/>
+No Errors
+<h3>public fetchObjectField(org.datanucleus.metadata.AbstractMemberMetaData, java.lang.Object)</h3>
+Comment Text: <br/>For fields containing objects rather than strings or primitive types this method will return the proper type of
+ object depending on the field type. On occasion we use this method to fetch the proper objects for use in expressions
+ and must override the actual value of the object, in that case use the override value instead of getting it from the
+ sObject
+Issues: <br/>
+No Errors
+</html>

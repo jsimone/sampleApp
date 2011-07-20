@@ -1,0 +1,37 @@
+<html>
+<h1>com.force.sdk.codegen.builder.JPAAnnotationBuilder</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: Builds JPA annotation {@code String}s that can be included in generated source code.
+ <p>
+ {@code JPAAnnotationBuilder} takes in {@code Annotation} classes and converts those
+ into {@code String}s that can be added to Java source code.    
+ <p>
+ Built annotations will be in the form:
+ <p>
+   {@code @<annotationName>}</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public JPAAnnotationBuilder(int)</h3>
+Comment Text: <br/>Initializes a {@code JPAAnnotationBuilder} with the number
+ of intentions that should proceed each annotation.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public add(java.lang.Class<? extends java.lang.annotation.Annotation>, java.util.Map<java.lang.String, java.lang.String>)</h3>
+Comment Text: <br/>Adds an annotation with attributes to this {@code JPAAnnotationBuilder}.
+ <p>
+ Note that the attributes map has {@code String} values.  This method
+ will exactly copy the attribute map values into the annotation attribute
+ list.  Therefore callers must exactly write the attribute values as they
+ appear in {@code String} form.  For example, to add the attribute name="FooBar"
+ the caller would do the following:
+ <p>
+   {@code map.put("name", "\"FooBar\"")}
+ <p>
+ Annotations with attributes will be built in the form:
+ <p>
+   {@code @<annotationName>(<attr1>=<attr1Value>,<attr2>=<attr2Value>,...)}
+Issues: <br/>
+No Errors
+</html>

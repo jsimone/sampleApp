@@ -1,0 +1,5 @@
+com.force.sdk.codegen
+com.force.sdk.codegen.builder
+com.force.sdk.codegen.filter
+com.force.sdk.codegen.renderer
+com.force.sdk.codegen.selector

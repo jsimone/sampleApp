@@ -1,0 +1,79 @@
+<html>
+<h1>com.force.sdk.jpa.ForceEntityManager</h1>
+<h2>Policy: default</h2>
+<h2>Comment Text: This is the main EntityManager for the Force.com JPA implementation.  Persist,
+ find, etc. calls go through here. This class is what defines native queries as
+ using the SOQL language</h2>
+<h2>Javadoc Status: </h2>
+No Errors
+<h2>Constructors:</h2>
+<h3>public ForceEntityManager(EntityManagerFactory, PersistenceManagerFactory, PersistenceContextType)</h3>
+Comment Text: <br/>Construct an entity manager for persisting objects to Force.com.
+Issues: <br/>
+No Errors
+<h2>Methods:</h2>
+<h3>public joinTransaction()</h3>
+Comment Text: <br/>This method is over-ridden from the base class to implement our own ForceTransactionImpl.
+Issues: <br/>
+No Errors
+<h3>public close()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public clear()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public injectStateManagerIntoTransient(javax.jdo.spi.PersistenceCapable)</h3>
+Comment Text: <br/>Method added to allow a StateManager to be injected into a transient object
+ so that we can track which fields have been touched. Then if the user calls
+ merge() on that transient object we can copy the fields over to a detached
+ object and call merge on it. If the user called persist instead we simply
+ toss this injected StateManager and proceed as usual.
+Issues: <br/>
+No Errors
+<h3>public createNativeQuery(java.lang.String, java.lang.Class)</h3>
+Comment Text: <br/>Create an instance of Query for executing an SOQL query.
+Issues: <br/>
+No Errors
+<h3>public createNativeQuery(java.lang.String, java.lang.String)</h3>
+Comment Text: <br/>Create an instance of Query for executing an SOQL query.
+Issues: <br/>
+No Errors
+<h3>public persist(java.lang.Object)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public merge(java.lang.Object)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public remove(java.lang.Object)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public find(java.lang.Class<T>, java.lang.Object, javax.persistence.LockModeType, java.util.Map<java.lang.String, java.lang.Object>)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public getReference(java.lang.Class, java.lang.Object)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public refresh(java.lang.Object, javax.persistence.LockModeType, java.util.Map<java.lang.String, java.lang.Object>)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public flush()</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public lock(java.lang.Object, javax.persistence.LockModeType, java.util.Map<java.lang.String, java.lang.Object>)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+<h3>public detach(java.lang.Object)</h3>
+Comment Text: <br/>
+Issues: <br/>
+No Errors
+</html>
